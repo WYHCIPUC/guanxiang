@@ -100,6 +100,7 @@ function App() {
       if (horizontal.altitude < 0) continue
       const dome = projectOnDome(horizontal)
       if (!Number.isFinite(dome.x) || !Number.isFinite(dome.y)) continue
+      if (dome.x < 3 || dome.x > 97 || dome.y > 97) continue // 贴地平线的星点会被容器裁切成残影
       const brightness = 5.5 - mag
       dots.push({
         x: dome.x,
@@ -111,12 +112,12 @@ function App() {
     return dots
   }, [moment, site])
 
-  // 三种模式各自要画的连线：叠合模式两套同屏，颜色与线型区分
+  // 三种模式各自要画的连线：只在两端星都升起时绘制，避免地平线下出现孤儿线段
   const lineSets = useMemo(() => {
     const build = (pairs: [string, string][]) => pairs.flatMap(([a, b]) => {
       const first = placements.get(a)
       const second = placements.get(b)
-      return first && second ? [{ id: `${a}-${b}`, first, second }] : []
+      return first && second && first.above && second.above ? [{ id: `${a}-${b}`, first, second }] : []
     })
     return { china: build(chinaLines), western: build(westernLines) }
   }, [placements])
@@ -310,7 +311,6 @@ function App() {
 
         <div className={selectedStar ? 'sky-stage has-selection' : 'sky-stage'}>
           <div className="silk-grain" style={{ backgroundImage: `url("${silkGrain}")` }} aria-hidden="true" />
-          <div className="milky-way" aria-hidden="true" />
           <svg className="constellation-lines" viewBox="0 0 100 100" aria-hidden="true">
             {fieldDots.map((dot, index) => (
               <circle key={index} className="field-star" cx={dot.x} cy={dot.y} r={dot.r} fillOpacity={dot.o} />
@@ -318,7 +318,7 @@ function App() {
             <circle cx="50" cy="50" r="47" className="horizon-ring" />
             <text x="50" y="3.4" className="compass-mark">北</text>
             <text x="96.6" y="51.2" className="compass-mark">西</text>
-            <text x="50" y="99.2" className="compass-mark">南</text>
+            <text x="50" y="96.8" className="compass-mark">南</text>
             <text x="3.4" y="51.2" className="compass-mark">东</text>
             {(mode === 'western' ? lineSets.western : lineSets.china).map(({ id, first, second }) => (
               <line key={id} x1={first.x} y1={first.y} x2={second.x} y2={second.y} className={mode === 'western' ? 'western-line' : 'china-line'} />
@@ -371,7 +371,7 @@ function App() {
 
         <div className="observatory-actions">
           <button className="secondary-button" onClick={() => pickStar(target)}><Info size={17} />查看星官</button>
-          <button className="primary-button" onClick={() => startMeasuring()}><Sparkles size={18} />测一测 {target.name}</button>
+          <button className={selectedStar && !observation ? 'primary-button ghost' : 'primary-button'} onClick={() => startMeasuring()}><Sparkles size={18} />{selectedStar ? `测一测 ${target.name}` : '测一测'}</button>
         </div>
       </section>
 
@@ -379,7 +379,7 @@ function App() {
         <div className="insight-icon">镜</div>
         <div>
           <strong>铜镜提示</strong>
-          <p>{shenUp ? '切换“西方星座”，看看参宿如何变成猎户座。' : `参宿约 ${shenRiseLabel} 升起；先看低垂的北斗——切到“西方星座”，它就是大熊座。`}</p>
+          <p>{shenUp ? '切换「西方星座」，看看参宿如何变成猎户座。' : `参宿约 ${shenRiseLabel} 升起；先看低垂的北斗——切到「西方星座」，它就是大熊座。`}</p>
         </div>
         <button className="text-button" onClick={() => setMode(mode === 'china' ? 'western' : mode === 'western' ? 'both' : 'china')}>翻转天空 <RotateCcw size={15} /></button>
       </section>
@@ -435,16 +435,16 @@ function App() {
               <p className="aim-note" aria-live="polite">{aimed ? `已瞄准 · ${target.name}` : '拖动准星套住亮星 · 也可聚焦后用方向键微调'}</p>
             </div>
             <div className="measure-copy">
-              <p>古人用浑仪量出的两个数——入宿度与去极度——描述同一颗星；下方两格的现代坐标说的是同一件事。{panelReadings.altitudeNote}。</p>
-              <div className={aimed ? 'reading-grid' : 'reading-grid pending'}>
-                <div><small>入宿度（古）</small><strong>{panelReadings.ru}</strong></div>
-                <div><small>去极度（古）</small><strong>{panelReadings.ju}</strong></div>
+              <p>古人用浑仪量出的两个数——入宿度与去极度——描述同一颗星；瞄准后点亮。下方两格的现代坐标说的是同一件事。{panelReadings.altitudeNote}。</p>
+              <div className="reading-grid">
+                <div className={aimed ? '' : 'pend'}><small>入宿度（古）</small><strong>{panelReadings.ru}</strong></div>
+                <div className={aimed ? '' : 'pend'}><small>去极度（古）</small><strong>{panelReadings.ju}</strong></div>
                 <div><small>赤经（今）</small><strong>{panelReadings.ra}</strong></div>
                 <div><small>赤纬（今）</small><strong>{panelReadings.dec}</strong></div>
               </div>
-              <p className="precision-note">{aimed ? '真实换算 · J2000 历元，未含岁差与大气折射修正；宿距星赤经为近似整理值' : '瞄准目标星后点亮读数 · J2000 历元教学换算'}</p>
+              <p className="precision-note">{aimed ? '入宿度＝自该宿距星起算的赤经差 · 去极度＝离天极的角距 · J2000 历元，未含岁差与大气折射修正' : '现代坐标即时可读；瞄准目标星后点亮两个古值 · J2000 历元教学换算'}</p>
             </div>
-            <div className="panel-actions"><button className="secondary-button" onClick={() => setIsMeasuring(false)}>先不记录</button><button className="primary-button" onClick={commitObservation}>记入奏折 <Download size={16} /></button></div>
+            <div className="panel-actions"><button className="secondary-button" onClick={() => setIsMeasuring(false)}>先不记录</button><button className={aimed ? 'primary-button' : 'primary-button tentative'} onClick={commitObservation}>记入奏折 <Download size={16} /></button></div>
           </section>
         </div>
       )}

@@ -2,6 +2,8 @@
 // 覆盖：恒星时锚点、地平坐标、天穹投影、入宿度/去极度、升起时刻、日期处理、HYG 星表抽检。
 import * as astro from '../src/lib/astro.ts'
 import { starfield } from '../src/data/starfield.ts'
+import { lodgeStars } from '../src/data/lodges.ts'
+import { stars as demoStars } from '../src/data/demo.ts'
 
 const assert = (condition, message) => {
   if (!condition) throw new Error(`天文计算校验失败：${message}`)
@@ -124,5 +126,33 @@ near(astro.greenwichSiderealTimeHours(new Date(Date.UTC(2000, 0, 1, 12, 0, 0))),
   assert(starfield[0][2] <= starfield[starfield.length - 1][2], '星表应按亮度从亮到暗排序')
 }
 
+// 12. 二十八宿覆盖与距星交叉校验：lodges.ts（HYG 提取）与 astro.ts 宿表（手工整理）互为印证
+{
+  const lodgeGroups = new Set(lodgeStars.map((star) => star.chineseGroup))
+  assert(lodgeGroups.size === 27, `lodges.ts 应覆盖 27 宿（实际 ${lodgeGroups.size}）`)
+  assert(demoStars.some((star) => star.chineseGroup === '参宿'), '参宿应在核心星表中，合计 28 宿')
+  assert(demoStars.length >= 140, `合并星表应有 140 颗以上（实际 ${demoStars.length}）`)
+  const duplicateNames = demoStars.map((star) => star.name).filter((name, index, all) => all.indexOf(name) !== index)
+  assert(duplicateNames.length === 0, `星名不应重复（重复：${duplicateNames.join('、') || '无'}）`)
+  const duplicateIds = demoStars.map((star) => star.id).filter((id, index, all) => all.indexOf(id) !== index)
+  assert(duplicateIds.length === 0, `星点 id 不应重复（重复：${duplicateIds.join('、') || '无'}）`)
+
+  // 距星（各宿首位星）赤经与 astro.ts 宿表逐宿比对，容差 0.6°
+  for (const lodge of astro.lodges) {
+    const first = lodge.name === '参'
+      ? demoStars.find((star) => star.name === '参宿三')
+      : lodgeStars.find((star) => star.chineseGroup === `${lodge.name}宿`)
+    assert(first, `${lodge.name}宿应存在首位距星`)
+    const deltaHours = Math.abs(first.raHours - lodge.raHours)
+    assert(deltaHours < 0.04, `${lodge.name}宿距星赤经两表应一致（差 ${(deltaHours * 15).toFixed(3)}°：HYG ${first.raHours}h vs 宿表 ${lodge.raHours}h）`)
+  }
+
+  // 每颗宿星的入宿度都应解析出确定的宿
+  for (const star of lodgeStars) {
+    const entry = astro.lodgeEntry(star.raHours)
+    assert(entry.lodge !== '未知', `${star.name} 的入宿度应可解析`)
+  }
+}
+
 console.log('天文计算校验通过')
-console.log('覆盖：恒星时、地平坐标、天穹投影、入宿度、去极度、升起时刻、日期进位、HYG 星表抽检')
+console.log('覆盖：恒星时、地平坐标、天穹投影、入宿度、去极度、升起时刻、日期进位、HYG 星表抽检、二十八宿距星交叉校验')

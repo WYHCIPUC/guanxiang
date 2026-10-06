@@ -76,11 +76,18 @@ try {
     assert(below === !dome.above, `${star.name} 的升落状态标记应正确`)
   }
 
-  // 连线随模式切换：西方模式沙漏形不含腰带“参宿一—参宿二”，连线数与中国星官不同
+  // 连线随模式切换：西方模式沙漏形不含腰带“参宿一—参宿二”，连线数与中国星官不同。
+  // 只统计两端都已升起的连线（与界面规则一致：地平线下不画线）。
+  const aboveIds = new Set(stars.filter((star) => {
+    const dome = astro.projectOnDome(astro.starHorizontal(star, moment, site.latitude, site.longitude))
+    return dome.above
+  }).map((star) => star.id))
   document.querySelector('[aria-label="切换天空命名方式"] .mode-button:nth-child(2)').click()
   await settle()
   const westernCount = [...document.querySelectorAll('.constellation-lines line')].length
-  assert(westernCount === westernLines.length, `西方星座连线数应为 ${westernLines.length}（实际 ${westernCount}）`)
+  const expectedWestern = westernLines.filter(([a, b]) => aboveIds.has(a) && aboveIds.has(b)).length
+  assert(westernCount === expectedWestern, `西方星座可见连线数应为 ${expectedWestern}（实际 ${westernCount}）`)
+  assert(westernCount > 0, '西方星座应至少画出一条可见连线')
 
   // 时间滑块移动后星位应实时重排
   const anchorBefore = starButtons.find((element) => element.getAttribute('aria-label')?.includes('参宿四'))
