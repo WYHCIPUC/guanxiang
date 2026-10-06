@@ -13,6 +13,15 @@ const dom = new JSDOM('<!doctype html><html><body><div id="root"></div></body></
 for (const key of ['window', 'document', 'navigator', 'localStorage', 'getComputedStyle']) {
   try { globalThis[key] = dom.window[key] } catch { /* navigator 等只读全局量沿用宿主值 */ }
 }
+// jsdom 未实现 matchMedia 与 scrollTo，补浏览器等价桩（与今时 smoke-ui 的做法一致）
+dom.window.matchMedia = (media) => ({
+  matches: false,
+  media,
+  addEventListener() {}, removeEventListener() {},
+  addListener() {}, removeListener() {}, dispatchEvent() { return false },
+})
+dom.window.scrollTo = () => {}
+globalThis.matchMedia = dom.window.matchMedia
 
 const { createServer } = await import('vite')
 const server = await createServer({ logLevel: 'error', server: { middlewareMode: true }, appType: 'custom' })

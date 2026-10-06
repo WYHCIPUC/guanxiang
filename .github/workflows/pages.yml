@@ -27,7 +27,8 @@ jobs:
           cache: npm
           cache-dependency-path: apps/butian/package-lock.json
       - name: Install dependencies
-        run: npm ci
+        # --workspaces=false：避免 npm 向上找到仓库根的不完整 lockfile（会漏装平台原生包）
+        run: npm ci --workspaces=false
         working-directory: apps/butian
       - name: Build and checks
         run: |

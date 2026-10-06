@@ -62,7 +62,15 @@ function App() {
   const timeLabel = timeLabels[timeIndex]
   const site = locations.find((item) => item.name === location) ?? locations[0]
   const moment = useMemo(() => tonightAt(timeLabel), [timeLabel])
-  const target = selectedStar ?? stars[0]
+
+  // 窄屏判定：标签避让的间距策略随画布宽高比切换
+  const [isNarrow, setIsNarrow] = useState(() => window.matchMedia('(max-width: 700px)').matches)
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 700px)')
+    const onChange = (event: MediaQueryListEvent) => setIsNarrow(event.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
 
   // 星点位置：真实 J2000 坐标 → 地平坐标 → 天穹投影（计算失败时退回静态示意位置）
   const placements = useMemo(() => {
@@ -79,6 +87,10 @@ function App() {
     }
     return map
   }, [moment, site])
+
+  // 主 CTA 与测量默认指向：优先选一颗已升起的星，避免“测一颗图上找不到的星”
+  const firstAboveStar = stars.find((star) => placements.get(star.id)?.above) ?? stars[0]
+  const target = selectedStar ?? firstAboveStar
 
   // 背景星野：HYG 星表（≤5.5 等）按同一套天文计算落位，只画地平线以上的星
   const fieldDots = useMemo(() => {
@@ -109,22 +121,24 @@ function App() {
     return { china: build(chinaLines), western: build(westernLines) }
   }, [placements])
 
-  // 标签防叠压：每个星官/星座簇只给最亮的 3 颗常显标签，其余悬停或选中时展开
+  // 标签避让：按亮度从高到低贪心保留，新的标签若与已保留的太近（换算宽高比后）则降为悬停展开。
+  // 桌面画布宽扁、几乎全标注；手机画布窄高、只留最亮几颗，防止糊成一团。
   const brightLabelIds = useMemo(() => {
-    const clusters = new Map<string, Star[]>()
-    for (const star of stars) {
-      const placement = placements.get(star.id)
-      if (!placement?.above) continue
-      const key = star.chineseGroup
-      clusters.set(key, [...(clusters.get(key) ?? []), star])
-    }
+    const visible = stars.filter((star) => placements.get(star.id)?.above)
+    const aspect = isNarrow ? 0.55 : 1.7
+    const minDist = isNarrow ? 15 : 8
+    const kept: { x: number; y: number }[] = []
     const ids = new Set<string>()
-    for (const group of clusters.values()) {
-      group.sort((a, b) => a.magnitude - b.magnitude)
-      for (const star of group.slice(0, 3)) ids.add(star.id)
+    for (const star of [...visible].sort((a, b) => a.magnitude - b.magnitude)) {
+      const p = placements.get(star.id)!
+      const far = kept.every((k) => Math.hypot((p.x - k.x) * aspect, p.y - k.y) >= minDist)
+      if (far) {
+        kept.push({ x: p.x, y: p.y })
+        ids.add(star.id)
+      }
     }
     return ids
-  }, [placements])
+  }, [placements, isNarrow])
 
   // 参宿四作为“参宿是否已升”的锚点；未升时给出今夜的升起时刻
   const shenAnchor = stars.find((star) => star.id === 'shen-4') ?? stars[0]
@@ -233,8 +247,10 @@ function App() {
 
   const edgeClass = (x: number) => (x < 12 ? ' edge-left' : x > 88 ? ' edge-right' : '')
 
+  const isTargetBelow = !(placements.get(target.id)?.above ?? true)
+
   return (
-    <main className="app-shell">
+    <main className={(selectedStar && !isMeasuring) || (observation && !isMeasuring) ? 'app-shell has-dock' : 'app-shell'}>
       <header className="topbar">
         <div className="brand-lockup">
           <span className="brand-mark">步</span>
@@ -264,7 +280,7 @@ function App() {
         <div className="hero-text">
           <p className="hero-kicker"><span className="status-dot" />你正在值守观星台</p>
           <h2>同一片天空，<em>两套名字。</em></h2>
-          <p>{shenUp ? '星点已按今晚的时刻与地点排好。先看见星，再选择古人如何称呼它。' : `星点已按今晚的时刻与地点排好。参宿约 ${shenRiseLabel} 升起，先认头顶的北斗。`}</p>
+          <p>{shenUp ? '星点已按今晚的时刻与地点排好。先看见星，再选择古人如何称呼它。' : `星点已按今晚的时刻与地点排好。参宿约 ${shenRiseLabel} 升起，先认北天的北斗。`}</p>
         </div>
         {(() => {
           const dou = placements.get('dou-1')
@@ -313,8 +329,8 @@ function App() {
           </svg>
           {mode === 'both' && (
             <div className="mode-legend" aria-hidden="true">
-              <span className="legend-item legend-china">— 中国星官</span>
-              <span className="legend-item legend-western">— 西方星座</span>
+              <span className="legend-item legend-china"><i className="legend-line line-china" />中国星官</span>
+              <span className="legend-item legend-western"><i className="legend-line line-western" />西方星座</span>
             </div>
           )}
           {stars.map((star) => {
@@ -344,7 +360,7 @@ function App() {
               </button>
             )
           })}
-          <div className="sky-caption">天穹俯视 · 北在上东在左 · 暗星为未升之星 · 星位实时计算（J2000，教学精度）· 背景星野 {hygStars.length.toLocaleString()} 颗（HYG ≤5.5 等）</div>
+          <div className="sky-caption">天穹俯视 · 北在上东在左 · 暗星为未升之星<span className="caption-extra"> · 星位实时计算（J2000，教学精度）· 背景星野 {hygStars.length.toLocaleString()} 颗（HYG ≤5.5 等）</span></div>
         </div>
 
         <div className="time-control">
@@ -411,15 +427,15 @@ function App() {
               <span className="ring-tag ring-tag-outer" aria-hidden="true">去极度环</span>
               <span className="ring-tag ring-tag-inner" aria-hidden="true">入宿度环</span>
               <div className="aim-needle" style={{ transform: `rotate(${aimAngle}deg)` }} aria-hidden="true" />
-              <div className="aim-star" style={{ left: `${AIM_TARGET.x}%`, top: `${AIM_TARGET.y}%` }} aria-hidden="true">
+              <div className={isTargetBelow ? 'aim-star phantom' : 'aim-star'} style={{ left: `${AIM_TARGET.x}%`, top: `${AIM_TARGET.y}%` }} aria-hidden="true">
                 <span className="aim-star-core" />
-                <span className="aim-star-label">{target.name}</span>
+                <span className="aim-star-label">{target.name}{isTargetBelow ? ' · 未升演示' : ''}</span>
               </div>
               <div className="crosshair" style={{ left: `${aimed ? AIM_TARGET.x : aim.x}%`, top: `${aimed ? AIM_TARGET.y : aim.y}%` }} aria-hidden="true"><span /><span /></div>
               <p className="aim-note" aria-live="polite">{aimed ? `已瞄准 · ${target.name}` : '拖动准星套住亮星 · 也可聚焦后用方向键微调'}</p>
             </div>
             <div className="measure-copy">
-              <p>古人用浑仪量出的两个数——入宿度与去极度——描述同一颗星；右侧现代坐标说的是同一件事。{panelReadings.altitudeNote}。</p>
+              <p>古人用浑仪量出的两个数——入宿度与去极度——描述同一颗星；下方两格的现代坐标说的是同一件事。{panelReadings.altitudeNote}。</p>
               <div className={aimed ? 'reading-grid' : 'reading-grid pending'}>
                 <div><small>入宿度（古）</small><strong>{panelReadings.ru}</strong></div>
                 <div><small>去极度（古）</small><strong>{panelReadings.ju}</strong></div>
