@@ -1,0 +1,58 @@
+[
+  {
+    "id": "lunar-javascript",
+    "type": "software",
+    "name": "lunar-javascript",
+    "version": "1.7.7",
+    "license": "MIT",
+    "source": "https://www.npmjs.com/package/lunar-javascript",
+    "usedFor": ["农历日期", "二十四节气时间"]
+  },
+  {
+    "id": "solar-events",
+    "type": "algorithm",
+    "name": "NOAA-style solar event approximation",
+    "license": "algorithmic implementation",
+    "source": "src/systems/astronomy.ts",
+    "usedFor": ["日出", "日落", "晨昏阶段"],
+    "certainty": "approximate"
+  },
+  {
+    "id": "phenology-traditional-list",
+    "type": "cultural-content",
+    "name": "七十二候传统名称",
+    "source": "《逸周书·时训解》与《月令七十二候集解》传统列表",
+    "references": [
+      "https://jgs.agri.gov.cn/twenty/zh/four_solar_terms.html",
+      "https://www.cma.gov.cn/2011xwzx/2011xmtjj/202110/t20211029_4006701.html"
+    ],
+    "usedFor": ["候应标签"],
+    "certainty": "traditional-list",
+    "notes": "产品仅把它作为历史文本与视觉映射，不表示今日所有地区的生态实况。"
+  },
+  {
+    "id": "visual-assets",
+    "type": "visual",
+    "name": "项目自绘 SVG 与 CSS 场景",
+    "source": "src/styles.css 与 src/main.ts",
+    "license": "project-created",
+    "usedFor": ["山水", "太阳/月亮", "花信标签"]
+  },
+  {
+    "id": "fonts",
+    "type": "font",
+    "name": "系统字体栈",
+    "source": "CSS system font stack",
+    "license": "由用户设备提供",
+    "usedFor": ["标题", "正文", "卡片"]
+  },
+  {
+    "id": "audio",
+    "type": "audio",
+    "name": "Web Audio oscillator tone",
+    "source": "src/main.ts",
+    "license": "project-generated",
+    "usedFor": ["可选环境声"],
+    "notes": "无第三方录音素材，默认关闭。"
+  }
+]

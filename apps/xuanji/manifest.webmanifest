@@ -1,0 +1,13 @@
+{
+  "name": "璇玑 · 数字观象台",
+  "short_name": "璇玑",
+  "description": "传统文化与个人数据可视化的互动体验。",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#111820",
+  "theme_color": "#111820",
+  "lang": "zh-CN",
+  "icons": [
+    { "src": "./assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

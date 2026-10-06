@@ -1,0 +1,13 @@
+# 系统文件
+Thumbs.db
+.DS_Store
+
+# 编辑器和临时文件
+.vscode/
+.idea/
+*.log
+
+# 本地运行缓存
+node_modules/
+dist/
+coverage/

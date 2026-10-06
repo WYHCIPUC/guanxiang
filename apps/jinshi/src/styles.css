@@ -1,0 +1,111 @@
+:root {
+  --ink: #2d2925;
+  --muted: #6d665e;
+  --paper: #f5f0e6;
+  --line: rgba(45, 41, 37, 0.16);
+  --accent: #b94c3e;
+  --scene-top: #c8d9d3;
+  --scene-bottom: #e8dfcf;
+  --water: rgba(84, 125, 130, 0.44);
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; background: var(--paper); }
+button, select { font: inherit; }
+button { cursor: pointer; }
+button:focus-visible, select:focus-visible, [tabindex]:focus-visible { outline: 3px solid rgba(185,76,62,.45); outline-offset: 3px; }
+
+body[data-phase="night"] { --scene-top: #172638; --scene-bottom: #4a5360; --water: rgba(147, 169, 172, .24); }
+body[data-phase="dawn"] { --scene-top: #d8cec1; --scene-bottom: #edbd9f; --water: rgba(106, 132, 132, .28); }
+body[data-phase="day"] { --scene-top: #b8d6d5; --scene-bottom: #e9e3d3; --water: rgba(72, 122, 128, .4); }
+body[data-phase="dusk"] { --scene-top: #9c7583; --scene-bottom: #e1aa86; --water: rgba(69, 80, 100, .4); }
+
+.app-shell { min-height: 100svh; overflow: hidden; }
+.topbar, .hero-copy, .controls, .footer-note { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+.topbar { display: flex; justify-content: space-between; align-items: center; padding: 24px 0 16px; }
+.brand-lockup { display: flex; align-items: center; gap: 12px; }
+.brand-mark { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid var(--ink); border-radius: 50%; font-family: Georgia, serif; font-size: 22px; }
+h1, h2, h3, p { margin: 0; }
+h1 { font-family: Georgia, "Songti SC", serif; font-size: 20px; font-weight: 600; letter-spacing: .06em; }
+h1 span { color: var(--muted); font-weight: 400; }
+.brand-lockup p { margin-top: 3px; font-size: 12px; color: var(--muted); letter-spacing: .08em; }
+.top-actions { display: flex; align-items: center; gap: 18px; }
+.text-button, .icon-button, .close-button { border: 0; background: transparent; color: var(--muted); }
+.text-button { font-size: 13px; }
+.text-button:hover { color: var(--ink); }
+.icon-button { width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; font-size: 18px; }
+.hero-copy { display: flex; align-items: end; justify-content: space-between; padding: 46px 0 28px; }
+.eyebrow { color: var(--accent); font-size: 13px; letter-spacing: .16em; }
+.hero-copy h2 { margin: 8px 0 6px; font: 500 clamp(46px, 8vw, 82px)/.95 Georgia, "Songti SC", serif; letter-spacing: .04em; }
+#viewed-meta { color: var(--muted); font-size: 14px; }
+.location-pill { padding: 9px 13px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 13px; background: rgba(255,255,255,.25); }
+
+.scene-wrap { position: relative; }
+.scene-viewport { overflow-x: auto; overflow-y: hidden; width: 100%; scrollbar-width: thin; scrollbar-color: rgba(45,41,37,.2) transparent; cursor: grab; }
+.scene-viewport:active { cursor: grabbing; }
+.timeline { position: relative; height: clamp(330px, 48vw, 520px); overflow: hidden; background: linear-gradient(180deg, var(--scene-top) 0%, var(--scene-bottom) 78%, #c8bea9 100%); transition: background 800ms ease; }
+.mountain { position: absolute; left: -2%; width: 104%; background: #4b5c5d; opacity: .35; clip-path: polygon(0 80%, 14% 44%, 25% 62%, 39% 20%, 50% 57%, 67% 35%, 80% 59%, 91% 31%, 100% 62%, 100% 100%, 0 100%); }
+.mountain-back { bottom: 29%; height: 48%; opacity: .2; transform: scaleX(1.1); }
+.mountain-front { bottom: 13%; height: 39%; opacity: .38; }
+.river { position: absolute; left: 0; right: 0; bottom: 0; height: 29%; background: linear-gradient(176deg, transparent 8%, var(--water) 9%, rgba(255,255,255,.08) 28%, transparent 30%), linear-gradient(7deg, rgba(255,255,255,.18), transparent 42%); opacity: .75; }
+.sun-or-moon { position: absolute; top: 16%; left: calc(50% - 42px); width: 84px; height: 84px; border-radius: 50%; background: #f8d799; box-shadow: 0 0 56px rgba(250,211,149,.52); transition: left 700ms ease, top 700ms ease, background 700ms ease; }
+.sun-or-moon.moon { width: 58px; height: 58px; top: 19%; background: #e5e1cf; box-shadow: 0 0 36px rgba(232,226,202,.24); }
+.tree { position: absolute; bottom: 18%; color: rgba(47, 63, 57, .76); font: 96px/1 Georgia, serif; opacity: .7; }
+.tree-a { left: 8%; transform: rotate(-8deg); }.tree-b { left: 79%; transform: rotate(10deg) scale(.8); }
+.flower-bloom { position: absolute; right: 14%; bottom: 27%; z-index: 2; padding: 9px 12px; border: 1px solid rgba(255,255,255,.45); border-radius: 999px; color: rgba(255,255,255,.9); background: rgba(45,41,37,.18); font: 14px Georgia, serif; letter-spacing: .08em; backdrop-filter: blur(3px); transition: transform 500ms ease, background 500ms ease; }
+.flower-bloom[data-phase="dawn"] { transform: translateY(-6px) rotate(-2deg); background: rgba(185,76,62,.3); }
+.flower-bloom[data-phase="day"] { transform: translateY(-12px); background: rgba(66,110,92,.28); }
+.flower-bloom[data-phase="dusk"] { transform: translateY(-4px) rotate(2deg); background: rgba(124,75,91,.34); }
+.flower-bloom[data-phase="night"] { transform: translateY(0); background: rgba(29,43,64,.36); }
+.solar-marker { position: absolute; top: 0; bottom: 0; z-index: 2; width: 1px; border-left: 1px solid rgba(255,255,255,.62); pointer-events: none; }
+.solar-marker span { position: absolute; top: 58px; left: 7px; padding: 3px 6px; border-radius: 999px; color: rgba(255,255,255,.88); background: rgba(45,41,37,.32); font-size: 10px; white-space: nowrap; }
+.now-line, .view-line { position: absolute; top: 0; bottom: 0; width: 1px; z-index: 3; background: rgba(45,41,37,.35); pointer-events: none; }
+.now-line { border-left: 1px dashed rgba(185,76,62,.68); }.now-line span, .view-line span { position: absolute; top: 18px; left: 8px; white-space: nowrap; padding: 4px 8px; border-radius: 999px; font-size: 11px; color: #fff; background: rgba(45,41,37,.55); }
+.now-line span { background: var(--accent); }.view-line { background: rgba(45,41,37,.7); }
+.hour-marker { position: absolute; top: 0; bottom: 0; width: 1px; background: rgba(255,255,255,.25); }
+.hour-marker span { position: absolute; top: 86%; transform: translateX(-50%); color: rgba(255,255,255,.8); font-size: 12px; font-variant-numeric: tabular-nums; }
+.scroll-hint { margin: 10px auto 0; width: max-content; color: var(--muted); font-size: 12px; transition: opacity 1s ease; }
+.phase-transition { position: fixed; z-index: 7; left: 50%; top: 42%; width: min(88vw, 440px); padding: 13px 18px; border: 1px solid rgba(255,255,255,.38); border-radius: 999px; color: #fff; background: rgba(45,41,37,.48); box-shadow: 0 16px 42px rgba(36,31,25,.16); opacity: 0; pointer-events: none; transform: translate(-50%, 12px); text-align: center; font: 14px/1.5 Georgia, "Songti SC", serif; backdrop-filter: blur(8px); transition: opacity 280ms ease, transform 280ms ease; }
+.phase-transition.visible { opacity: 1; transform: translate(-50%, 0); }
+.controls { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 24px 0; }
+.quick-times { display: flex; gap: 8px; flex-wrap: wrap; }
+.quick-times button { min-width: 76px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.2); color: var(--ink); font-size: 13px; }
+.quick-times button:hover { border-color: var(--ink); background: rgba(255,255,255,.55); }
+.quick-times small { display: block; margin-top: 2px; color: var(--muted); font-size: 10px; }
+.primary-actions { display: flex; align-items: center; gap: 10px; }
+.primary-button, .secondary-button { min-height: 44px; padding: 0 18px; border-radius: 999px; }
+.primary-button { border: 1px solid var(--accent); background: var(--accent); color: #fff; }.primary-button:hover { filter: brightness(.94); }
+.secondary-button { border: 1px solid var(--line); background: transparent; color: var(--ink); }.secondary-button:hover { border-color: var(--ink); }
+.footer-note { display: flex; justify-content: space-between; padding: 0 0 22px; color: var(--muted); font-size: 12px; }
+
+.scrim { position: fixed; inset: 0; z-index: 8; background: rgba(24,29,31,.25); backdrop-filter: blur(2px); }
+.drawer { position: fixed; z-index: 9; top: 0; right: 0; bottom: 0; width: min(360px, 92vw); padding: 28px; background: var(--paper); box-shadow: -18px 0 42px rgba(36,31,25,.14); transform: translateX(105%); transition: transform 260ms ease; }
+.drawer.open { transform: translateX(0); }.drawer-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }.drawer-head h2 { font: 500 28px Georgia, serif; }.close-button { width: 36px; height: 36px; border-radius: 50%; font-size: 28px; line-height: 1; }.close-button:hover { background: rgba(45,41,37,.08); color: var(--ink); }
+.field-label { display: block; margin-bottom: 8px; color: var(--muted); font-size: 13px; }
+select { width: 100%; height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); background: rgba(255,255,255,.35); }
+.segmented { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 20px 0; padding: 5px; border-radius: 12px; background: rgba(45,41,37,.07); }.segmented button { border: 0; padding: 10px 6px; border-radius: 8px; color: var(--muted); background: transparent; font-size: 13px; }.segmented button.active { background: #fff; color: var(--ink); box-shadow: 0 2px 8px rgba(45,41,37,.08); }
+.switch-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-top: 1px solid var(--line); font-size: 14px; }.switch-row input { position: absolute; opacity: 0; }.switch-ui { width: 42px; height: 24px; padding: 3px; border-radius: 999px; background: rgba(45,41,37,.2); transition: background 180ms; }.switch-ui::after { content: ''; display: block; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: transform 180ms; }.switch-row input:checked + .switch-ui { background: var(--accent); }.switch-row input:checked + .switch-ui::after { transform: translateX(18px); }.reset-button { margin-top: 24px; }.drawer-foot { position: absolute; bottom: 28px; }
+
+dialog { border: 0; padding: 0; background: transparent; color: var(--ink); max-width: min(92vw, 440px); }.sign-dialog::backdrop, .about-dialog::backdrop { background: rgba(24,29,31,.42); backdrop-filter: blur(5px); }.sign-card { position: relative; min-height: 440px; padding: 40px 32px 34px; border-radius: 22px; background: linear-gradient(150deg, #eee5d6, #d1dbd2); box-shadow: 0 22px 70px rgba(36,31,25,.28); }.sign-card .close-button { position: absolute; top: 16px; right: 16px; }.sign-kicker { color: var(--muted); font-size: 12px; letter-spacing: .14em; }.sign-card h2 { margin-top: 84px; font: 500 42px/1.1 Georgia, serif; }.sign-time { margin-top: 12px; color: var(--muted); font-size: 14px; }.sign-rule { width: 56px; height: 1px; margin: 50px 0 24px; background: var(--accent); }.sign-quote { font: 500 21px/1.7 Georgia, "Songti SC", serif; }.sign-foot { position: absolute; right: 32px; bottom: 28px; color: var(--muted); font-size: 11px; }.dialog-actions { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 9px; padding-top: 16px; }.about-dialog { width: min(92vw, 560px); padding: 30px; border-radius: 18px; background: var(--paper); box-shadow: 0 22px 70px rgba(36,31,25,.26); }.about-dialog h3 { margin: 24px 0 8px; font-size: 16px; }.about-dialog p { color: var(--muted); font-size: 14px; line-height: 1.8; }.source-line { padding-top: 18px; border-top: 1px solid var(--line); }
+
+body.reduce-motion *, body.reduce-motion *::before, body.reduce-motion *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+@media (max-width: 720px) {
+  .topbar, .hero-copy, .controls, .footer-note { width: min(100% - 28px, 1180px); }
+  .topbar { padding-top: 16px; }.text-button { font-size: 12px; }.hero-copy { padding: 32px 0 20px; align-items: start; flex-direction: column; gap: 18px; }.location-pill { align-self: flex-start; }
+  .scene-viewport { scrollbar-width: none; }.timeline { height: 390px; }.scroll-hint { font-size: 11px; }.controls { align-items: stretch; flex-direction: column; padding: 20px 0; }.quick-times { display: grid; grid-template-columns: repeat(4, 1fr); }.quick-times button { min-width: 0; padding: 8px 4px; }.primary-actions { justify-content: stretch; }.primary-actions button { flex: 1; }.footer-note { padding-bottom: 16px; }
+  .sun-or-moon { width: 62px; height: 62px; left: calc(50% - 31px); }.sun-or-moon.moon { width: 46px; height: 46px; }
+}
+
+.year-dialog { width: min(92vw, 620px); padding: 30px; border-radius: 18px; background: var(--paper); box-shadow: 0 22px 70px rgba(36,31,25,.26); }
+.year-intro { margin: -10px 0 24px; color: var(--muted); font-size: 14px; line-height: 1.7; }
+.year-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.year-cell { position: relative; min-height: 88px; padding: 13px 10px; border: 1px solid var(--line); border-radius: 12px; color: var(--ink); background: linear-gradient(145deg, rgba(216,206,193,.5), rgba(184,214,213,.38)); text-align: left; transition: transform 180ms ease, border-color 180ms ease; }
+.year-cell:hover { border-color: var(--accent); transform: translateY(-2px); }
+.year-cell strong, .year-cell span { display: block; }.year-cell strong { font: 18px Georgia, serif; }.year-cell span { margin-top: 7px; color: var(--muted); font-size: 11px; line-height: 1.4; }.year-cell i { position: absolute; right: 10px; bottom: 10px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); opacity: .65; }
+.collection-summary { margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+@media (max-width: 720px) { .year-grid { grid-template-columns: repeat(3, 1fr); gap: 7px; }.year-cell { min-height: 78px; padding: 10px 8px; }.year-cell strong { font-size: 16px; }.year-cell span { font-size: 10px; } }

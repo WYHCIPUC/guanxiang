@@ -1,0 +1,28 @@
+{
+  "name": "@guanxiang/butian",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "test:smoke": "node scripts/smoke-check.mjs",
+    "test:interaction": "node scripts/interaction-check.mjs",
+    "test:astro": "node scripts/astro-check.mjs",
+    "test:render": "node scripts/app-render-check.mjs"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "6.1.1",
+    "lucide-react": "1.51.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.2"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "jsdom": "^26.1.0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "guanxiang",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "verify:all": "node scripts/verify-all.mjs",
+    "dev:butian": "npm run dev --workspace @guanxiang/butian",
+    "dev:jinshi": "npm run dev --workspace @guanxiang/jinshi",
+    "dev:xuanji": "npm run start --workspace @guanxiang/xuanji"
+  }
+}

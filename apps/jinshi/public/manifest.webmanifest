@@ -1,0 +1,10 @@
+{
+  "name": "今时·中国时间",
+  "short_name": "今时",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f5f0e6",
+  "theme_color": "#c9d9d3",
+  "icons": [{ "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

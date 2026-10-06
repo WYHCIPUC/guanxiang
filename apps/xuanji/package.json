@@ -1,0 +1,23 @@
+{
+  "name": "@guanxiang/xuanji",
+  "private": true,
+  "version": "0.3.0",
+  "type": "module",
+  "main": "desktop/main.cjs",
+  "scripts": {
+    "start": "node scripts/server.mjs",
+    "dev": "node scripts/server.mjs",
+    "desktop:dev": "electron .",
+    "test": "node scripts/smoke-test.mjs && node scripts/journal-test.mjs && node scripts/sw-test.mjs",
+    "build": "node scripts/build-check.mjs",
+    "desktop-check": "node scripts/desktop-check.mjs",
+    "plan-check": "node scripts/plan-check.mjs",
+    "release-check": "node scripts/release-check.mjs",
+    "http-check": "node scripts/http-check.mjs",
+    "edge-offline-check": "node scripts/edge-offline-check.mjs",
+    "verify": "npm run build && npm run desktop-check && npm run plan-check && npm test && npm run release-check && npm run http-check"
+  },
+  "devDependencies": {
+    "electron": "^44.5.1"
+  }
+}
