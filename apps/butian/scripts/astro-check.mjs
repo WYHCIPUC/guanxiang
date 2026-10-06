@@ -36,7 +36,7 @@ near(astro.greenwichSiderealTimeHours(new Date(Date.UTC(2000, 0, 1, 12, 0, 0))),
 
 // 4. 中天自洽：用模块自身的恒星时找到参宿三过中天的时刻，高度应精确等于 90° − |纬度 − 赤纬|，方位正南
 {
-  const start = new Date(2026, 9, 6, 19, 0, 0)
+  const start = new Date(Date.UTC(2026, 9, 6, 11, 0, 0)) // 北京 10-06 19:00
   let best = null
   for (let t = start.getTime(); t <= start.getTime() + 12 * 3600000; t += 60000) {
     const lst = astro.localSiderealTimeHours(new Date(t), BEIJING.longitude)
@@ -48,9 +48,9 @@ near(astro.greenwichSiderealTimeHours(new Date(Date.UTC(2000, 0, 1, 12, 0, 0))),
   near(position.azimuth, 180, 0.3, '中天时方位应为正南 180°')
 }
 
-// 5. 绝对时刻锚点：2026-01-15 22:00 北京，参宿四应高挂在东南—南方（一月中旬 Orion 上中天约 22 时）
+// 5. 绝对时刻锚点：2026-01-15 22:00 北京（= 14:00 UTC），参宿四应高挂在东南—南方（一月中旬 Orion 上中天约 22 时）
 {
-  const date = new Date(2026, 0, 15, 22, 0, 0)
+  const date = new Date(Date.UTC(2026, 0, 15, 14, 0, 0))
   const position = astro.starHorizontal(BETELGEUSE, date, BEIJING.latitude, BEIJING.longitude)
   assert(position.altitude > 42, `一月中旬 22 时参宿四应在 42° 以上（实际 ${position.altitude.toFixed(1)}°）`)
   assert(position.azimuth > 100 && position.azimuth < 220, `一月中旬 22 时参宿四应在南方象限（实际方位 ${position.azimuth.toFixed(1)}°）`)
@@ -93,7 +93,7 @@ near(astro.greenwichSiderealTimeHours(new Date(Date.UTC(2000, 0, 1, 12, 0, 0))),
 
 // 9. 升起时刻：2026-10-06 晚北京，参宿四应在 20:45–23:15 之间升起
 {
-  const from = new Date(2026, 9, 6, 19, 0, 0)
+  const from = new Date(Date.UTC(2026, 9, 6, 11, 0, 0)) // 北京 10-06 19:00
   const rise = astro.findRiseTime(BETELGEUSE, from, BEIJING.latitude, BEIJING.longitude)
   assert(rise, '今夜 12 小时内应能找到参宿四的升起时刻')
   const minutes = (rise.getTime() - from.getTime()) / 60000
