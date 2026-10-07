@@ -3,6 +3,7 @@
    隐喻：古绢星图——绀青夜底、泥金线稿、青白西线、朱砂钤印
    ============================================================ */
 :root {
+  color-scheme: dark;
   font-family: var(--font-ui);
   color: var(--text);
   background: var(--bg);
@@ -51,7 +52,11 @@
 }
 
 * { box-sizing: border-box; }
-html { min-width: 320px; background: var(--bg); }
+html { min-width: 320px; background: var(--bg); color-scheme: dark; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #0d1428; }
+::-webkit-scrollbar-thumb { background: #26324e; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #33415f; }
 body { margin: 0; min-width: 320px; min-height: 100vh; background: radial-gradient(circle at 50% -20%, var(--zenith) 0, var(--bg) 45%); }
 button, input { font: inherit; }
 button { color: inherit; }
@@ -71,6 +76,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outl
 .brand-mark { position: relative; display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid var(--border-gold); border-radius: 50%; color: var(--gold); font-family: var(--font-display); font-size: 22px; }
 .brand-mark::after { content: ""; position: absolute; inset: 3px; border: 1px solid rgba(201, 164, 92, 0.32); border-radius: 50%; }
 .eyebrow, .section-label, .card-eyebrow, .hero-kicker { margin: 0; color: var(--muted); font-size: 12px; letter-spacing: 0.16em; }
+.quiet-button { min-height: 38px; padding: 0 10px; border-radius: 8px; }
 .brand-lockup h1 { margin: 2px 0 0; font-family: var(--font-display); letter-spacing: 0.18em; font-size: 22px; font-weight: 600; }
 .quiet-button, .text-button, .link-button { background: transparent; border: 0; cursor: pointer; color: var(--muted); display: inline-flex; gap: 7px; align-items: center; }
 .quiet-button:hover, .text-button:hover, .link-button:hover { color: var(--text); }
@@ -105,7 +111,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outl
 .mode-button.active { color: var(--text); background: rgba(201, 164, 92, 0.16); }
 
 /* ---------- 天穹画布 ---------- */
-.sky-stage { position: relative; height: min(64vw, 640px); min-height: 420px; overflow: hidden;
+.sky-stage { position: relative; height: min(58vw, 560px); min-height: 400px; overflow: hidden;
   background:
     radial-gradient(ellipse 130% 72% at 50% -12%, var(--zenith) 0, transparent 56%),
     linear-gradient(180deg, #0e1834 0%, #0a1226 46%, var(--bg-deep) 100%);
@@ -116,14 +122,19 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outl
 .field-star { fill: #e6ecf6; }
 .sky-stage::after { content: ""; position: absolute; left: 7%; right: 7%; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-dim), transparent); pointer-events: none; }
 
-.constellation-lines { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.95; }
-.constellation-lines line { stroke-width: 0.32; vector-effect: non-scaling-stroke; stroke-linecap: round; animation: line-in var(--dur-2) var(--ease-out) both; }
+.constellation-lines { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 1; }
+.constellation-lines line { stroke-width: 0.42; vector-effect: non-scaling-stroke; stroke-linecap: round; animation: line-in var(--dur-2) var(--ease-out) both; }
 .china-line { stroke: var(--gold); stroke-dasharray: 4 2; }
-.western-line { stroke: var(--moon); stroke-width: 0.22 !important; }
-.western-line.faint { opacity: 0.45; stroke-width: 0.16 !important; }
+.western-line { stroke: var(--moon); stroke-width: 0.28 !important; }
+.western-line.faint { opacity: 0.45; stroke-width: 0.2 !important; }
 @keyframes line-in { from { opacity: 0; } }
 
 .horizon-ring { fill: none; stroke: rgba(201, 164, 92, 0.32); stroke-width: 0.22; stroke-dasharray: 1.6 1.2; vector-effect: non-scaling-stroke; }
+.lodge-ring { fill: none; stroke: rgba(201, 164, 92, 0.14); stroke-width: 0.16; vector-effect: non-scaling-stroke; }
+.lodge-tick { stroke: rgba(201, 164, 92, 0.6); stroke-width: 0.22; vector-effect: non-scaling-stroke; }
+.lodge-name { fill: rgba(228, 203, 148, 0.92); font-size: 2px; font-family: var(--font-display); text-anchor: middle; }
+.lodge-mark.below .lodge-tick { stroke: rgba(201, 164, 92, 0.2); }
+.lodge-mark.below .lodge-name { fill: rgba(185, 192, 207, 0.35); }
 .compass-mark { fill: rgba(242, 235, 221, 0.88); font-size: 4.4px; font-family: var(--font-display); text-anchor: middle; }
 
 .mode-legend { position: absolute; top: 14px; left: 16px; z-index: 3; display: flex; gap: 14px; padding: 7px 12px; border: 1px solid var(--border); border-radius: 999px; background: rgba(7, 12, 26, 0.62); backdrop-filter: blur(4px); font-size: 11px; letter-spacing: 0.06em; }
@@ -137,42 +148,55 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outl
 /* 星点与标签：一颗星一个名字，地平线下不落名 */
 .star-point { position: absolute; width: 28px; height: 28px; transform: translate(-50%, -50%); border: 0; border-radius: 50%; background: transparent; cursor: pointer; z-index: 2; }
 .star-point::after { content: ""; position: absolute; inset: 2px; border-radius: 50%; border: 1px solid transparent; pointer-events: none; }
-.star-point.selected::after { border-color: var(--gold); opacity: 0.9; animation: halo 2.4s var(--ease-out) infinite; }
-@keyframes halo { 0% { box-shadow: 0 0 0 0 rgba(201, 164, 92, 0.4); } 70% { box-shadow: 0 0 0 12px rgba(201, 164, 92, 0); } 100% { box-shadow: 0 0 0 0 rgba(201, 164, 92, 0); } }
+.star-point.selected::after { border-color: var(--gold); opacity: 0.75; animation: halo 2.4s var(--ease-out) infinite; }
+@keyframes halo { 0% { box-shadow: 0 0 0 0 rgba(201, 164, 92, 0.28); } 70% { box-shadow: 0 0 0 7px rgba(201, 164, 92, 0); } 100% { box-shadow: 0 0 0 0 rgba(201, 164, 92, 0); } }
 .sky-stage.has-selection .star-point:not(.selected) { opacity: 0.52; }
 .sky-stage.has-selection .star-point:not(.selected):hover { opacity: 0.9; }
 .star-core { display: block; width: var(--star-size); height: var(--star-size); margin: auto; border-radius: 50%; background: #fff8df; box-shadow: 0 0 13px 3px rgba(255, 242, 189, 0.56); transition: transform var(--dur-1) var(--ease-out), box-shadow var(--dur-1) var(--ease-out); }
 .star-point:hover .star-core, .star-point.selected .star-core { transform: scale(1.45); box-shadow: 0 0 0 5px rgba(201, 164, 92, 0.16), 0 0 18px 5px rgba(255, 242, 189, 0.72); }
-.star-label { display: block; margin-top: 6px; white-space: nowrap; color: var(--gold); font-family: var(--font-display); font-size: 12px; line-height: 1; text-shadow: 0 2px 8px #05070f; transition: opacity var(--dur-1) var(--ease-out); }
+.star-label { display: block; margin-top: 6px; white-space: nowrap; color: var(--gold); font-family: var(--font-display); font-size: 12.5px; line-height: 1; letter-spacing: 0.02em; text-shadow: 0 1px 3px #05070f, 0 0 8px rgba(5, 7, 15, 0.8); transition: opacity var(--dur-1) var(--ease-out); }
 .star-label.hint { opacity: 0; }
 .star-point:hover .star-label, .star-point:focus-visible .star-label, .star-point.selected .star-label { opacity: 1; }
+.star-label.side, .star-label-duo.side { position: absolute; top: 50%; margin-top: 0; transform: translateY(-50%); }
+.star-label.side { left: calc(100% - 6px); }
+.star-label-duo.side { left: calc(100% - 4px); }
+.star-label.side.edge-right, .star-label-duo.side.edge-right { left: auto; right: calc(100% - 6px); }
 .star-label.edge-left { text-align: left; transform: translateX(-14px); }
 .star-label.edge-right { text-align: right; transform: translateX(calc(-100% + 14px)); }
 .star-label-west { position: absolute; bottom: calc(100% + 1px); left: 50%; transform: translateX(-50%); white-space: nowrap; color: var(--moon); opacity: 0.75; font-family: var(--font-display); font-size: 10.5px; line-height: 1; letter-spacing: 0.05em; text-shadow: 0 2px 8px #05070f; transition: opacity var(--dur-1) var(--ease-out); }
 .star-label-west.hint { opacity: 0; }
 .star-point:hover .star-label-west, .star-point:focus-visible .star-label-west, .star-point.selected .star-label-west { opacity: 0.75; }
+/* 叠合模式复合标签：中西两名合为一体，避免两枚标签打架 */
+.star-label-duo { position: absolute; top: calc(100% + 3px); left: 50%; transform: translateX(-50%); display: grid; justify-items: center; gap: 2px; white-space: nowrap; line-height: 1.15; padding: 3px 8px 4px; border-radius: 7px; background: rgba(7, 12, 26, 0.6); border: 1px solid rgba(222, 220, 210, 0.12); text-shadow: 0 1px 3px #05070f; transition: opacity var(--dur-1) var(--ease-out); }
+.star-label-duo b { color: var(--gold); font-family: var(--font-display); font-size: 12.5px; font-weight: 500; }
+.star-label-duo i { color: var(--moon); opacity: 0.9; font-style: normal; font-family: var(--font-display); font-size: 11.5px; letter-spacing: 0.06em; }
+.star-label-duo.hint { opacity: 0; }
+.star-point:hover .star-label-duo, .star-point:focus-visible .star-label-duo, .star-point.selected .star-label-duo { opacity: 1; }
+.star-label-duo.edge-left { left: -14px; transform: none; }
+.star-label-duo.edge-right { left: auto; right: -14px; transform: none; }
 .star-label-west.edge-left { left: -4px; transform: none; }
 .star-label-west.edge-right { left: auto; right: -4px; transform: none; }
 .star-point.below-horizon { opacity: 0.4; }
 .star-point.below-horizon .star-core { background: #9fb0c6; box-shadow: 0 0 8px 1px rgba(159, 176, 198, 0.4); }
-.sky-caption { position: absolute; bottom: 18px; left: 22px; right: 34%; z-index: 3; color: rgba(242, 235, 221, 0.5); font-size: 12px; }
+.sky-caption { position: static; margin: 7px 0 0; padding: 6px 0 0; border-top: 1px solid rgba(222, 220, 210, 0.12); color: rgba(242, 235, 221, 0.72); font-size: 11.5px; line-height: 1.55; }
 
-/* ---------- 时间与操作 ---------- */
-.time-control { padding: 18px 22px 8px; border-top: 1px solid var(--border); }
-.time-heading { display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; }
-.time-heading strong { color: var(--text); font-size: 16px; font-weight: 500; }
-input[type="range"] { width: 100%; accent-color: var(--gold); margin: 15px 0 4px; }
-.time-scale { display: flex; justify-content: space-between; color: rgba(185, 192, 207, 0.62); font-size: 11px; }
-.observatory-actions { display: flex; gap: 10px; padding: 14px 22px 22px; }
+/* ---------- 时间与操作：时间面板停靠在星图下方，星空本体零遮挡 ---------- */
+.time-control { position: static; width: auto; margin: 0; padding: 14px 22px 6px; border-top: 1px solid var(--border); }
+.time-heading { display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; }
+.time-heading strong { color: var(--text); font-size: 15px; font-weight: 500; }
+input[type="range"] { width: 100%; accent-color: var(--gold); margin: 8px 0 2px; }
+.time-scale { display: flex; justify-content: space-between; color: rgba(185, 192, 207, 0.62); font-size: 10.5px; }
+.observatory-actions { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px 22px 20px; }
 .primary-button, .secondary-button, .card-cta { min-height: 44px; border-radius: 9px; padding: 0 16px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid transparent; cursor: pointer; }
 .primary-button { color: #15131a; background: var(--gold); font-weight: 700; box-shadow: 0 10px 25px rgba(201, 164, 92, 0.16); transition: background var(--dur-1) var(--ease-out); }
 .primary-button:hover { background: var(--gold-bright); }
 .primary-button.ghost { background: transparent; color: var(--gold); border-color: var(--border-gold); box-shadow: none; }
 .primary-button.ghost:hover { background: rgba(201, 164, 92, 0.12); color: var(--gold-bright); }
-.primary-button.tentative { opacity: 0.5; box-shadow: none; }
+.primary-button.tentative { opacity: 0.55; filter: saturate(0.35) brightness(0.95); box-shadow: none; }
 .secondary-button { color: var(--text); background: rgba(217, 226, 238, 0.07); border-color: var(--border); }
 .secondary-button:hover { background: rgba(217, 226, 238, 0.12); }
-.observatory-actions .primary-button { flex: 1; }
+.observatory-actions .primary-button { flex: 0 1 320px; margin-left: auto; }
+.observatory-actions .secondary-button { flex: 0 0 auto; }
 
 /* ---------- 铜镜提示 ---------- */
 .insight-strip { display: flex; gap: 14px; align-items: center; margin: 18px 0; padding: 16px 18px; border: 1px solid rgba(201, 164, 92, 0.26); border-radius: 14px; background: rgba(201, 164, 92, 0.06); }
@@ -200,8 +224,10 @@ input[type="range"] { width: 100%; accent-color: var(--gold); margin: 15px 0 4px
 .record-card .modern-name { color: var(--paper-muted); }
 .record-card .icon-button { color: var(--paper-muted); }
 .record-card .icon-button:hover { color: var(--paper-ink); background: rgba(92, 70, 40, 0.1); }
-.mini-reading { display: flex; flex-direction: row-reverse; justify-content: center; gap: 18px; margin: 18px 0 14px; padding: 10px 0; border-top: 1px solid rgba(166, 125, 66, 0.4); border-bottom: 1px solid rgba(166, 125, 66, 0.4); color: var(--paper-ink); font-family: var(--font-display); }
-.mini-reading span { writing-mode: vertical-rl; letter-spacing: 0.14em; font-size: 15px; line-height: 1.4; }
+.mini-reading { display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 34px; margin: 18px 0 14px; padding: 12px 0 10px; border-top: 1px solid rgba(166, 125, 66, 0.4); border-bottom: 1px solid rgba(166, 125, 66, 0.4); color: var(--paper-ink); font-family: var(--font-display); }
+.mini-reading .mini-cell { display: grid; justify-items: center; gap: 6px; }
+.mini-reading .mini-cell small { color: var(--paper-muted); font-size: 10.5px; letter-spacing: 0.24em; }
+.mini-reading .mini-cell b { font-weight: 500; font-size: 16px; letter-spacing: 0.08em; }
 .record-card .card-cta { margin-top: 4px; }
 .record-card .link-button { width: 100%; justify-content: center; margin-top: 10px; font-size: 13px; color: var(--paper-muted); }
 .record-card .link-button:hover { color: var(--paper-ink); }
@@ -221,7 +247,9 @@ input[type="range"] { width: 100%; accent-color: var(--gold); margin: 15px 0 4px
 .instrument-stage::before, .instrument-stage::after { content: ""; position: absolute; border: 1px dashed rgba(201, 164, 92, 0.24); border-radius: 50%; pointer-events: none; }
 .instrument-stage::before { width: 220px; height: 220px; }
 .instrument-stage::after { width: 150px; height: 150px; }
-.instrument-ring { position: absolute; border: 2px solid rgba(201, 164, 92, 0.64); border-radius: 50%; transform: rotate(-18deg); }
+.instrument-ring { position: absolute; border: 2px solid rgba(201, 164, 92, 0.64); border-radius: 50%; transform: rotate(-18deg); transition: opacity var(--dur-2) var(--ease-out); }
+.instrument-stage:not(.aimed) .instrument-ring { opacity: 0.35; }
+.instrument-stage:not(.aimed) .ring-tag { opacity: 0.5; }
 .instrument-ring.outer { width: 210px; height: 160px; }
 .instrument-ring.inner { width: 148px; height: 108px; border-color: rgba(217, 226, 238, 0.46); transform: rotate(28deg); }
 .ring-tag { position: absolute; font-size: 10.5px; letter-spacing: 0.2em; pointer-events: none; }
@@ -243,7 +271,7 @@ input[type="range"] { width: 100%; accent-color: var(--gold); margin: 15px 0 4px
 
 .measure-copy > p { margin: 0; color: var(--muted); line-height: 1.7; font-size: 14px; }
 .reading-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 18px 0 10px; }
-.reading-grid > div.pend strong { opacity: 0.12; filter: blur(2.5px); user-select: none; }
+.reading-grid > div.pend strong { opacity: 0.5; color: var(--muted); user-select: none; }
 .reading-grid > div.pend { border-style: dashed; }
 .reading-grid > div { padding: 12px; border: 1px solid var(--border); border-radius: 10px; background: rgba(255, 255, 255, 0.03); }
 .reading-grid small { display: block; color: var(--muted); font-size: 11px; }
@@ -278,23 +306,27 @@ input[type="range"] { width: 100%; accent-color: var(--gold); margin: 15px 0 4px
 /* ---------- 浮卡停靠：宽屏时给右侧留出卡位，控件不再被压住 ---------- */
 @media (min-width: 1101px) {
   .has-dock .sky-toolbar { padding-right: 400px; }
-  .has-dock .time-control { padding-right: 400px; }
   .has-dock .observatory-actions { padding-right: 400px; }
+  .has-dock .insight-strip { margin-right: 400px; }
 }
 
 /* ---------- 手机 ---------- */
 @media (max-width: 700px) {
   .app-shell { width: min(100% - 24px, 640px); padding-top: 16px; }
-  .hero-copy { flex-direction: column; align-items: stretch; gap: 16px; padding: 30px 0 18px; }
-  .hero-copy h2 { font-size: 36px; }
+  .hero-copy { flex-direction: column; align-items: stretch; gap: 12px; padding: 22px 0 14px; }
+  .hero-copy h2 { font-size: 30px; }
   .hero-brief { display: none; }
-  .topbar-meta .quiet-button { font-size: 12px; }
-  .sky-toolbar { display: block; }
-  .mode-switcher { margin-top: 14px; overflow-x: auto; }
+  .topbar-meta .quiet-button { font-size: 12px; min-height: 44px; padding: 0 12px; }
+  .star-point { width: 34px; height: 34px; }
+  .sky-toolbar { display: flex; align-items: center; justify-content: space-between; }
+  .sky-toolbar > div:first-child { display: none; }
+  .mode-switcher { margin-top: 0; overflow-x: auto; }
+  .mode-switcher .mode-button { flex: 1; white-space: nowrap; }
   .mode-button { flex: 1; white-space: nowrap; }
-  .sky-stage { height: 88vw; min-height: 340px; }
-  .sky-caption { left: 14px; bottom: 10px; right: auto; max-width: 60%; font-size: 10px; line-height: 1.5; }
+  .sky-stage { height: 96vw; min-height: 330px; }
+  .sky-caption { font-size: 10px; }
   .caption-extra { display: none; }
+  .time-control { padding: 10px 14px 4px; }
   .mode-legend { top: 10px; left: 10px; gap: 10px; font-size: 10px; padding: 6px 10px; }
   .star-label { font-size: 12px; }
   .observatory-actions { padding: 12px 14px 16px; }

@@ -4,12 +4,14 @@ import { chinaLines, locations, stars, timeLabels, westernLines } from '../data/
 import { starfield as hygStars } from '../data/starfield'
 import {
   compassLabel,
+  DEG,
   findRiseTime,
   formatClock,
   formatDegrees,
   formatHours,
   formatSignedDegrees,
   isRising,
+  lodges,
   projectOnDome,
   starHorizontal,
   tonightAt,
@@ -112,6 +114,24 @@ function App() {
     return dots
   }, [moment, site])
 
+  // 二十八宿宿度环：每宿距星此刻的方位落在地平圈外环上，随时间缓缓转动；
+  // 已升之宿亮显，未升之宿暗显——古人以二十八宿度量周天，这圈就是那把"天尺"
+  const lodgeRing = useMemo(() => {
+    return lodges.map((lodge) => {
+      const horizontal = starHorizontal({ raHours: lodge.raHours, decDegrees: lodge.decDegrees }, moment, site.latitude, site.longitude)
+      const az = horizontal.azimuth * DEG
+      const sinA = Math.sin(az)
+      const cosA = Math.cos(az)
+      return {
+        key: lodge.name,
+        name: lodge.name,
+        above: horizontal.altitude >= 0,
+        tick: { x1: 50 - 47.3 * sinA, y1: 50 - 47.3 * cosA, x2: 50 - 47.9 * sinA, y2: 50 - 47.9 * cosA },
+        label: { x: 50 - 48.8 * sinA, y: 50 - 48.8 * cosA },
+      }
+    })
+  }, [moment, site])
+
   // 三种模式各自要画的连线：只在两端星都升起时绘制，避免地平线下出现孤儿线段
   const lineSets = useMemo(() => {
     const build = (pairs: [string, string][]) => pairs.flatMap(([a, b]) => {
@@ -122,23 +142,45 @@ function App() {
     return { china: build(chinaLines), western: build(westernLines) }
   }, [placements])
 
-  // 标签避让：按亮度从高到低贪心保留，新的标签若与已保留的太近（换算宽高比后）则降为悬停展开。
-  // 桌面画布宽扁、几乎全标注；手机画布窄高、只留最亮几颗，防止糊成一团。
-  const brightLabelIds = useMemo(() => {
+  // 标签排布引擎：按"著名亮星/北斗 → 亮度"优先级逐颗安放。
+  // 候选位：星点下方；被占则试侧挂；再被占则降为悬停展开。
+  // 碰撞按标签盒逐轴判定；多成员宿群（≥4 颗升起）只安放距星（首位成员）锚点，其余降为悬停展开，
+  // 避免"奎娄壁室"一带的签注雪崩。
+  const PRIORITY_STAR_IDS = new Set(['zhi-1', 'tian-4', 'he-2', 'gou-1', 'wu-2', 'bi-5', 'bei-3', 'dou-1', 'dou-2', 'dou-3', 'dou-4', 'dou-5', 'dou-6', 'dou-7'])
+  type LabelSpot = 'below' | 'side' | 'hint'
+  const labelPlan = useMemo(() => {
+    const plan = new Map<string, LabelSpot>()
+    const anchorHidden = new Map<string, number>()
     const visible = stars.filter((star) => placements.get(star.id)?.above)
-    const aspect = isNarrow ? 0.55 : 1.7
-    const minDist = isNarrow ? 15 : 8
-    const kept: { x: number; y: number }[] = []
-    const ids = new Set<string>()
-    for (const star of [...visible].sort((a, b) => a.magnitude - b.magnitude)) {
-      const p = placements.get(star.id)!
-      const far = kept.every((k) => Math.hypot((p.x - k.x) * aspect, p.y - k.y) >= minDist)
-      if (far) {
-        kept.push({ x: p.x, y: p.y })
-        ids.add(star.id)
+    const boxW = isNarrow ? 15 : 4.8
+    const boxH = isNarrow ? 4.8 : 3.2
+    // 宿群锚点：同组升起成员 ≥4 时只保留组内第一颗（距星）参与排布，其余降为悬停展开并计入"+N"
+    const groupCounts = new Map<string, number>()
+    for (const star of visible) groupCounts.set(star.chineseGroup, (groupCounts.get(star.chineseGroup) ?? 0) + 1)
+    const bigGroups = new Map<string, string>() // 组名 → 距星 id（源序首位）
+    for (const star of stars) {
+      if (visible.includes(star) && (groupCounts.get(star.chineseGroup) ?? 0) >= 4 && !bigGroups.has(star.chineseGroup) && !PRIORITY_STAR_IDS.has(star.id)) {
+        bigGroups.set(star.chineseGroup, star.id)
       }
     }
-    return ids
+    const placed: { x: number; y: number }[] = []
+    const hits = (p: { x: number; y: number }, w: number) => placed.some((q) => Math.abs(p.x - q.x) < w && Math.abs(p.y - q.y) < boxH)
+    for (const star of [...visible].sort((a, b) => (Number(PRIORITY_STAR_IDS.has(b.id)) - Number(PRIORITY_STAR_IDS.has(a.id))) || (a.magnitude - b.magnitude))) {
+      if (bigGroups.get(star.chineseGroup) && bigGroups.get(star.chineseGroup) !== star.id) {
+        plan.set(star.id, 'hint')
+        const anchor = bigGroups.get(star.chineseGroup)!
+        anchorHidden.set(anchor, (anchorHidden.get(anchor) ?? 0) + 1)
+        continue
+      }
+      const p = placements.get(star.id)!
+      const w = boxW + (anchorHidden.has(star.id) ? 2.4 : 0)
+      const below = { x: p.x, y: p.y + (isNarrow ? 3.2 : 2.9) }
+      const side = { x: p.x + (p.x > 80 ? -(w / 2 + 2) : w / 2 + 2), y: p.y }
+      if (!hits(below, w)) { placed.push(below); plan.set(star.id, 'below') }
+      else if (!hits(side, w)) { placed.push(side); plan.set(star.id, 'side') }
+      else plan.set(star.id, 'hint')
+    }
+    return { plan, anchorHidden }
   }, [placements, isNarrow])
 
   // 参宿四作为“参宿是否已升”的锚点；未升时给出今夜的升起时刻
@@ -311,15 +353,22 @@ function App() {
 
         <div className={selectedStar ? 'sky-stage has-selection' : 'sky-stage'}>
           <div className="silk-grain" style={{ backgroundImage: `url("${silkGrain}")` }} aria-hidden="true" />
-          <svg className="constellation-lines" viewBox="0 0 100 100" aria-hidden="true">
+          <svg className="constellation-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
             {fieldDots.map((dot, index) => (
               <circle key={index} className="field-star" cx={dot.x} cy={dot.y} r={dot.r} fillOpacity={dot.o} />
             ))}
             <circle cx="50" cy="50" r="47" className="horizon-ring" />
-            <text x="50" y="3.4" className="compass-mark">北</text>
-            <text x="96.6" y="51.2" className="compass-mark">西</text>
-            <text x="50" y="96.8" className="compass-mark">南</text>
-            <text x="3.4" y="51.2" className="compass-mark">东</text>
+            <circle cx="50" cy="50" r="49.4" className="lodge-ring" aria-hidden="true" />
+            {lodgeRing.map((mark) => (
+              <g key={mark.key} className={mark.above ? 'lodge-mark' : 'lodge-mark below'}>
+                <line x1={mark.tick.x1} y1={mark.tick.y1} x2={mark.tick.x2} y2={mark.tick.y2} className="lodge-tick" />
+                <text x={mark.label.x} y={mark.label.y + 0.7} className="lodge-name">{mark.name}</text>
+              </g>
+            ))}
+            <text x="50" y="7" className="compass-mark">北</text>
+            <text x="94" y="51.2" className="compass-mark">西</text>
+            <text x="71" y="92" className="compass-mark">南</text>
+            <text x="6" y="51.2" className="compass-mark">东</text>
             {(mode === 'western' ? lineSets.western : lineSets.china).map(({ id, first, second }) => (
               <line key={id} x1={first.x} y1={first.y} x2={second.x} y2={second.y} className={mode === 'western' ? 'western-line' : 'china-line'} />
             ))}
@@ -330,7 +379,7 @@ function App() {
           {mode === 'both' && (
             <div className="mode-legend" aria-hidden="true">
               <span className="legend-item legend-china"><i className="legend-line line-china" />中国星官</span>
-              <span className="legend-item legend-western"><i className="legend-line line-western" />西方星座</span>
+              <span className="legend-item legend-western"><i className="legend-line line-western" />西方星座 · 部分连线</span>
             </div>
           )}
           {stars.map((star) => {
@@ -349,28 +398,30 @@ function App() {
               >
                 <span className="star-core" />
                 {!isBelow && mode !== 'both' && (
-                  <span className={`star-label${edgeClass(x)}${brightLabelIds.has(star.id) || isSelected ? '' : ' hint'}`}>{mode === 'western' ? bayerOf(star) : star.name}</span>
+                  <span className={`star-label${labelPlan.plan.get(star.id) === 'side' ? ' side' : ''}${edgeClass(x)}${(labelPlan.plan.get(star.id) ?? 'hint') !== 'hint' || isSelected ? '' : ' hint'}`}>
+                    {mode === 'western' ? bayerOf(star) : star.name}{labelPlan.anchorHidden.get(star.id) ? ` 等${(labelPlan.anchorHidden.get(star.id) ?? 0) + 1}星` : ''}
+                  </span>
                 )}
                 {!isBelow && mode === 'both' && (
-                  <>
-                    <span className={`star-label-west${edgeClass(x)}${brightLabelIds.has(star.id) || isSelected ? '' : ' hint'}`}>{bayerOf(star)}</span>
-                    <span className={`star-label${edgeClass(x)}${brightLabelIds.has(star.id) || isSelected ? '' : ' hint'}`}>{star.name}</span>
-                  </>
+                  <span className={`star-label-duo${labelPlan.plan.get(star.id) === 'side' ? ' side' : ''}${edgeClass(x)}${(labelPlan.plan.get(star.id) ?? 'hint') !== 'hint' || isSelected ? '' : ' hint'}`}>
+                    <b>{star.name}{labelPlan.anchorHidden.get(star.id) ? ` 等${(labelPlan.anchorHidden.get(star.id) ?? 0) + 1}星` : ''}</b>
+                    <i>{bayerOf(star)}</i>
+                  </span>
                 )}
               </button>
             )
           })}
-          <div className="sky-caption">天穹俯视 · 北在上东在左 · 暗星为未升之星<span className="caption-extra"> · 星位实时计算（J2000，教学精度）· 背景星野 {hygStars.length.toLocaleString()} 颗（HYG ≤5.5 等）</span></div>
         </div>
 
         <div className="time-control">
           <div className="time-heading"><span>夜行时间</span><strong>{timeLabel}</strong></div>
           <input aria-label="调整教学时间" type="range" min="0" max={timeLabels.length - 1} step="1" value={timeIndex} onChange={(event) => setTimeIndex(Number(event.target.value))} />
           <div className="time-scale"><span>黄昏</span><span>深夜</span><span>凌晨</span></div>
+          <p className="sky-caption">天穹俯视 · 北在上东在左 · 外环为二十八宿宿度环 · 暗者为未升<span className="caption-extra"> · 星位实时计算（J2000，教学精度）· 背景星野 {hygStars.length.toLocaleString()} 颗（HYG ≤5.5 等）</span></p>
         </div>
 
         <div className="observatory-actions">
-          <button className="secondary-button" onClick={() => pickStar(target)}><Info size={17} />查看星官</button>
+          <button className="secondary-button" onClick={() => pickStar(target)}><Info size={17} />{mode === 'western' ? '查看此星' : '查看星官'}</button>
           <button className={selectedStar && !observation ? 'primary-button ghost' : 'primary-button'} onClick={() => startMeasuring()}><Sparkles size={18} />{selectedStar ? `测一测 ${target.name}` : '测一测'}</button>
         </div>
       </section>
@@ -379,7 +430,13 @@ function App() {
         <div className="insight-icon">镜</div>
         <div>
           <strong>铜镜提示</strong>
-          <p>{shenUp ? '切换「西方星座」，看看参宿如何变成猎户座。' : `参宿约 ${shenRiseLabel} 升起；先看低垂的北斗——切到「西方星座」，它就是大熊座。`}</p>
+          <p>{mode === 'western'
+            ? '此刻图上是拜耳名。点一颗星看看：西方的 Dubhe，就是中国的天枢——同一颗星，两套名字。'
+            : mode === 'both'
+              ? '贴在一起的两行名就是同一颗星：天枢 ／ α UMa（Dubhe）。找出属于你的一对。'
+              : shenUp
+                ? '切换「西方星座」，看看参宿如何变成猎户座。'
+                : `参宿约 ${shenRiseLabel} 升起；先看低垂的北斗——切到「西方星座」，它就是大熊座。`}</p>
         </div>
         <button className="text-button" onClick={() => setMode(mode === 'china' ? 'western' : mode === 'western' ? 'both' : 'china')}>翻转天空 <RotateCcw size={15} /></button>
       </section>
@@ -389,7 +446,7 @@ function App() {
           <button className="icon-button close-card" onClick={() => setSelectedStar(null)} aria-label="关闭星官信息"><X size={18} /></button>
           <p className="card-eyebrow">{selectedStar.chineseGroup} · {selectedStar.westernGroup}</p>
           <h3>{selectedStar.name}</h3>
-          <p className="modern-name">{bayerOf(selectedStar)} · 赤经 {formatHours(selectedStar.raHours)} · 赤纬 {formatSignedDegrees(selectedStar.decDegrees)}</p>
+          <p className="modern-name">{bayerOf(selectedStar)}{selectedStar.commonName ? ` · ${selectedStar.commonName}` : ''} · 赤经 {formatHours(selectedStar.raHours)} · 赤纬 {formatSignedDegrees(selectedStar.decDegrees)}</p>
           <p className="sky-now">{skyNowLine(selectedStar)}</p>
           <p>{selectedStar.chineseNote}</p>
           <div className="card-source">读数按 J2000 星表实时换算 · 宿距星表为手工整理近似值</div>
@@ -401,7 +458,10 @@ function App() {
         <aside className="record-card" aria-live="polite">
           <div className="record-card-top"><div><p className="card-eyebrow">最近一次观测</p><h3>{observation.star.name}</h3></div><button className="icon-button" onClick={resetObservation} aria-label="清除最近记录"><X size={18} /></button></div>
           <p className="modern-name">{observation.location} · {observation.timeLabel} · {observation.altitudeNote}</p>
-          <div className="mini-reading"><span>{observation.ru}</span><span>{observation.ju}</span></div>
+          <div className="mini-reading">
+            <span className="mini-cell"><small>入宿度</small><b>{observation.ru}</b></span>
+            <span className="mini-cell"><small>去极度</small><b>{observation.ju.replace(/^去极\s*/, '')}</b></span>
+          </div>
           <span className="record-seal" aria-hidden="true">步天</span>
           <button className="card-cta" onClick={handleDownload}><Download size={16} />下载奏折</button>
           <button className="link-button" onClick={() => startMeasuring(observation.star)}>重新测量</button>
@@ -444,7 +504,7 @@ function App() {
               </div>
               <p className="precision-note">{aimed ? '入宿度＝自该宿距星起算的赤经差 · 去极度＝离天极的角距 · J2000 历元，未含岁差与大气折射修正' : '现代坐标即时可读；瞄准目标星后点亮两个古值 · J2000 历元教学换算'}</p>
             </div>
-            <div className="panel-actions"><button className="secondary-button" onClick={() => setIsMeasuring(false)}>先不记录</button><button className={aimed ? 'primary-button' : 'primary-button tentative'} onClick={commitObservation}>记入奏折 <Download size={16} /></button></div>
+            <div className="panel-actions"><button className="secondary-button" onClick={() => setIsMeasuring(false)}>先不记录</button><button className={aimed ? 'primary-button' : 'primary-button tentative'} onClick={commitObservation}>{aimed ? '记入奏折' : '瞄准后可记入奏折'} <Download size={16} /></button></div>
           </section>
         </div>
       )}

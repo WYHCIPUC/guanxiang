@@ -4,6 +4,8 @@ export type Star = {
   id: string
   name: string
   modernName: string
+  /** 西方通用星名（如 Dubhe），用于星官卡的「两套名字」对照 */
+  commonName?: string
   /** 计算失败时兜底用的静态位置（百分比） */
   x: number
   y: number

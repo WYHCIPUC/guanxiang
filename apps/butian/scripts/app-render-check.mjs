@@ -62,6 +62,25 @@ try {
   }
   assert(!document.querySelector('.sky-stage .starfield'), '装饰性随机星野纹理应已被真实星表替代')
 
+  // 宿度环：28 宿刻度与名标全部落环，且与 astro 对同一输入的方位计算一致（东在左）
+  const lodgeNames = [...document.querySelectorAll('.constellation-lines .lodge-name')]
+  assert(lodgeNames.length === 28, `宿度环应有 28 宿名标（实际 ${lodgeNames.length}）`)
+  {
+    const site0 = locations[0]
+    const moment0 = astro.tonightAt(timeLabels[2])
+    const jiao = astro.lodges.find((l) => l.name === '角')
+    const horizontal = astro.starHorizontal({ raHours: jiao.raHours, decDegrees: jiao.decDegrees }, moment0, site0.latitude, site0.longitude)
+    const az = horizontal.azimuth * (Math.PI / 180)
+    const expectX = 50 - 48.8 * Math.sin(az)
+    const expectY = 50 - 48.8 * Math.cos(az)
+    const mark = lodgeNames.find((element) => element.textContent === '角')
+    const mx = Number.parseFloat(mark.getAttribute('x'))
+    const my = Number.parseFloat(mark.getAttribute('y')) - 0.7
+    assert(Math.abs(mx - expectX) < 0.05 && Math.abs(my - expectY) < 0.05, `角宿名标应落在计算方位上（实际 ${mx.toFixed(2)},${my.toFixed(2)}，期望 ${expectX.toFixed(2)},${expectY.toFixed(2)}）`)
+    const belowCount = document.querySelectorAll('.constellation-lines .lodge-mark.below').length
+    assert(belowCount > 0 && belowCount < 28, `应有部分宿在地平线下（实际 ${belowCount}）`)
+  }
+
   // 星位应与 astro 模块对同一输入的计算一致（默认：北京 · timeLabels[2]）
   const site = locations[0]
   const moment = astro.tonightAt(timeLabels[2])
@@ -84,7 +103,8 @@ try {
   }).map((star) => star.id))
   document.querySelector('[aria-label="切换天空命名方式"] .mode-button:nth-child(2)').click()
   await settle()
-  const westernCount = [...document.querySelectorAll('.constellation-lines line')].length
+  // 只数星座连线（western-line）；宿度环的刻度线是 lodge-tick，不能混入
+  const westernCount = [...document.querySelectorAll('.constellation-lines line.western-line')].length
   const expectedWestern = westernLines.filter(([a, b]) => aboveIds.has(a) && aboveIds.has(b)).length
   assert(westernCount === expectedWestern, `西方星座可见连线数应为 ${expectedWestern}（实际 ${westernCount}）`)
   assert(westernCount > 0, '西方星座应至少画出一条可见连线')

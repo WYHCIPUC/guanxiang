@@ -137,14 +137,17 @@ near(astro.greenwichSiderealTimeHours(new Date(Date.UTC(2000, 0, 1, 12, 0, 0))),
   const duplicateIds = demoStars.map((star) => star.id).filter((id, index, all) => all.indexOf(id) !== index)
   assert(duplicateIds.length === 0, `星点 id 不应重复（重复：${duplicateIds.join('、') || '无'}）`)
 
-  // 距星（各宿首位星）赤经与 astro.ts 宿表逐宿比对，容差 0.6°
+  // 距星（各宿首位星）赤经赤纬与 astro.ts 宿表逐宿比对，容差 0.6°
   for (const lodge of astro.lodges) {
+    assert(Number.isFinite(lodge.decDegrees), `${lodge.name}宿宿表应有赤纬`)
     const first = lodge.name === '参'
       ? demoStars.find((star) => star.name === '参宿三')
       : lodgeStars.find((star) => star.chineseGroup === `${lodge.name}宿`)
     assert(first, `${lodge.name}宿应存在首位距星`)
     const deltaHours = Math.abs(first.raHours - lodge.raHours)
     assert(deltaHours < 0.04, `${lodge.name}宿距星赤经两表应一致（差 ${(deltaHours * 15).toFixed(3)}°：HYG ${first.raHours}h vs 宿表 ${lodge.raHours}h）`)
+    const deltaDec = Math.abs(first.decDegrees - lodge.decDegrees)
+    assert(deltaDec < 0.5, `${lodge.name}宿距星赤纬两表应一致（差 ${deltaDec.toFixed(3)}°）`)
   }
 
   // 每颗宿星的入宿度都应解析出确定的宿
