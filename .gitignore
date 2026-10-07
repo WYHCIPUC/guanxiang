@@ -10,3 +10,4 @@ dist/
 # 本地扫描工作区与浏览器 QA 残留，不入库
 .mimosa/
 **/_edge-profile/
+.western-lines.json

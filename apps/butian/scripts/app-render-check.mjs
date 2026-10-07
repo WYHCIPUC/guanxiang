@@ -97,6 +97,8 @@ try {
 
   // 连线随模式切换：西方模式沙漏形不含腰带“参宿一—参宿二”，连线数与中国星官不同。
   // 只统计两端都已升起的连线（与界面规则一致：地平线下不画线）。
+  // 中国模式下不应出现 88 星座全天天区线
+  assert(document.querySelectorAll('.constellation-lines line.western-sky-line').length === 0, '中国模式不应绘制西方全天天区线')
   const aboveIds = new Set(stars.filter((star) => {
     const dome = astro.projectOnDome(astro.starHorizontal(star, moment, site.latitude, site.longitude))
     return dome.above
@@ -108,6 +110,16 @@ try {
   const expectedWestern = westernLines.filter(([a, b]) => aboveIds.has(a) && aboveIds.has(b)).length
   assert(westernCount === expectedWestern, `西方星座可见连线数应为 ${expectedWestern}（实际 ${westernCount}）`)
   assert(westernCount > 0, '西方星座应至少画出一条可见连线')
+
+  // 88 西方星座全天天区线：西方模式下应出现数百段（仅地平线以上），坐标均在盘面内
+  const skySegments = [...document.querySelectorAll('.constellation-lines line.western-sky-line')]
+  assert(skySegments.length > 250, `西方全天连线应绘制数百段（实际 ${skySegments.length}）`)
+  for (const segment of skySegments.slice(0, 40)) {
+    for (const attr of ['x1', 'y1', 'x2', 'y2']) {
+      const value = Number.parseFloat(segment.getAttribute(attr))
+      assert(Number.isFinite(value) && value >= 0 && value <= 100, `天区线坐标应在盘面内（${attr}=${value}）`)
+    }
+  }
 
   // 时间滑块移动后星位应实时重排
   const anchorBefore = starButtons.find((element) => element.getAttribute('aria-label')?.includes('参宿四'))

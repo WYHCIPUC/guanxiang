@@ -4,6 +4,7 @@ import * as astro from '../src/lib/astro.ts'
 import { starfield } from '../src/data/starfield.ts'
 import { lodgeStars } from '../src/data/lodges.ts'
 import { stars as demoStars } from '../src/data/demo.ts'
+import { westernSkyGroups } from '../src/data/western-sky.ts'
 
 const assert = (condition, message) => {
   if (!condition) throw new Error(`天文计算校验失败：${message}`)
@@ -155,6 +156,24 @@ near(astro.greenwichSiderealTimeHours(new Date(Date.UTC(2000, 0, 1, 12, 0, 0))),
     const entry = astro.lodgeEntry(star.raHours)
     assert(entry.lodge !== '未知', `${star.name} 的入宿度应可解析`)
   }
+}
+
+// 13. 88 西方星座连线数据完整性（d3-celestial，排除 Ori/UMa）
+{
+  assert(westernSkyGroups.length === 86, `西方星座组应为 86（88 减 Ori/UMa，巨蛇座头尾合一；实际 ${westernSkyGroups.length}）`)
+  const ids = westernSkyGroups.map((group) => group.id)
+  assert(new Set(ids).size === ids.length, '星座 id 不应重复')
+  assert(!ids.includes('Ori') && !ids.includes('UMa'), 'Ori/UMa 应由核心星表手绘，不进连线数据')
+  let total = 0
+  for (const group of westernSkyGroups) {
+    for (const [ra1, dec1, ra2, dec2] of group.segments) {
+      assert([ra1, dec1, ra2, dec2].every((v) => Number.isFinite(v)), `${group.id} 段坐标应有限`)
+      assert(ra1 >= 0 && ra1 < 360 && ra2 >= 0 && ra2 < 360, `${group.id} 赤经应在 0–360（${ra1}, ${ra2}）`)
+      assert(dec1 >= -90 && dec1 <= 90 && dec2 >= -90 && dec2 <= 90, `${group.id} 赤纬应在 ±90（${dec1}, ${dec2}）`)
+      total++
+    }
+  }
+  assert(total > 600 && total < 760, `连线段数应约 698（实际 ${total}）`)
 }
 
 console.log('天文计算校验通过')

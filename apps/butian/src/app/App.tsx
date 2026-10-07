@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState, type CSSProperties, type PointerE
 import { ArrowLeft, ChevronDown, Download, Info, RotateCcw, Sparkles, X } from 'lucide-react'
 import { chinaLines, locations, stars, timeLabels, westernLines } from '../data/demo'
 import { starfield as hygStars } from '../data/starfield'
+import { westernSkyGroups } from '../data/western-sky'
 import {
   compassLabel,
   DEG,
@@ -130,6 +131,23 @@ function App() {
         label: { x: 50 - 48.8 * sinA, y: 50 - 48.8 * cosA },
       }
     })
+  }, [moment, site])
+
+  // 88 西方星座连线（d3-celestial 数据）：端点经同一套天文计算落位，两端都在地平线上才画
+  const skyWestern = useMemo(() => {
+    const segments: { key: string; x1: number; y1: number; x2: number; y2: number }[] = []
+    for (const group of westernSkyGroups) {
+      group.segments.forEach(([ra1, dec1, ra2, dec2], index) => {
+        const h1 = starHorizontal({ raHours: ra1 / 15, decDegrees: dec1 }, moment, site.latitude, site.longitude)
+        const h2 = starHorizontal({ raHours: ra2 / 15, decDegrees: dec2 }, moment, site.latitude, site.longitude)
+        if (h1.altitude < 0 || h2.altitude < 0) return
+        const p1 = projectOnDome(h1)
+        const p2 = projectOnDome(h2)
+        if (!Number.isFinite(p1.x) || !Number.isFinite(p2.x)) return
+        segments.push({ key: `${group.id}-${index}`, x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y })
+      })
+    }
+    return segments
   }, [moment, site])
 
   // 三种模式各自要画的连线：只在两端星都升起时绘制，避免地平线下出现孤儿线段
@@ -373,6 +391,9 @@ function App() {
             <text x="94" y="51.2" className="compass-mark">西</text>
             <text x="71" y="92" className="compass-mark">南</text>
             <text x="6" y="51.2" className="compass-mark">东</text>
+            {mode !== 'china' && skyWestern.map((segment) => (
+              <line key={segment.key} x1={segment.x1} y1={segment.y1} x2={segment.x2} y2={segment.y2} className={mode === 'both' ? 'western-sky-line faint' : 'western-sky-line'} />
+            ))}
             {(mode === 'western' ? lineSets.western : lineSets.china).map(({ id, first, second }) => (
               <line key={id} x1={first.x} y1={first.y} x2={second.x} y2={second.y} className={mode === 'western' ? 'western-line' : 'china-line'} />
             ))}

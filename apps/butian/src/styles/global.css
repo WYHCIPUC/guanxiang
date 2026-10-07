@@ -127,6 +127,8 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outl
 .china-line { stroke: var(--gold); stroke-dasharray: 4 2; }
 .western-line { stroke: var(--moon); stroke-width: 0.28 !important; }
 .western-line.faint { opacity: 0.45; stroke-width: 0.2 !important; }
+.western-sky-line { stroke: rgba(217, 226, 238, 0.55); stroke-width: 0.16 !important; vector-effect: non-scaling-stroke; animation: none; }
+.western-sky-line.faint { opacity: 0.38; stroke-width: 0.12 !important; }
 @keyframes line-in { from { opacity: 0; } }
 
 .horizon-ring { fill: none; stroke: rgba(201, 164, 92, 0.32); stroke-width: 0.22; stroke-dasharray: 1.6 1.2; vector-effect: non-scaling-stroke; }
