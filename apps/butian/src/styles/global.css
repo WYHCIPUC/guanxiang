@@ -111,7 +111,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outl
 .mode-button.active { color: var(--text); background: rgba(201, 164, 92, 0.16); }
 
 /* ---------- 天穹画布 ---------- */
-.sky-stage { position: relative; height: min(58vw, 560px); min-height: 400px; overflow: hidden;
+.sky-stage { position: relative; height: min(52vw, 500px); min-height: 380px; overflow: hidden;
   background:
     radial-gradient(ellipse 130% 72% at 50% -12%, var(--zenith) 0, transparent 56%),
     linear-gradient(180deg, #0e1834 0%, #0a1226 46%, var(--bg-deep) 100%);
