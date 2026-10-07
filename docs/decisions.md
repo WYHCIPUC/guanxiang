@@ -93,6 +93,18 @@
 - 验证：根 `npm run verify:all` 三应用七链全绿；`启动璇玑.bat/ps1` 使用 `%~dp0`/`$PSScriptRoot`
   自相对路径，迁移后无需修改；根 README 与总纲 00/02/04/06 文档路径已同步。
 
+## INT-010：首次全仓深度安全扫描完成并归零
+
+- 日期：2026-10-07
+- 决策：以 Mimosa 深度模式扫描整个 monorepo（封印 sha256:69bd7a2b…f7453）。首轮 103 项发现
+  经逐项定位，**全部**来自 `apps/butian/artifacts/capture/_edge-profile/`（截图 QA 时 Edge
+  浏览器落盘的扩展/缓存脚本，属一次性测试残留，非项目代码）；删除该目录后重扫，
+  **源代码发现数为 0**。
+- 依赖侧：今时开发依赖 happy-dom 17.6.1 命中 1 条 critical 通告（仅本地测试脚本使用，
+  不随产品分发）；升级至 20.14.5 后 `npm audit` 三应用均 0 漏洞，今时完整链复测绿。
+- 规则：QA 用的浏览器 profile 目录（`**/_edge-profile/`）已列入 .gitignore，不得再入仓；
+  此后每次提交前的 Mimosa 预扫描以此为基线（源码 0 发现 + audit 0 漏洞）。
+
 ---
 
 ## 待决事项

@@ -152,8 +152,10 @@ function App() {
     const plan = new Map<string, LabelSpot>()
     const anchorHidden = new Map<string, number>()
     const visible = stars.filter((star) => placements.get(star.id)?.above)
-    const boxW = isNarrow ? 15 : 4.8
-    const boxH = isNarrow ? 4.8 : 3.2
+    // 叠合模式的双行芯片高度约为单行标签两倍，碰撞盒同步放大，否则必然互压
+    const isBoth = mode === 'both'
+    const boxW = isNarrow ? 15 : isBoth ? 5.6 : 4.8
+    const boxH = isNarrow ? (isBoth ? 9.5 : 4.8) : isBoth ? 6.6 : 3.2
     // 宿群锚点：同组升起成员 ≥4 时只保留组内第一颗（距星）参与排布，其余降为悬停展开并计入"+N"
     const groupCounts = new Map<string, number>()
     for (const star of visible) groupCounts.set(star.chineseGroup, (groupCounts.get(star.chineseGroup) ?? 0) + 1)
@@ -174,14 +176,16 @@ function App() {
       }
       const p = placements.get(star.id)!
       const w = boxW + (anchorHidden.has(star.id) ? 2.4 : 0)
-      const below = { x: p.x, y: p.y + (isNarrow ? 3.2 : 2.9) }
-      const side = { x: p.x + (p.x > 80 ? -(w / 2 + 2) : w / 2 + 2), y: p.y }
+      const below = { x: p.x, y: p.y + (isBoth ? (isNarrow ? 4.6 : 3.6) : isNarrow ? 3.2 : 2.9) }
+      // 右缘标签向左挂，避免被视口裁切（移动端阈值更宽）
+      const sideLeft = p.x > (isNarrow ? 76 : 80)
+      const side = { x: p.x + (sideLeft ? -(w / 2 + 2.2) : w / 2 + 2.2), y: p.y }
       if (!hits(below, w)) { placed.push(below); plan.set(star.id, 'below') }
       else if (!hits(side, w)) { placed.push(side); plan.set(star.id, 'side') }
       else plan.set(star.id, 'hint')
     }
     return { plan, anchorHidden }
-  }, [placements, isNarrow])
+  }, [placements, isNarrow, mode])
 
   // 参宿四作为“参宿是否已升”的锚点；未升时给出今夜的升起时刻
   const shenAnchor = stars.find((star) => star.id === 'shen-4') ?? stars[0]
@@ -413,16 +417,16 @@ function App() {
           })}
         </div>
 
+        <div className="observatory-actions">
+          <button className="secondary-button" onClick={() => pickStar(target)}><Info size={17} />{mode === 'western' ? '查看此星' : '查看星官'}</button>
+          <button className={selectedStar && !observation ? 'primary-button ghost' : 'primary-button'} onClick={() => startMeasuring()}><Sparkles size={18} />{selectedStar ? `测一测 ${target.name}` : '测一测'}</button>
+        </div>
+
         <div className="time-control">
           <div className="time-heading"><span>夜行时间</span><strong>{timeLabel}</strong></div>
           <input aria-label="调整教学时间" type="range" min="0" max={timeLabels.length - 1} step="1" value={timeIndex} onChange={(event) => setTimeIndex(Number(event.target.value))} />
           <div className="time-scale"><span>黄昏</span><span>深夜</span><span>凌晨</span></div>
           <p className="sky-caption">天穹俯视 · 北在上东在左 · 外环为二十八宿宿度环 · 暗者为未升<span className="caption-extra"> · 星位实时计算（J2000，教学精度）· 背景星野 {hygStars.length.toLocaleString()} 颗（HYG ≤5.5 等）</span></p>
-        </div>
-
-        <div className="observatory-actions">
-          <button className="secondary-button" onClick={() => pickStar(target)}><Info size={17} />{mode === 'western' ? '查看此星' : '查看星官'}</button>
-          <button className={selectedStar && !observation ? 'primary-button ghost' : 'primary-button'} onClick={() => startMeasuring()}><Sparkles size={18} />{selectedStar ? `测一测 ${target.name}` : '测一测'}</button>
         </div>
       </section>
 

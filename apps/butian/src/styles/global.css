@@ -89,7 +89,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outl
 .location-option:hover, .location-option.active { background: rgba(201, 164, 92, 0.12); color: var(--gold); }
 
 /* ---------- Hero：让星图进入首屏，右侧补"今夜简报" ---------- */
-.hero-copy { padding: 34px 0 24px; max-width: 1180px; display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; }
+.hero-copy { padding: 26px 0 18px; max-width: 1180px; display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; }
 .hero-text { max-width: 640px; }
 .hero-kicker { display: flex; align-items: center; gap: 8px; color: #9fb2bc; }
 .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #5fa89b; box-shadow: 0 0 12px #5fa89b; }
@@ -104,7 +104,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outl
 
 /* ---------- 观星卡 ---------- */
 .observatory-card { border: 1px solid var(--border); background: linear-gradient(180deg, rgba(24, 35, 58, 0.94), rgba(11, 16, 32, 0.98)); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-card); }
-.sky-toolbar { padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
+.sky-toolbar { padding: 14px 22px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
 .sky-toolbar strong { display: block; margin-top: 6px; font-family: var(--font-display); font-size: 20px; font-weight: 500; }
 .mode-switcher { display: flex; gap: 4px; padding: 4px; border: 1px solid var(--border); border-radius: 10px; }
 .mode-button { border: 0; background: transparent; border-radius: 7px; padding: 8px 12px; color: var(--muted); cursor: pointer; font-size: 13px; transition: color var(--dur-1) var(--ease-out), background var(--dur-1) var(--ease-out); }
@@ -181,12 +181,12 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outl
 .sky-caption { position: static; margin: 7px 0 0; padding: 6px 0 0; border-top: 1px solid rgba(222, 220, 210, 0.12); color: rgba(242, 235, 221, 0.72); font-size: 11.5px; line-height: 1.55; }
 
 /* ---------- 时间与操作：时间面板停靠在星图下方，星空本体零遮挡 ---------- */
-.time-control { position: static; width: auto; margin: 0; padding: 14px 22px 6px; border-top: 1px solid var(--border); }
+.time-control { position: static; width: auto; margin: 0; padding: 12px 22px 14px; border-top: 1px solid var(--border); }
 .time-heading { display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; }
 .time-heading strong { color: var(--text); font-size: 15px; font-weight: 500; }
 input[type="range"] { width: 100%; accent-color: var(--gold); margin: 8px 0 2px; }
 .time-scale { display: flex; justify-content: space-between; color: rgba(185, 192, 207, 0.62); font-size: 10.5px; }
-.observatory-actions { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px 22px 20px; }
+.observatory-actions { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 22px 16px; border-top: 1px solid var(--border); }
 .primary-button, .secondary-button, .card-cta { min-height: 44px; border-radius: 9px; padding: 0 16px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid transparent; cursor: pointer; }
 .primary-button { color: #15131a; background: var(--gold); font-weight: 700; box-shadow: 0 10px 25px rgba(201, 164, 92, 0.16); transition: background var(--dur-1) var(--ease-out); }
 .primary-button:hover { background: var(--gold-bright); }
