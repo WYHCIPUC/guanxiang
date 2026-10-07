@@ -235,6 +235,27 @@ input[type="range"] { width: 100%; accent-color: var(--gold); margin: 8px 0 2px;
 .record-card .link-button:hover { color: var(--paper-ink); }
 .record-seal { position: absolute; top: 54px; right: 20px; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 5px; background: radial-gradient(circle at 35% 30%, #c95a55, var(--seal) 72%); color: #f8e8d0; font-family: var(--font-display); font-size: 10.5px; letter-spacing: 0.06em; transform: rotate(-6deg); box-shadow: inset 0 0 0 1.5px rgba(248, 232, 208, 0.5); }
 
+/* 客星剧场：客星标记与剧场卡 */
+.guest-star { position: absolute; transform: translate(-50%, -50%); z-index: 3; display: grid; justify-items: center; pointer-events: none; }
+.guest-core { width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #fff6e8, #f3c8b0 45%, #d98f6c 75%); box-shadow: 0 0 18px 6px rgba(243, 190, 160, 0.65), 0 0 42px 16px rgba(214, 120, 90, 0.35); animation: guest-pulse 3.2s ease-in-out infinite; }
+@keyframes guest-pulse { 50% { box-shadow: 0 0 24px 9px rgba(243, 190, 160, 0.8), 0 0 56px 22px rgba(214, 120, 90, 0.45); } }
+.guest-star.faded .guest-core { background: rgba(159, 176, 198, 0.25); box-shadow: none; animation: none; border: 1px dashed rgba(185, 192, 207, 0.6); }
+.guest-label { margin-top: 6px; white-space: nowrap; color: #f6cdb4; font-family: var(--font-display); font-size: 13px; text-shadow: 0 2px 8px #05070f; }
+.guest-star.faded .guest-label { color: rgba(185, 192, 207, 0.6); }
+.theater-card { position: fixed; right: 28px; bottom: 28px; z-index: var(--z-card); width: min(380px, calc(100% - 40px)); padding: 22px; border: 1px solid rgba(166, 125, 66, 0.55); border-radius: 12px; background: linear-gradient(180deg, #f4ecd9, #ecdfc6); color: var(--paper-ink); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.42), inset 0 0 0 1px rgba(255, 252, 244, 0.6); }
+.theater-card .card-eyebrow, .theater-card .modern-name { color: var(--paper-muted); }
+.theater-card .icon-button { color: var(--paper-muted); }
+.theater-card .icon-button:hover { color: var(--paper-ink); background: rgba(92, 70, 40, 0.1); }
+.theater-scene-switch { display: flex; gap: 4px; margin: 14px 0 12px; padding: 4px; border: 1px solid rgba(166, 125, 66, 0.4); border-radius: 9px; }
+.scene-button { flex: 1; min-height: 34px; border: 0; border-radius: 6px; background: transparent; color: var(--paper-muted); cursor: pointer; font-size: 13px; font-family: var(--font-display); }
+.scene-button.active { background: rgba(92, 70, 40, 0.16); color: var(--paper-ink); }
+.theater-quote { margin: 0 0 10px; padding: 10px 12px; border-left: 3px solid rgba(166, 125, 66, 0.55); font-family: var(--font-display); font-size: 14.5px; line-height: 1.8; color: var(--paper-ink); }
+.theater-quote footer { margin-top: 4px; font-size: 11.5px; color: var(--paper-muted); }
+.theater-note { margin: 0; font-size: 13px; line-height: 1.75; color: #4a3f30; }
+.theater-card .card-source { color: var(--paper-muted); }
+.theater-card .card-cta { margin-top: 4px; }
+.theater-entry { color: var(--seal, #b94a48); }
+
 /* ---------- 弹窗 ---------- */
 .modal-backdrop { position: fixed; inset: 0; z-index: var(--z-modal); display: grid; place-items: center; padding: 20px; overflow: auto; background: rgba(2, 4, 10, 0.76); backdrop-filter: blur(10px); }
 .measure-panel, .onboarding-card { width: min(620px, calc(100vw - 40px)); max-width: calc(100vw - 40px); min-width: 0; padding: 26px; border: 1px solid var(--border-gold); border-radius: var(--radius-l); background: #111a2f; box-shadow: 0 30px 100px rgba(0, 0, 0, 0.4); }

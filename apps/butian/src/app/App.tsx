@@ -20,6 +20,7 @@ import {
 } from '../lib/astro'
 import { silkGrainDataUri } from '../lib/visuals'
 import { downloadMemorial, makeObservation } from '../lib/observation'
+import { guestStarCoord, guestStarRecord, kaifeng, theaterScenes } from '../lib/kestar'
 import type { Observation, SkyMode, Star } from '../types'
 
 const modeLabels: Record<SkyMode, string> = { china: '中国星官', western: '西方星座', both: '叠合观天' }
@@ -46,6 +47,8 @@ function App() {
   const [notice, setNotice] = useState('')
   const [aim, setAim] = useState(AIM_HOME)
   const [aimed, setAimed] = useState(false)
+  /** 客星剧场：非 null 时天穹切换到 SN1054 场景（下标入 theaterScenes） */
+  const [theaterScene, setTheaterScene] = useState<number | null>(null)
   const stageRef = useRef<HTMLDivElement>(null)
 
   const silkGrain = useMemo(() => silkGrainDataUri(), [])
@@ -63,8 +66,26 @@ function App() {
   }, [])
 
   const timeLabel = timeLabels[timeIndex]
-  const site = locations.find((item) => item.name === location) ?? locations[0]
-  const moment = useMemo(() => tonightAt(timeLabel), [timeLabel])
+  const inTheater = theaterScene !== null
+  const site = inTheater ? kaifeng : (locations.find((item) => item.name === location) ?? locations[0])
+  const moment = useMemo(
+    () => (inTheater ? new Date(theaterScenes[theaterScene].utc) : tonightAt(timeLabel)),
+    [timeLabel, theaterScene],
+  )
+
+  // 客星此刻位置（剧场内）：与所有星点走同一套天文计算
+  const guestPlacement = useMemo(() => {
+    if (theaterScene === null) return null
+    const scene = theaterScenes[theaterScene]
+    const horizontal = starHorizontal(guestStarCoord, moment, kaifeng.latitude, kaifeng.longitude)
+    const dome = projectOnDome(horizontal)
+    return { scene, horizontal, dome }
+  }, [theaterScene, moment])
+
+  const guestReadings = useMemo(
+    () => (guestPlacement ? makeObservation(guestStarRecord, kaifeng.name, guestPlacement.scene.label, moment, kaifeng.latitude, kaifeng.longitude) : null),
+    [guestPlacement, moment],
+  )
 
   // 窄屏判定：标签避让的间距策略随画布宽高比切换
   const [isNarrow, setIsNarrow] = useState(() => window.matchMedia('(max-width: 700px)').matches)
@@ -436,6 +457,16 @@ function App() {
               </button>
             )
           })}
+          {guestPlacement && (
+            <div
+              className={guestPlacement.scene.visible ? 'guest-star' : 'guest-star faded'}
+              style={{ left: `${guestPlacement.dome.x}%`, top: `${guestPlacement.dome.y}%` }}
+              aria-hidden="true"
+            >
+              <span className="guest-core" />
+              <span className="guest-label">{guestPlacement.scene.visible ? '天关客星' : '客星已没'}</span>
+            </div>
+          )}
         </div>
 
         <div className="observatory-actions">
@@ -443,12 +474,20 @@ function App() {
           <button className={selectedStar && !observation ? 'primary-button ghost' : 'primary-button'} onClick={() => startMeasuring()}><Sparkles size={18} />{selectedStar ? `测一测 ${target.name}` : '测一测'}</button>
         </div>
 
-        <div className="time-control">
-          <div className="time-heading"><span>夜行时间</span><strong>{timeLabel}</strong></div>
-          <input aria-label="调整教学时间" type="range" min="0" max={timeLabels.length - 1} step="1" value={timeIndex} onChange={(event) => setTimeIndex(Number(event.target.value))} />
-          <div className="time-scale"><span>黄昏</span><span>深夜</span><span>凌晨</span></div>
-          <p className="sky-caption">天穹俯视 · 北在上东在左 · 外环为二十八宿宿度环 · 暗者为未升<span className="caption-extra"> · 星位实时计算（J2000，教学精度）· 背景星野 {hygStars.length.toLocaleString()} 颗（HYG ≤5.5 等）</span></p>
-        </div>
+        {!inTheater && (
+          <div className="time-control">
+            <div className="time-heading"><span>夜行时间</span><strong>{timeLabel}</strong></div>
+            <input aria-label="调整教学时间" type="range" min="0" max={timeLabels.length - 1} step="1" value={timeIndex} onChange={(event) => setTimeIndex(Number(event.target.value))} />
+            <div className="time-scale"><span>黄昏</span><span>深夜</span><span>凌晨</span></div>
+            <p className="sky-caption">天穹俯视 · 北在上东在左 · 外环为二十八宿宿度环 · 暗者为未升<span className="caption-extra"> · 星位实时计算（J2000，教学精度）· 背景星野 {hygStars.length.toLocaleString()} 颗（HYG ≤5.5 等）</span></p>
+          </div>
+        )}
+        {inTheater && (
+          <div className="time-control">
+            <div className="time-heading"><span>剧场时刻</span><strong>{guestPlacement?.scene.label} · {guestPlacement?.scene.title.split('·').pop()?.trim()}</strong></div>
+            <p className="sky-caption">客星剧场 · 汴京 · {guestPlacement ? `客星此刻${guestPlacement.horizontal.altitude >= 0 ? `高 ${formatDegrees(guestPlacement.horizontal.altitude)} · ${compassLabel(guestPlacement.horizontal.azimuth)}方` : '在地平线下'}` : ''}<span className="caption-extra"> · 教学示意：绝对方位按 J2000 近似</span></p>
+          </div>
+        )}
       </section>
 
       <section className="insight-strip">
@@ -463,6 +502,7 @@ function App() {
                 ? '切换「西方星座」，看看参宿如何变成猎户座。'
                 : `参宿约 ${shenRiseLabel} 升起；先看低垂的北斗——切到「西方星座」，它就是大熊座。`}</p>
         </div>
+        <button className="text-button theater-entry" onClick={() => { setTheaterScene(0); setShowLocation(false) }}>客星剧场 ✦</button>
         <button className="text-button" onClick={() => setMode(mode === 'china' ? 'western' : mode === 'western' ? 'both' : 'china')}>翻转天空 <RotateCcw size={15} /></button>
       </section>
 
@@ -490,6 +530,29 @@ function App() {
           <span className="record-seal" aria-hidden="true">步天</span>
           <button className="card-cta" onClick={handleDownload}><Download size={16} />下载奏折</button>
           <button className="link-button" onClick={() => startMeasuring(observation.star)}>重新测量</button>
+        </aside>
+      )}
+
+      {guestPlacement && guestReadings && (
+        <aside className="theater-card" aria-live="polite">
+          <div className="record-card-top">
+            <div><p className="card-eyebrow">客星剧场 · {kaifeng.name}</p><h3>天关客星</h3></div>
+            <button className="icon-button" onClick={() => setTheaterScene(null)} aria-label="回到今夜"><X size={18} /></button>
+          </div>
+          <p className="modern-name">{guestPlacement.scene.title}</p>
+          <div className="theater-scene-switch" role="group" aria-label="切换客星场景">
+            {theaterScenes.map((scene, index) => (
+              <button key={scene.id} className={theaterScene === index ? 'scene-button active' : 'scene-button'} onClick={() => setTheaterScene(index)}>{scene.label}</button>
+            ))}
+          </div>
+          <blockquote className="theater-quote">「{guestPlacement.scene.quote}」<footer>{guestPlacement.scene.source}</footer></blockquote>
+          <p className="theater-note">{guestPlacement.scene.note}</p>
+          <div className="mini-reading">
+            <span className="mini-cell"><small>入宿度</small><b>{guestReadings.ru}</b></span>
+            <span className="mini-cell"><small>去极度</small><b>{guestReadings.ju.replace(/^去极\s*/, '')}</b></span>
+          </div>
+          <div className="card-source">天穹为 1054 年汴京星空 · 星官相对位置正确，绝对方位按 J2000 口径近似（未做岁差归算）</div>
+          <button className="card-cta" onClick={() => { setSelectedStar(guestStarRecord); setTheaterScene(null); startMeasuring(guestStarRecord) }}>用浑仪测这颗客星</button>
         </aside>
       )}
 

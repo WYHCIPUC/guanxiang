@@ -5,6 +5,7 @@ import { starfield } from '../src/data/starfield.ts'
 import { lodgeStars } from '../src/data/lodges.ts'
 import { stars as demoStars } from '../src/data/demo.ts'
 import { westernSkyGroups } from '../src/data/western-sky.ts'
+import { guestStarCoord, kaifeng, theaterScenes } from '../src/lib/kestar.ts'
 
 const assert = (condition, message) => {
   if (!condition) throw new Error(`天文计算校验失败：${message}`)
@@ -176,5 +177,21 @@ near(astro.greenwichSiderealTimeHours(new Date(Date.UTC(2000, 0, 1, 12, 0, 0))),
   assert(total > 600 && total < 760, `连线段数应约 698（实际 ${total}）`)
 }
 
+// 14. 客星剧场（SN 1054 / 天关客星）：坐标入宿、场景天象
+{
+  const entry = astro.lodgeEntry(guestStarCoord.raHours)
+  assert(entry.lodge === '参' && entry.entryDegrees > 0.5 && entry.entryDegrees < 0.8, `客星应入参宿约 0.63°（实际 ${entry.lodge} ${entry.entryDegrees.toFixed(2)}°）`)
+  assert(astro.formatLodgeEntry(guestStarCoord.raHours) === '入参宿 0°38′', `客星入宿度读数（实际 ${astro.formatLodgeEntry(guestStarCoord.raHours)}）`)
+  assert(astro.formatDegrees(astro.northPolarDistance(guestStarCoord.decDegrees)) === '67°59′', `客星去极度读数（实际 ${astro.formatDegrees(astro.northPolarDistance(guestStarCoord.decDegrees))}）`)
+  assert(theaterScenes.length === 3, `剧场应有三幕（实际 ${theaterScenes.length}）`)
+  for (const scene of theaterScenes) {
+    assert(Number.isFinite(scene.utc) && scene.utc > Date.UTC(1000, 0, 1) && scene.utc < Date.UTC(1100, 0, 1), `${scene.label} 场景时刻应在 11 世纪`)
+  }
+  const first = astro.starHorizontal(guestStarCoord, new Date(theaterScenes[0].utc), kaifeng.latitude, kaifeng.longitude)
+  assert(first.altitude > 0 && first.azimuth < 150, `初见之幕客星应在地平线上东方（实际 ${first.altitude.toFixed(1)}°/${first.azimuth.toFixed(0)}°）`)
+  const peak = astro.starHorizontal(guestStarCoord, new Date(theaterScenes[1].utc), kaifeng.latitude, kaifeng.longitude)
+  assert(peak.altitude > 60 && Math.abs(peak.azimuth - 180) < 20, `极盛之幕客星应近天顶正南（实际 ${peak.altitude.toFixed(1)}°/${peak.azimuth.toFixed(0)}°）`)
+}
+
 console.log('天文计算校验通过')
-console.log('覆盖：恒星时、地平坐标、天穹投影、入宿度、去极度、升起时刻、日期进位、HYG 星表抽检、二十八宿距星交叉校验')
+console.log('覆盖：恒星时、地平坐标、天穹投影、入宿度、去极度、升起时刻、日期进位、HYG 星表抽检、二十八宿距星交叉校验、西方星座数据、客星剧场')

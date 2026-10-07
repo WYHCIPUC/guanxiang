@@ -152,8 +152,26 @@ try {
   assert(document.querySelector('.record-card h3')?.textContent === '参宿四', '记入奏折后显示最近一次观测')
   assert(document.querySelector('.record-card .mini-reading')?.textContent.includes('入参宿'), '观测记录应包含入宿度')
 
+  // 客星剧场：入口 → 三幕场景卡与客星标记 → 切幕位移 → 退出
+  document.querySelector('.theater-entry').click()
+  await settle()
+  assert(document.querySelector('.theater-card'), '点击客星剧场应出现剧场卡')
+  assert(document.querySelector('.sky-stage .guest-star'), '天穹应出现客星标记')
+  assert(document.querySelectorAll('.scene-button').length === 3, '剧场应有三幕按钮')
+  assert(document.querySelector('.theer-quote') || document.querySelector('.theater-quote'), '剧场应引用史料')
+  const guestBefore = document.querySelector('.guest-star').style.left
+  const peakButton = [...document.querySelectorAll('.scene-button')].find((button) => button.textContent.includes('极盛'))
+  peakButton.click()
+  await settle()
+  assert(document.querySelector('.guest-star').style.left !== guestBefore, '切换场景后客星位置应移动')
+  assert(document.querySelector('.theater-quote').textContent.includes('太白'), '极盛之幕应引《宋会要辑稿》')
+  assert(document.querySelector('.theater-card .mini-reading').textContent.includes('入参宿'), '客星读数应实时换算')
+  document.querySelector('.theater-card .icon-button').click()
+  await settle()
+  assert(!document.querySelector('.theater-card') && !document.querySelector('.guest-star'), '退出剧场回到今夜')
+
   console.log('React 版渲染检查通过')
-  console.log('覆盖：真实星位渲染、升落标记、模式切换、时间联动、星官卡、真实读数、记入奏折')
+  console.log('覆盖：真实星位渲染、升落标记、模式切换、时间联动、星官卡、真实读数、记入奏折、客星剧场')
 } finally {
   await server.close()
   dom.window.close()
