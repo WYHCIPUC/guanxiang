@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1440" viewBox="0 0 1080 1440">
+  <defs><radialGradient id="glow"><stop offset="0%" stop-color="rgba(242,235,221,0.55)"/><stop offset="100%" stop-color="rgba(242,235,221,0)"/></radialGradient></defs>
+  <rect width="1080" height="1440" fill="#0b1020"/>
+  <rect x="36" y="36" width="1008" height="1368" rx="12" fill="none" stroke="rgba(201, 164, 92, 0.4)" stroke-width="2"/>
+  <text x="540" y="150" text-anchor="middle" font-size="58" fill="#f2ebdd" font-family="serif">同一片天空，两套名字</text>
+  <text x="540" y="205" text-anchor="middle" font-size="30" fill="#c9a45c" font-family="serif" letter-spacing="6">参宿 · Orion 猎户座</text>
+  <line x1="360" y1="240" x2="720" y2="240" stroke="rgba(201, 164, 92, 0.5)" stroke-width="2"/>
+  <line x1="671.7270000000003" y1="524.7114" x2="566.505" y2="811.6722" stroke="rgba(201, 164, 92, 0.72)" stroke-width="3"/><line x1="566.505" y1="811.6722" x2="386.3850000000001" y2="484.53020000000004" stroke="rgba(201, 164, 92, 0.72)" stroke-width="3"/><line x1="523.2990000000004" y1="839.8264" x2="566.505" y2="811.6722" stroke="rgba(201, 164, 92, 0.72)" stroke-width="3"/><line x1="566.505" y1="811.6722" x2="606.462" y2="777.3658" stroke="rgba(201, 164, 92, 0.72)" stroke-width="3"/><line x1="386.3850000000001" y1="484.53020000000004" x2="772.3890000000001" y2="1077.6608" stroke="rgba(201, 164, 92, 0.72)" stroke-width="3"/><line x1="671.7270000000003" y1="524.7114" x2="456.83700000000044" y2="1133.4486" stroke="rgba(201, 164, 92, 0.72)" stroke-width="3"/><line x1="386.3850000000001" y1="484.53020000000004" x2="671.7270000000003" y2="524.7114" stroke="rgba(140, 165, 200, 0.55)" stroke-width="2" stroke-dasharray="10 7"/><line x1="456.83700000000044" y1="1133.4486" x2="772.3890000000001" y2="1077.6608" stroke="rgba(140, 165, 200, 0.55)" stroke-width="2" stroke-dasharray="10 7"/><line x1="671.7270000000003" y1="524.7114" x2="456.83700000000044" y2="1133.4486" stroke="rgba(140, 165, 200, 0.55)" stroke-width="2" stroke-dasharray="10 7"/><line x1="386.3850000000001" y1="484.53020000000004" x2="772.3890000000001" y2="1077.6608" stroke="rgba(140, 165, 200, 0.55)" stroke-width="2" stroke-dasharray="10 7"/>
+  
+    <circle cx="523.2990000000004" cy="839.8264" r="21.8" fill="url(#glow)"/>
+    <circle cx="523.2990000000004" cy="839.8264" r="11.8" fill="#f2ebdd"/>
+    <circle cx="566.505" cy="811.6722" r="21.8" fill="url(#glow)"/>
+    <circle cx="566.505" cy="811.6722" r="11.8" fill="#f2ebdd"/>
+    <circle cx="606.462" cy="777.3658" r="18.799999999999997" fill="url(#glow)"/>
+    <circle cx="606.462" cy="777.3658" r="8.799999999999999" fill="#f2ebdd"/>
+    <circle cx="386.3850000000001" cy="484.53020000000004" r="29" fill="url(#glow)"/>
+    <circle cx="386.3850000000001" cy="484.53020000000004" r="19" fill="#f2ebdd"/>
+    <circle cx="671.7270000000003" cy="524.7114" r="22.4" fill="url(#glow)"/>
+    <circle cx="671.7270000000003" cy="524.7114" r="12.399999999999999" fill="#f2ebdd"/>
+    <circle cx="456.83700000000044" cy="1133.4486" r="19.4" fill="url(#glow)"/>
+    <circle cx="456.83700000000044" cy="1133.4486" r="9.399999999999999" fill="#f2ebdd"/>
+    <circle cx="772.3890000000001" cy="1077.6608" r="31.4" fill="url(#glow)"/>
+    <circle cx="772.3890000000001" cy="1077.6608" r="21.4" fill="#f2ebdd"/>
+  
+    <line x1="361.3850000000001" y1="484.53020000000004" x2="306" y2="491" stroke="rgba(201, 164, 92, 0.35)" stroke-width="1.4"/>
+    <text x="296" y="500" text-anchor="end" font-size="27" fill="rgba(228, 203, 148, 0.85)" font-family="serif">参宿四 <tspan font-size="20" fill="#aebdd4" font-family="sans-serif">· Betelgeuse</tspan></text>
+    <line x1="690.1270000000003" y1="524.7114" x2="774" y2="491" stroke="rgba(201, 164, 92, 0.35)" stroke-width="1.4"/>
+    <text x="784" y="500" text-anchor="start" font-size="27" fill="rgba(228, 203, 148, 0.85)" font-family="serif">参宿五 <tspan font-size="20" fill="#aebdd4" font-family="sans-serif">· Bellatrix</tspan></text>
+    <line x1="591.662" y1="777.3658" x2="306" y2="731" stroke="rgba(201, 164, 92, 0.35)" stroke-width="1.4"/>
+    <text x="296" y="740" text-anchor="end" font-size="27" fill="rgba(228, 203, 148, 0.85)" font-family="serif">参宿三 <tspan font-size="20" fill="#aebdd4" font-family="sans-serif">· Mintaka</tspan></text>
+    <line x1="584.305" y1="811.6722" x2="774" y2="811" stroke="rgba(201, 164, 92, 0.35)" stroke-width="1.4"/>
+    <text x="784" y="820" text-anchor="start" font-size="27" fill="rgba(228, 203, 148, 0.85)" font-family="serif">参宿二 <tspan font-size="20" fill="#aebdd4" font-family="sans-serif">· Alnilam</tspan></text>
+    <line x1="505.4990000000004" y1="839.8264" x2="306" y2="811" stroke="rgba(201, 164, 92, 0.35)" stroke-width="1.4"/>
+    <text x="296" y="820" text-anchor="end" font-size="27" fill="rgba(228, 203, 148, 0.85)" font-family="serif">参宿一 <tspan font-size="20" fill="#aebdd4" font-family="sans-serif">· Alnitak</tspan></text>
+    <line x1="799.7890000000001" y1="1077.6608" x2="774" y2="971" stroke="rgba(201, 164, 92, 0.35)" stroke-width="1.4"/>
+    <text x="784" y="980" text-anchor="start" font-size="27" fill="rgba(228, 203, 148, 0.85)" font-family="serif">参宿七 <tspan font-size="20" fill="#aebdd4" font-family="sans-serif">· Rigel</tspan></text>
+    <line x1="441.43700000000047" y1="1133.4486" x2="306" y2="971" stroke="rgba(201, 164, 92, 0.35)" stroke-width="1.4"/>
+    <text x="296" y="980" text-anchor="end" font-size="27" fill="rgba(228, 203, 148, 0.85)" font-family="serif">参宿六 <tspan font-size="20" fill="#aebdd4" font-family="sans-serif">· Saiph</tspan></text>
+  <text x="120" y="1136" font-size="24" fill="rgba(228, 203, 148, 0.85)" font-family="serif">— 金色实线 · 中国星官的连法（虎身）</text>
+  <text x="120" y="1172" font-size="24" fill="#aebdd4" font-family="sans-serif">┄ 灰蓝虚线 · 西方星座的连法（沙漏）</text>
+  <text x="120" y="1238" font-size="30" fill="#e8e2d4" font-family="serif">七星还是那七星：中国人连成白虎之身，</text>
+  <text x="120" y="1282" font-size="30" fill="#e8e2d4" font-family="serif">希腊人连成猎户沙漏——谁先看，谁命名。</text>
+  <text x="540" y="1352" text-anchor="middle" font-size="20" fill="rgba(174, 189, 212, 0.75)" font-family="sans-serif">《步天》· wyhcipuc.github.io/guanxiang · 教学精度 · J2000 历元 · 未含岁差与折射修正</text>
+</svg>

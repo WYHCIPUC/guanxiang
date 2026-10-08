@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1440" viewBox="0 0 1080 1440">
+  <rect width="1080" height="1440" fill="#efe1bf"/>
+  <rect x="44" y="44" width="992" height="1352" rx="10" fill="none" stroke="#a67d42" stroke-width="4"/>
+  <rect x="492" y="118" width="96" height="96" rx="10" fill="#b94a48"/>
+  <text x="540" y="172" text-anchor="middle" font-size="34" fill="#f5ead7" font-family="serif">步天</text>
+  <text x="540" y="206" text-anchor="middle" font-size="18" fill="#f5ead7" font-family="serif" letter-spacing="4">钤印</text>
+  <line x1="516" y1="222" x2="564" y2="222" stroke="#a67d42" stroke-width="2"/>
+  <text x="540" y="330" text-anchor="middle" font-size="64" fill="#2c2632" font-family="serif" letter-spacing="14">客星帖</text>
+  <text x="540" y="382" text-anchor="middle" font-size="28" fill="#6c5844" font-family="serif">至和元年 · 天关星旁 · 六百五十三日</text>
+  <line x1="240" y1="420" x2="840" y2="420" stroke="#a67d42" stroke-width="2"/>
+  <text x="540" y="470" text-anchor="middle" font-size="30" fill="#2c2632" font-family="serif">「昼见如太白，芒角四出，色赤白，凡见二十三日。」</text>
+  <text x="540" y="508" text-anchor="middle" font-size="22" fill="#6c5844" font-family="serif">—— 《宋会要辑稿》</text>
+  <circle cx="540" cy="672" r="48" fill="rgba(185, 74, 72, 0.18)"/>
+  <circle cx="540" cy="672" r="14" fill="#b94a48"/>
+  <text x="566" y="646" font-size="30" fill="#b94a48" font-family="serif" font-weight="bold">客星</text>
+  <circle cx="644.1999999999987" cy="2415.8" r="11" fill="#2c2632"/>
+  <text x="662.1999999999987" y="2451.8" font-size="26" fill="#2c2632" font-family="serif">天关</text>
+  <text x="540" y="852" text-anchor="middle" font-size="24" fill="#6c5844" font-family="serif">客星紧挨天关星 · 相对位置按真实坐标绘制（约 1.5° 视场）</text>
+  
+    <circle cx="160" cy="897" r="7" fill="rgba(44,38,50,0.35)"/>
+    <text x="190" y="906" font-size="28" fill="#6c5844" font-family="serif" >初见 · 公元 1054 年 7 月 4 日 · 黎明</text>
+    <text x="190" y="938" font-size="22" fill="rgba(108, 88, 68, 0.95)" font-family="serif">至和元年五月己丑</text>
+    <circle cx="160" cy="981" r="7" fill="rgba(44,38,50,0.35)"/>
+    <text x="190" y="990" font-size="28" fill="#6c5844" font-family="serif" >昼见 · 公元 1054 年 7 月 5 日 · 白昼</text>
+    <text x="190" y="1022" font-size="22" fill="rgba(108, 88, 68, 0.95)" font-family="serif">次日正午</text>
+    <circle cx="160" cy="1065" r="7" fill="#b94a48"/>
+    <text x="190" y="1074" font-size="28" fill="#2c2632" font-family="serif" font-weight="bold">极盛 · 公元 1054 年 12 月 28 日 · 夜半前</text>
+    <text x="190" y="1106" font-size="22" fill="rgba(108, 88, 68, 0.95)" font-family="serif">至和元年岁末</text>
+    <circle cx="160" cy="1149" r="7" fill="rgba(44,38,50,0.35)"/>
+    <text x="190" y="1158" font-size="28" fill="#6c5844" font-family="serif" >没灭 · 公元 1056 年 4 月 · 岁余稍没</text>
+    <text x="190" y="1190" font-size="22" fill="rgba(108, 88, 68, 0.95)" font-family="serif">嘉祐元年三月</text>
+  <text x="540" y="1258" text-anchor="middle" font-size="34" fill="#2c2632" font-family="serif">极盛夜浑仪读数 · 入参宿 0°38′</text>
+  <text x="540" y="1306" text-anchor="middle" font-size="34" fill="#2c2632" font-family="serif">去极度 · 67°59′</text>
+  <text x="540" y="1360" text-anchor="middle" font-size="22" fill="#7d6c58" font-family="serif">即今日之蟹状星云（M1）· 教学示意：绝对方位按 J2000 近似</text>
+  <text x="540" y="1388" text-anchor="middle" font-size="20" fill="#7d6c58" font-family="sans-serif">《步天》· wyhcipuc.github.io/guanxiang</text>
+</svg>
