@@ -127,17 +127,17 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outl
 .china-line { stroke: var(--gold); stroke-dasharray: 4 2; }
 .western-line { stroke: var(--moon); stroke-width: 0.28 !important; }
 .western-line.faint { opacity: 0.45; stroke-width: 0.2 !important; }
-.western-sky-line { stroke: rgba(217, 226, 238, 0.55); stroke-width: 0.16 !important; vector-effect: non-scaling-stroke; animation: none; }
+.western-sky-line { stroke: rgba(217, 226, 238, 0.42); stroke-width: 0.16 !important; vector-effect: non-scaling-stroke; animation: none; }
 .western-sky-line.faint { opacity: 0.38; stroke-width: 0.12 !important; }
 @keyframes line-in { from { opacity: 0; } }
 
 .horizon-ring { fill: none; stroke: rgba(201, 164, 92, 0.32); stroke-width: 0.22; stroke-dasharray: 1.6 1.2; vector-effect: non-scaling-stroke; }
 .lodge-ring { fill: none; stroke: rgba(201, 164, 92, 0.14); stroke-width: 0.16; vector-effect: non-scaling-stroke; }
 .lodge-tick { stroke: rgba(201, 164, 92, 0.6); stroke-width: 0.22; vector-effect: non-scaling-stroke; }
-.lodge-name { fill: rgba(228, 203, 148, 0.92); font-size: 2px; font-family: var(--font-display); text-anchor: middle; }
+.lodge-name { fill: rgba(228, 203, 148, 0.92); font-size: 1.9px; font-family: var(--font-display); text-anchor: middle; }
 .lodge-mark.below .lodge-tick { stroke: rgba(201, 164, 92, 0.2); }
-.lodge-mark.below .lodge-name { fill: rgba(185, 192, 207, 0.35); }
-.compass-mark { fill: rgba(242, 235, 221, 0.88); font-size: 4.4px; font-family: var(--font-display); text-anchor: middle; }
+.lodge-mark.below .lodge-name { fill: rgba(185, 192, 207, 0.45); }
+.compass-mark { fill: rgba(242, 235, 221, 0.32); font-size: 2.8px; font-family: var(--font-display); text-anchor: middle; }
 
 .mode-legend { position: absolute; top: 14px; left: 16px; z-index: 3; display: flex; gap: 14px; padding: 7px 12px; border: 1px solid var(--border); border-radius: 999px; background: rgba(7, 12, 26, 0.62); backdrop-filter: blur(4px); font-size: 11px; letter-spacing: 0.06em; }
 .legend-item { display: inline-flex; align-items: center; gap: 6px; }

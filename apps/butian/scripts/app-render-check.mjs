@@ -71,8 +71,8 @@ try {
     const jiao = astro.lodges.find((l) => l.name === '角')
     const horizontal = astro.starHorizontal({ raHours: jiao.raHours, decDegrees: jiao.decDegrees }, moment0, site0.latitude, site0.longitude)
     const az = horizontal.azimuth * (Math.PI / 180)
-    const expectX = 50 - 48.8 * Math.sin(az)
-    const expectY = 50 - 48.8 * Math.cos(az)
+    const expectX = 50 - 48.2 * Math.sin(az)
+    const expectY = 50 - 48.2 * Math.cos(az)
     const mark = lodgeNames.find((element) => element.textContent === '角')
     const mx = Number.parseFloat(mark.getAttribute('x'))
     const my = Number.parseFloat(mark.getAttribute('y')) - 0.7

@@ -129,8 +129,8 @@ function App() {
       dots.push({
         x: dome.x,
         y: dome.y,
-        r: Math.min(0.5, 0.14 + brightness * 0.06),
-        o: Math.min(0.95, 0.3 + brightness * 0.09),
+        r: Math.min(0.5, 0.12 + brightness * 0.06),
+        o: Math.min(0.95, 0.22 + brightness * 0.09),
       })
     }
     return dots
@@ -149,7 +149,7 @@ function App() {
         name: lodge.name,
         above: horizontal.altitude >= 0,
         tick: { x1: 50 - 47.3 * sinA, y1: 50 - 47.3 * cosA, x2: 50 - 47.9 * sinA, y2: 50 - 47.9 * cosA },
-        label: { x: 50 - 48.8 * sinA, y: 50 - 48.8 * cosA },
+        label: { x: 50 - 48.2 * sinA, y: 50 - 48.2 * cosA },
       }
     })
   }, [moment, site])
@@ -196,21 +196,40 @@ function App() {
     const boxW = isNarrow ? 15 : isBoth ? 5.6 : 4.8
     const boxH = isNarrow ? (isBoth ? 9.5 : 4.8) : isBoth ? 6.6 : 3.2
     // 宿群锚点：同组升起成员 ≥4 时只保留组内第一颗（距星）参与排布，其余降为悬停展开并计入"+N"
+    // 宿度环已挂牌二十八宿宿名：普通宿无论升起几颗都整组降为悬停（哨兵 ''），避免"奎娄壁室"一带的标签串珠
     const groupCounts = new Map<string, number>()
     for (const star of visible) groupCounts.set(star.chineseGroup, (groupCounts.get(star.chineseGroup) ?? 0) + 1)
-    const bigGroups = new Map<string, string>() // 组名 → 距星 id（源序首位）
+    const bigGroups = new Map<string, string>() // 组名 → 距星 id（源序首位）；'' 表示整组悬停、无锚
     for (const star of stars) {
-      if (visible.includes(star) && (groupCounts.get(star.chineseGroup) ?? 0) >= 4 && !bigGroups.has(star.chineseGroup) && !PRIORITY_STAR_IDS.has(star.id)) {
+      if (!visible.includes(star)) continue
+      if (star.chineseGroup.endsWith('宿') && star.chineseGroup !== '参宿') {
+        if (!bigGroups.has(star.chineseGroup)) bigGroups.set(star.chineseGroup, '')
+        continue
+      }
+      if ((groupCounts.get(star.chineseGroup) ?? 0) >= 4 && !bigGroups.has(star.chineseGroup) && !PRIORITY_STAR_IDS.has(star.id)) {
         bigGroups.set(star.chineseGroup, star.id)
       }
     }
     const placed: { x: number; y: number }[] = []
     const hits = (p: { x: number; y: number }, w: number) => placed.some((q) => Math.abs(p.x - q.x) < w && Math.abs(p.y - q.y) < boxH)
+    // 窄屏（移动端）寸土寸金：仅著名亮星挂牌，三垣各留第一颗升起的锚星，其余一律悬停展开
+    const narrowCandidates = isNarrow ? new Set(PRIORITY_STAR_IDS) : null
+    if (narrowCandidates) {
+      for (const group of ['紫微垣', '太微垣', '天市垣']) {
+        const first = visible.find((s) => s.chineseGroup === group)
+        if (first) narrowCandidates.add(first.id)
+      }
+    }
     for (const star of [...visible].sort((a, b) => (Number(PRIORITY_STAR_IDS.has(b.id)) - Number(PRIORITY_STAR_IDS.has(a.id))) || (a.magnitude - b.magnitude))) {
-      if (bigGroups.get(star.chineseGroup) && bigGroups.get(star.chineseGroup) !== star.id) {
+      const anchor = bigGroups.get(star.chineseGroup)
+      // 优先亮星（如毕宿五）不受组规约束；普通宿整组悬停、不写"+N"尾注
+      if (anchor !== undefined && anchor !== star.id && !PRIORITY_STAR_IDS.has(star.id)) {
         plan.set(star.id, 'hint')
-        const anchor = bigGroups.get(star.chineseGroup)!
-        anchorHidden.set(anchor, (anchorHidden.get(anchor) ?? 0) + 1)
+        if (anchor) anchorHidden.set(anchor, (anchorHidden.get(anchor) ?? 0) + 1)
+        continue
+      }
+      if (narrowCandidates && !narrowCandidates.has(star.id)) {
+        plan.set(star.id, 'hint')
         continue
       }
       const p = placements.get(star.id)!
@@ -408,7 +427,7 @@ function App() {
                 <text x={mark.label.x} y={mark.label.y + 0.7} className="lodge-name">{mark.name}</text>
               </g>
             ))}
-            <text x="50" y="7" className="compass-mark">北</text>
+            <text x="50" y="8.6" className="compass-mark">北</text>
             <text x="94" y="51.2" className="compass-mark">西</text>
             <text x="71" y="92" className="compass-mark">南</text>
             <text x="6" y="51.2" className="compass-mark">东</text>
