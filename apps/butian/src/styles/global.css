@@ -366,7 +366,15 @@ input[type="range"] { width: 100%; accent-color: var(--gold); margin: 8px 0 2px;
   .insight-strip { align-items: flex-start; }
   .text-button { align-self: center; font-size: 0; }
   .text-button svg { font-size: initial; }
-  .info-card, .record-card { right: 12px; bottom: 12px; width: calc(100% - 24px); }
+  .info-card, .record-card, .theater-card { right: 12px; bottom: 12px; width: calc(100% - 24px); }
+  /* 浮卡限高为抽屉：上半屏星图保持可见，卡内可滚动 */
+  .info-card, .record-card, .theater-card { max-height: 56vh; overflow-y: auto; }
+  /* 时间轴触控与视觉权重对齐按钮 */
+  .time-control input[type="range"] { height: 40px; }
+  .time-control input[type="range"]::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; }
+  .time-control input[type="range"]::-webkit-slider-thumb { width: 26px; height: 26px; margin-top: -10px; border: 3px solid #0b1020; box-shadow: 0 0 0 1px rgba(201, 164, 92, 0.6); }
+  .mode-legend { font-size: 10.5px; }
+  .mode-switcher .mode-button { font-size: 13px; letter-spacing: 0.04em; }
   .measure-panel, .onboarding-card { width: calc(100vw - 24px); max-width: calc(100vw - 24px); padding: 22px 18px; }
   .instrument-stage { height: 210px; }
   .instrument-ring.outer { width: 170px; height: 128px; }

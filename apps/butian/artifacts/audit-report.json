@@ -1,0 +1,304 @@
+{
+  "url": "http://localhost:5199/app.html",
+  "at": "2026-10-08T03:18:46.023Z",
+  "total": 59,
+  "failed": 0,
+  "consoleErrors": [],
+  "results": [
+    {
+      "name": "D01 首开显示欢迎引导",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "D02 关闭引导",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "D03 交互星 154 颗",
+      "pass": true,
+      "note": "151"
+    },
+    {
+      "name": "D04 背景星野 >800",
+      "pass": true,
+      "note": "1344"
+    },
+    {
+      "name": "D05 宿度环 28 宿名",
+      "pass": true,
+      "note": "28"
+    },
+    {
+      "name": "D06 方位标 4 个",
+      "pass": true,
+      "note": "4"
+    },
+    {
+      "name": "D07 可见标签 ≤ 24（防串珠）",
+      "pass": true,
+      "note": "true/18"
+    },
+    {
+      "name": "D08 切西方星座模式",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "D09 西方全天线 >200 段",
+      "pass": true,
+      "note": "335"
+    },
+    {
+      "name": "D10 切叠合观天",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "D11 叠合模式双行标签",
+      "pass": true,
+      "note": "69"
+    },
+    {
+      "name": "D12 切回中国星官",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "D13 时间滑杆拉到最右",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "D14 时间推进星位移动",
+      "pass": true,
+      "note": "4.06121%,32.7137% → 40.0367%,62.8719%"
+    },
+    {
+      "name": "D15 时间滑杆拉回最左",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "D16 打开地点弹层",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "D17 切换观测地到上海",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "D18 换地星位移动",
+      "pass": true,
+      "note": "61.0933% → 61.3021%"
+    },
+    {
+      "name": "D19 打开参宿四星官卡",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "D20 星官卡标题正确",
+      "pass": true,
+      "note": "参宿四"
+    },
+    {
+      "name": "D21 星官卡含此刻地平状态",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "D22 星官卡进入测量",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "D23 测量读数 ≥4 项",
+      "pass": true,
+      "note": "4"
+    },
+    {
+      "name": "D24 记入奏折",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "D25 奏折标题为参宿四",
+      "pass": true,
+      "note": "参宿四"
+    },
+    {
+      "name": "D26 奏折含入宿度",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "D27 下载奏折按钮存在",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "D28 进入客星剧场",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "D29 天穹出现客星",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "D30 剧场四幕按钮",
+      "pass": true,
+      "note": "4"
+    },
+    {
+      "name": "D31 剧场引用史料",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "D32 客星读数实时换算",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "D33 切昼见幕",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "D34 昼见天穹白昼化",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "D35 白昼唯客星可见",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "D36 切极盛幕",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "D37 切幕客星位移",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "D38 切没灭幕",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "D39 没灭幕剧场卡仍在",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "D40 回极盛并测客星",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "D41 用浑仪测客星",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "D42 测量面板读数含客星坐标",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "D43 进入测量即退出剧场",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "D44 退出后天穹无客星",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "M01 移动端引导出现",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "M02 关闭引导",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "M03 移动端交互星齐全",
+      "pass": true,
+      "note": "151"
+    },
+    {
+      "name": "M04 移动端可见标签 ≤ 18",
+      "pass": true,
+      "note": "true/10"
+    },
+    {
+      "name": "M05 移动端宿度环 28 宿名",
+      "pass": true,
+      "note": "28"
+    },
+    {
+      "name": "M06 打开星官卡",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "M07 星官卡标题",
+      "pass": true,
+      "note": "参宿一"
+    },
+    {
+      "name": "M08 移动端测量",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "M09 记入奏折",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "M10 进入剧场",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "M11 移动端客星可见",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "M12 切昼见幕",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "M13 移动端白昼化",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "M14 退出剧场",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "M15 退出后无客星",
+      "pass": true,
+      "note": "true"
+    }
+  ]
+}

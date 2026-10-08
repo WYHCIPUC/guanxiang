@@ -34,7 +34,11 @@ const edge = spawn(EDGE, [
   '--no-first-run', '--no-default-browser-check',
   'about:blank',
 ], { stdio: 'ignore' })
-process.on('exit', () => { try { edge.kill() } catch {} })
+// 退出时杀掉 Edge 并清掉浏览器残留目录——它会触发安全扫描误报，绝不能留在磁盘上
+process.on('exit', () => {
+  try { edge.kill() } catch {}
+  rmSync(join(outdir, '_edge-profile'), { recursive: true, force: true })
+})
 
 const wsUrl = await getWsUrl()
 const ws = new WebSocket(wsUrl)
