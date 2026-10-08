@@ -13,6 +13,8 @@
 - 二十八宿距星赤经：J2000 近似值手工整理，待逐宿校对；觜宿在 J2000 呈“负宽度”，按退化宿处理（详见 `src/lib/astro.ts` 注释）。
 - 二十八宿成员星（`src/data/lodges.ts`，27 宿 121 星）：成员识别为常见口径的手工整理（待逐宿校对；翼宿取代表星、张宿/奎宿为子集），J2000 坐标取自 HYG v3.5；由 `scripts/build-lodges.mjs` 生成。
 - 88 西方星座连线（`src/data/western-sky.ts`，86 组 698 段）：取自 **d3-celestial**（Olaf Frohn，**BSD-3-Clause**，https://github.com/ofrohn/d3-celestial ），由 `scripts/build-western-sky.mjs` 生成（排除 Ori/UMa，赤经归一化 0–360°）。BSD 再分发需保留版权声明：本条即为其来源声明。
+- 三垣主官（`src/data/enclosures.ts`，3 垣 9 星）：成员为常见口径的手工整理（各垣代表主官，待校对），J2000 坐标取自 HYG v3.5；由 `scripts/build-enclosures.mjs` 生成。
+- 客星剧场史料：《宋史·天文志》《宋会要辑稿》相关记载（公版），见于 `src/lib/kestar.ts`。
 - 星官连线与说明：本原型自绘与自撰，待接入经过许可核验的正式星官资料。
 - 坐标读数：由上述坐标实时换算；教学近似值（未含岁差归算与大气折射修正），不代表专业天文测量结果。
 

@@ -256,6 +256,14 @@ input[type="range"] { width: 100%; accent-color: var(--gold); margin: 8px 0 2px;
 .theater-card .card-cta { margin-top: 4px; }
 .theater-entry { color: var(--seal, #b94a48); }
 
+/* 白昼场景：白日天空，星象尽隐，唯客星可见 */
+.sky-stage.daytime { background: radial-gradient(circle at 50% 40%, rgba(120, 150, 196, 0.5), rgba(58, 80, 118, 0.32) 55%), linear-gradient(170deg, #2c3f63, #1b2742 75%); }
+.sky-stage.daytime .field-star, .sky-stage.daytime .constellation-lines line, .sky-stage.daytime .lodge-mark { opacity: 0; }
+.sky-stage.daytime .star-point { opacity: 0.13; pointer-events: none; }
+.sky-stage.daytime .star-point .star-label, .sky-stage.daytime .star-point .star-label-duo { opacity: 0; }
+.sky-stage.daytime .milky-way { opacity: 0; }
+.sky-stage.daytime .horizon-ring { opacity: 0.4; }
+
 /* ---------- 弹窗 ---------- */
 .modal-backdrop { position: fixed; inset: 0; z-index: var(--z-modal); display: grid; place-items: center; padding: 20px; overflow: auto; background: rgba(2, 4, 10, 0.76); backdrop-filter: blur(10px); }
 .measure-panel, .onboarding-card { width: min(620px, calc(100vw - 40px)); max-width: calc(100vw - 40px); min-width: 0; padding: 26px; border: 1px solid var(--border-gold); border-radius: var(--radius-l); background: #111a2f; box-shadow: 0 30px 100px rgba(0, 0, 0, 0.4); }

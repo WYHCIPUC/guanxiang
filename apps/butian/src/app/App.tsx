@@ -394,7 +394,7 @@ function App() {
           </div>
         </div>
 
-        <div className={selectedStar ? 'sky-stage has-selection' : 'sky-stage'}>
+        <div className={`sky-stage${selectedStar ? ' has-selection' : ''}${guestPlacement?.scene.daytime ? ' daytime' : ''}`}>
           <div className="silk-grain" style={{ backgroundImage: `url("${silkGrain}")` }} aria-hidden="true" />
           <svg className="constellation-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
             {fieldDots.map((dot, index) => (
@@ -553,6 +553,18 @@ function App() {
           </div>
           <div className="card-source">天穹为 1054 年汴京星空 · 星官相对位置正确，绝对方位按 J2000 口径近似（未做岁差归算）</div>
           <button className="card-cta" onClick={() => { setSelectedStar(guestStarRecord); setTheaterScene(null); startMeasuring(guestStarRecord) }}>用浑仪测这颗客星</button>
+          <button
+            className="link-button"
+            onClick={() => {
+              try {
+                downloadMemorial(guestReadings, `客星剧场 · ${guestPlacement.scene.label}`)
+                setNotice('客星帖已生成，浏览器会开始下载。')
+              } catch {
+                setNotice('图片生成失败。')
+              }
+              window.setTimeout(() => setNotice(''), 2600)
+            }}
+          ><Download size={16} />下载客星帖 · {guestPlacement.scene.label}幕</button>
         </aside>
       )}
 

@@ -35,6 +35,8 @@ export type TheaterScene = {
   utc: number
   /** 该场景客星是否肉眼可见 */
   visible: boolean
+  /** 白昼场景：天穹做白昼化处理，唯客星可见 */
+  daytime?: boolean
 }
 
 export const theaterScenes: TheaterScene[] = [
@@ -47,6 +49,17 @@ export const theaterScenes: TheaterScene[] = [
     note: '黎明时分，客星在东方低空、紧挨天关星（ζ Tau）乍现，亮度胜过太白。此后二十三日，它白昼可见。',
     utc: Date.UTC(1054, 6, 3, 20, 30),
     visible: true,
+  },
+  {
+    id: 'day',
+    label: '昼见',
+    title: '次日正午 · 公元 1054 年 7 月 5 日 · 白昼',
+    quote: '昼见如太白，芒角四出，色赤白，凡见二十三日。',
+    source: '《宋会要辑稿》',
+    note: '烈日当空，满天星辰尽数隐没，唯独这颗客星仍亮得刺眼——如太白（金星）悬于西南高天。古人因此知道：这不是一颗普通的星。',
+    utc: Date.UTC(1054, 6, 5, 4, 0),
+    visible: true,
+    daytime: true,
   },
   {
     id: 'peak',

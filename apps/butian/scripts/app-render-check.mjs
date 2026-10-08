@@ -85,7 +85,8 @@ try {
   const site = locations[0]
   const moment = astro.tonightAt(timeLabels[2])
   for (const star of stars) {
-    const button = starButtons.find((element) => element.getAttribute('aria-label')?.includes(star.name))
+    // 用前缀精确匹配：名称可能是其他星名的子串（如"帝座"⊂"五帝座一"）
+    const button = starButtons.find((element) => element.getAttribute('aria-label')?.startsWith(`查看${star.name}`))
     assert(button, `缺少星点按钮：${star.name}`)
     const dome = astro.projectOnDome(astro.starHorizontal(star, moment, site.latitude, site.longitude))
     const left = Number.parseFloat(button.style.left)
@@ -157,8 +158,15 @@ try {
   await settle()
   assert(document.querySelector('.theater-card'), '点击客星剧场应出现剧场卡')
   assert(document.querySelector('.sky-stage .guest-star'), '天穹应出现客星标记')
-  assert(document.querySelectorAll('.scene-button').length === 3, '剧场应有三幕按钮')
-  assert(document.querySelector('.theer-quote') || document.querySelector('.theater-quote'), '剧场应引用史料')
+  assert(document.querySelectorAll('.scene-button').length === 4, '剧场应有四幕按钮')
+  assert(document.querySelector('.theater-quote'), '剧场应引用史料')
+  // 白昼之幕：天穹加白昼类，星象尽隐唯客星可见
+  const dayButton = [...document.querySelectorAll('.scene-button')].find((button) => button.textContent.includes('昼见'))
+  dayButton.click()
+  await settle()
+  assert(document.querySelector('.sky-stage').className.includes('daytime'), '昼见之幕天穹应白昼化')
+  assert(document.querySelector('.sky-stage .guest-star'), '白昼场景客星仍应可见')
+  assert([...document.querySelectorAll('.theater-card .link-button')].some((button) => button.textContent.includes('客星帖')), '剧场卡应有客星帖下载入口')
   const guestBefore = document.querySelector('.guest-star').style.left
   const peakButton = [...document.querySelectorAll('.scene-button')].find((button) => button.textContent.includes('极盛'))
   peakButton.click()

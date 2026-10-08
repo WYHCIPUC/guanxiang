@@ -6,6 +6,7 @@ import { lodgeStars } from '../src/data/lodges.ts'
 import { stars as demoStars } from '../src/data/demo.ts'
 import { westernSkyGroups } from '../src/data/western-sky.ts'
 import { guestStarCoord, kaifeng, theaterScenes } from '../src/lib/kestar.ts'
+import { yuanStars } from '../src/data/enclosures.ts'
 
 const assert = (condition, message) => {
   if (!condition) throw new Error(`天文计算校验失败：${message}`)
@@ -183,14 +184,32 @@ near(astro.greenwichSiderealTimeHours(new Date(Date.UTC(2000, 0, 1, 12, 0, 0))),
   assert(entry.lodge === '参' && entry.entryDegrees > 0.5 && entry.entryDegrees < 0.8, `客星应入参宿约 0.63°（实际 ${entry.lodge} ${entry.entryDegrees.toFixed(2)}°）`)
   assert(astro.formatLodgeEntry(guestStarCoord.raHours) === '入参宿 0°38′', `客星入宿度读数（实际 ${astro.formatLodgeEntry(guestStarCoord.raHours)}）`)
   assert(astro.formatDegrees(astro.northPolarDistance(guestStarCoord.decDegrees)) === '67°59′', `客星去极度读数（实际 ${astro.formatDegrees(astro.northPolarDistance(guestStarCoord.decDegrees))}）`)
-  assert(theaterScenes.length === 3, `剧场应有三幕（实际 ${theaterScenes.length}）`)
+  assert(theaterScenes.length === 4, `剧场应有四幕（实际 ${theaterScenes.length}）`)
   for (const scene of theaterScenes) {
     assert(Number.isFinite(scene.utc) && scene.utc > Date.UTC(1000, 0, 1) && scene.utc < Date.UTC(1100, 0, 1), `${scene.label} 场景时刻应在 11 世纪`)
   }
   const first = astro.starHorizontal(guestStarCoord, new Date(theaterScenes[0].utc), kaifeng.latitude, kaifeng.longitude)
   assert(first.altitude > 0 && first.azimuth < 150, `初见之幕客星应在地平线上东方（实际 ${first.altitude.toFixed(1)}°/${first.azimuth.toFixed(0)}°）`)
-  const peak = astro.starHorizontal(guestStarCoord, new Date(theaterScenes[1].utc), kaifeng.latitude, kaifeng.longitude)
+  assert(theaterScenes[1].daytime === true, '昼见之幕应标记白昼场景')
+  const day = astro.starHorizontal(guestStarCoord, new Date(theaterScenes[1].utc), kaifeng.latitude, kaifeng.longitude)
+  assert(day.altitude > 50, `昼见之幕客星应高悬（实际 ${day.altitude.toFixed(1)}°）`)
+  const peak = astro.starHorizontal(guestStarCoord, new Date(theaterScenes[2].utc), kaifeng.latitude, kaifeng.longitude)
   assert(peak.altitude > 60 && Math.abs(peak.azimuth - 180) < 20, `极盛之幕客星应近天顶正南（实际 ${peak.altitude.toFixed(1)}°/${peak.azimuth.toFixed(0)}°）`)
+}
+
+// 15. 三垣主官：三垣齐备、坐标合法、入宿度可解析
+{
+  const groups = new Set(yuanStars.map((star) => star.chineseGroup))
+  for (const name of ['紫微垣', '太微垣', '天市垣']) {
+    assert(groups.has(name), `三垣应包含${name}（实际 ${[...groups].join('、')}）`)
+  }
+  const names = yuanStars.map((star) => star.name)
+  assert(new Set(names).size === names.length, '垣官星名不应重复')
+  for (const star of yuanStars) {
+    assert(Number.isFinite(star.raHours) && Number.isFinite(star.decDegrees), `${star.name} 坐标应有限`)
+    const entry = astro.lodgeEntry(star.raHours)
+    assert(entry.lodge !== '未知', `${star.name} 的入宿度应可解析（实际 ${entry.lodge}）`)
+  }
 }
 
 console.log('天文计算校验通过')

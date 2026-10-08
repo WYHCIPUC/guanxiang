@@ -1,5 +1,6 @@
 import type { LocationOption, Star } from '../types'
 import { lodgeStars, lodgeChinaLines } from './lodges.ts'
+import { yuanStars, yuanLines } from './enclosures.ts'
 
 // 观测地点（坐标取城市代表点，教学精度）
 export const locations: LocationOption[] = [
@@ -37,14 +38,15 @@ const coreStars: Star[] = [
   { id: 'bei-3', name: '北河三', modernName: '北河三 · β Gem', commonName: 'Pollux', x: 56, y: 13, magnitude: 1.14, chineseGroup: '北河', westernGroup: '双子座', chineseNote: '「北河」是银河口的灯标，与井宿相邻，冬夜与五车二相伴升起。', raHours: 7.7553, decDegrees: 28.0262 },
 ]
 
-export const stars: Star[] = [...coreStars, ...lodgeStars]
+export const stars: Star[] = [...coreStars, ...lodgeStars, ...yuanStars]
 
-// 中国星官连线：核心星官突出"参宿三星"腰带；二十八宿各主官按成员顺序连成折线
+// 中国星官连线：核心星官突出"参宿三星"腰带；二十八宿各主官按成员顺序连成折线；三垣取主官代表线
 export const chinaLines: [string, string][] = [
   ['shen-5', 'shen-1'], ['shen-1', 'shen-2'], ['shen-2', 'shen-3'], ['shen-3', 'shen-4'],
   ['shen-2', 'shen-6'], ['shen-3', 'shen-7'], ['shen-6', 'shen-7'],
   ['dou-1', 'dou-2'], ['dou-2', 'dou-3'], ['dou-3', 'dou-4'], ['dou-4', 'dou-5'], ['dou-5', 'dou-6'], ['dou-6', 'dou-7'],
   ...lodgeChinaLines,
+  ...yuanLines,
 ]
 
 // 西方星座连线：猎户座经典的“沙漏形”，不连腰带；夏季三角为著名星群
