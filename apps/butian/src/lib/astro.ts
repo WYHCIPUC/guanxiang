@@ -19,7 +19,8 @@ export function tonightAt(label: string, base = new Date()): Date {
 export type Lodge = { name: string; determinative: string; raHours: number; decDegrees: number }
 
 /**
- * 二十八宿距星坐标（J2000；赤经赤纬取自 HYG v3.5，与 src/data/lodges.ts 交叉校验）。
+ * 二十八宿距星坐标（J2000；赤经赤纬取自 HYG v3.5，2026-10-09 已逐宿对照
+ * 维基/TheSkyLive/SIMBAD 权威值核验通过，误差 ≤0.0003°，报告见 docs/butian/lodge-calibration.md）。
  * 按传统顺序 角→轸 排列。觜宿距星（觜宿一 λ Ori）与参宿距星（参宿三 δ Ori）
  * 在 J2000 相差不足一度，觜宿在当今天球上呈“负宽度”——这是历史上著名的
  * “觜参之辩”。这里将其视为退化宿：不认领任何星，其天区并入参宿。

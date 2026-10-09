@@ -224,5 +224,16 @@ near(astro.greenwichSiderealTimeHours(new Date(Date.UTC(2000, 0, 1, 12, 0, 0))),
   }
 }
 
+// 距星权威锚点：2026-10-09 逐宿校对（docs/butian/lodge-calibration.md）后钉死两颗代表星，
+// 任何人误改 lodges 坐标当场红链。权威值：角宿一 α Vir 13.419883h/−11.161320°；参宿三 δ Ori 5.533444h/−0.299088°。
+{
+  const jiao = astro.lodges.find((lodge) => lodge.name === '角')
+  const shen = astro.lodges.find((lodge) => lodge.name === '参')
+  near(jiao.raHours, 13.419883, 0.001, '角宿一赤经应与权威值一致（校对报告锚点）')
+  near(jiao.decDegrees, -11.16132, 0.001, '角宿一赤纬应与权威值一致（校对报告锚点）')
+  near(shen.raHours, 5.533444, 0.001, '参宿三赤经应与权威值一致（校对报告锚点）')
+  near(shen.decDegrees, -0.299088, 0.001, '参宿三赤纬应与权威值一致（校对报告锚点）')
+}
+
 console.log('天文计算校验通过')
-console.log('覆盖：恒星时、地平坐标、天穹投影、入宿度、去极度、升起时刻、日期进位、HYG 星表抽检、二十八宿距星交叉校验、西方星座数据、客星剧场、跨应用宿名序列一致')
+console.log('覆盖：恒星时、地平坐标、天穹投影、入宿度、去极度、升起时刻、日期进位、HYG 星表抽检、二十八宿距星交叉校验、距星权威锚点、西方星座数据、客星剧场、跨应用宿名序列一致')
