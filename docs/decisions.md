@@ -13,7 +13,8 @@
 影响：
 
 - P2 验收达成：core 可被三应用解析；四模块迁移完成；三链 + verify:all 全绿且步天全部数值锚点（GMST 18.697374h 等）原样通过；宿名跨应用断言继续生效。lodges/terms 两模块按计划留待璇玑历法核验。
-- 工程修正：npm 无 `workspace:` 协议（pnpm/yarn 专属），依赖声明用 `*` 由 npm workspace 自动链接；删除 apps/butian、apps/jinshi 的过时子 lockfile；CI 从"butian 目录 npm ci --workspaces=false"改为仓库根 `npm ci`（否则 registry 上找不到 @guanxiang/core）。
+- 工程修正：npm 无 `workspace:` 协议（pnpm/yarn 专属），依赖声明用 `*` 由 npm workspace 自动链接；删除 apps/butian、apps/jinshi 的过时子 lockfile；CI 安装改为仓库根统一安装（否则 registry 上找不到 @guanxiang/core）。
+- CI 落地实况（经四轮收敛）：Windows 生成的 lockfile 只含 win32 平台二进制，linux runner 上 npm ci/install 均不补装（npm/cli#4828）。解法=typescript 的 linux 二进制以 optional 条目手工补进 lockfile；rolldown/lightningcss 的 linux binding 在 CI 里按主包实际版本 `npm install --no-save` 显式补装。任何新原生依赖（含平台 optionalDependencies 的包）在 CI 首次部署时都可能再踩此坑，按同模式补。
 - 后续：今时第一轮试用、璇玑历法核验完成后，做 lodges/terms 上收与璇玑 .js 产物接入（P2 完全体）。
 
 ---
