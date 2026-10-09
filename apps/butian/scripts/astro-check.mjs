@@ -212,5 +212,17 @@ near(astro.greenwichSiderealTimeHours(new Date(Date.UTC(2000, 0, 1, 12, 0, 0))),
   }
 }
 
+// 二十八宿名序跨应用一致性：步天（距星坐标表）与璇玑（命理语义表）的宿名序列必须逐位相同。
+// 这是 P2 共享内核（docs/07-P2共享内核盘点.md）的先行断言——抽取前先钉住两表不漂移。
+{
+  const { lunarMansions } = await import('../../xuanji/src/data/stars.js')
+  const butianOrder = astro.lodges.map((lodge) => lodge.name)
+  const xuanjiOrder = lunarMansions.map((mansion) => mansion.name)
+  assert(butianOrder.length === 28 && xuanjiOrder.length === 28, `两表均应 28 宿（步天 ${butianOrder.length}，璇玑 ${xuanjiOrder.length}）`)
+  for (let i = 0; i < 28; i++) {
+    assert(butianOrder[i] === xuanjiOrder[i], `宿名序列第 ${i + 1} 位不一致：步天「${butianOrder[i]}」vs 璇玑「${xuanjiOrder[i]}」`)
+  }
+}
+
 console.log('天文计算校验通过')
-console.log('覆盖：恒星时、地平坐标、天穹投影、入宿度、去极度、升起时刻、日期进位、HYG 星表抽检、二十八宿距星交叉校验、西方星座数据、客星剧场')
+console.log('覆盖：恒星时、地平坐标、天穹投影、入宿度、去极度、升起时刻、日期进位、HYG 星表抽检、二十八宿距星交叉校验、西方星座数据、客星剧场、跨应用宿名序列一致')
