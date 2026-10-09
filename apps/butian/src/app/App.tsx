@@ -37,6 +37,8 @@ const AIM_HOME = { x: 21, y: 28 }
 function App() {
   const [mode, setMode] = useState<SkyMode>('china')
   const [selectedStar, setSelectedStar] = useState<Star | null>(null)
+  // 触屏无 hover：点按宿群成员展开整组星名（再点同组或点空白处收回）；桌面 hover 行为不变
+  const [revealedGroup, setRevealedGroup] = useState<string | null>(null)
   const [isMeasuring, setIsMeasuring] = useState(false)
   const [observation, setObservation] = useState<Observation | null>(null)
   const [location, setLocation] = useState('北京')
@@ -278,6 +280,20 @@ function App() {
     setShowLocation(false)
   }
 
+  // 触屏点按宿群成员：该宿未展开时首次点按只展开整组星名（移动端无 hover 的兜底）；
+  // 已展开则照常开卡，关闭卡后组名保持亮显便于扫视，点空白处收回。参宿同样适用——
+  // 移动端窄屏连"参宿 等7星"组锚也被过滤，点按展开是成员得名的唯一途径。
+  const tapStar = (star: Star) => {
+    const lodgeGroup = star.chineseGroup.endsWith('宿') ? star.chineseGroup : null
+    const isHinted = lodgeGroup !== null && labelPlan.plan.get(star.id) === 'hint'
+    if (isHinted && revealedGroup !== lodgeGroup) {
+      setRevealedGroup(lodgeGroup)
+      return
+    }
+    if (revealedGroup && revealedGroup !== lodgeGroup) setRevealedGroup(null)
+    pickStar(star)
+  }
+
   const startMeasuring = (star: Star = target) => {
     setSelectedStar(star)
     setShowLocation(false)
@@ -413,7 +429,10 @@ function App() {
           </div>
         </div>
 
-        <div className={`sky-stage${selectedStar ? ' has-selection' : ''}${guestPlacement?.scene.daytime ? ' daytime' : ''}`}>
+        <div
+          className={`sky-stage${selectedStar ? ' has-selection' : ''}${guestPlacement?.scene.daytime ? ' daytime' : ''}`}
+          onClick={(event) => { if (event.target === event.currentTarget) setRevealedGroup(null) }}
+        >
           <div className="silk-grain" style={{ backgroundImage: `url("${silkGrain}")` }} aria-hidden="true" />
           <svg className="constellation-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
             {fieldDots.map((dot, index) => (
@@ -458,21 +477,29 @@ function App() {
                 key={star.id}
                 className={isSelected ? 'star-point selected' : isBelow ? 'star-point below-horizon' : 'star-point'}
                 style={{ left: `${x}%`, top: `${y}%`, '--star-size': `${Math.max(8, 18 - star.magnitude * 3)}px` } as CSSProperties}
-                onClick={() => pickStar(star)}
+                onClick={() => tapStar(star)}
                 aria-label={`查看${star.name}${isBelow ? '，此刻在地平线下' : ''}`}
               >
                 <span className="star-core" />
-                {!isBelow && mode !== 'both' && (
-                  <span className={`star-label${labelPlan.plan.get(star.id) === 'side' ? ' side' : ''}${edgeClass(x)}${(labelPlan.plan.get(star.id) ?? 'hint') !== 'hint' || isSelected ? '' : ' hint'}`}>
-                    {mode === 'western' ? bayerOf(star) : star.name}{labelPlan.anchorHidden.get(star.id) ? ` 等${(labelPlan.anchorHidden.get(star.id) ?? 0) + 1}星` : ''}
-                  </span>
-                )}
-                {!isBelow && mode === 'both' && (
-                  <span className={`star-label-duo${labelPlan.plan.get(star.id) === 'side' ? ' side' : ''}${edgeClass(x)}${(labelPlan.plan.get(star.id) ?? 'hint') !== 'hint' || isSelected ? '' : ' hint'}`}>
-                    <b>{star.name}{labelPlan.anchorHidden.get(star.id) ? ` 等${(labelPlan.anchorHidden.get(star.id) ?? 0) + 1}星` : ''}</b>
-                    <i>{bayerOf(star)}</i>
-                  </span>
-                )}
+                {!isBelow && mode !== 'both' && (() => {
+                  const hinted = (labelPlan.plan.get(star.id) ?? 'hint') === 'hint' && !isSelected
+                  const revealed = hinted && revealedGroup !== null && revealedGroup === star.chineseGroup
+                  return (
+                    <span className={`star-label${labelPlan.plan.get(star.id) === 'side' ? ' side' : ''}${edgeClass(x)}${hinted && !revealed ? ' hint' : ''}`}>
+                      {mode === 'western' ? bayerOf(star) : star.name}{labelPlan.anchorHidden.get(star.id) ? ` 等${(labelPlan.anchorHidden.get(star.id) ?? 0) + 1}星` : ''}
+                    </span>
+                  )
+                })()}
+                {!isBelow && mode === 'both' && (() => {
+                  const hinted = (labelPlan.plan.get(star.id) ?? 'hint') === 'hint' && !isSelected
+                  const revealed = hinted && revealedGroup !== null && revealedGroup === star.chineseGroup
+                  return (
+                    <span className={`star-label-duo${labelPlan.plan.get(star.id) === 'side' ? ' side' : ''}${edgeClass(x)}${hinted && !revealed ? ' hint' : ''}`}>
+                      <b>{star.name}{labelPlan.anchorHidden.get(star.id) ? ` 等${(labelPlan.anchorHidden.get(star.id) ?? 0) + 1}星` : ''}</b>
+                      <i>{bayerOf(star)}</i>
+                    </span>
+                  )
+                })()}
               </button>
             )
           })}

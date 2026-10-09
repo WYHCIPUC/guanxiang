@@ -1,7 +1,7 @@
 {
   "url": "http://localhost:5199/app.html",
-  "at": "2026-10-08T03:18:46.023Z",
-  "total": 59,
+  "at": "2026-10-09T09:18:43.469Z",
+  "total": 65,
   "failed": 0,
   "consoleErrors": [],
   "results": [
@@ -48,7 +48,7 @@
     {
       "name": "D09 西方全天线 >200 段",
       "pass": true,
-      "note": "335"
+      "note": "333"
     },
     {
       "name": "D10 切叠合观天",
@@ -58,7 +58,7 @@
     {
       "name": "D11 叠合模式双行标签",
       "pass": true,
-      "note": "69"
+      "note": "68"
     },
     {
       "name": "D12 切回中国星官",
@@ -73,7 +73,7 @@
     {
       "name": "D14 时间推进星位移动",
       "pass": true,
-      "note": "4.06121%,32.7137% → 40.0367%,62.8719%"
+      "note": "3.9199%,33.2886% → 40.4792%,62.9441%"
     },
     {
       "name": "D15 时间滑杆拉回最左",
@@ -93,7 +93,7 @@
     {
       "name": "D18 换地星位移动",
       "pass": true,
-      "note": "61.0933% → 61.3021%"
+      "note": "60.8971% → 61.0598%"
     },
     {
       "name": "D19 打开参宿四星官卡",
@@ -258,7 +258,7 @@
     {
       "name": "M07 星官卡标题",
       "pass": true,
-      "note": "参宿一"
+      "note": "织女一"
     },
     {
       "name": "M08 移动端测量",
@@ -299,6 +299,36 @@
       "name": "M15 退出后无客星",
       "pass": true,
       "note": "true"
+    },
+    {
+      "name": "M16 点按 hint 宿星",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "M16d 点后状态",
+      "pass": true,
+      "note": "{\"named\":16,\"sel\":[\"查看织女一\"]}"
+    },
+    {
+      "name": "M17 整组星名展开",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "M18 点空白处收回",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "M19 落组星名已收回",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "M19d 收回诊断",
+      "pass": true,
+      "note": "{\"labelCls\":\"star-label hint\",\"btnCls\":\"star-point\"}"
     }
   ]
 }

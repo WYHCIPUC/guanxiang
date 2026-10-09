@@ -135,6 +135,9 @@ try {
   assert(anchorBefore.style.left !== before.left || anchorBefore.style.top !== before.top, '调整时间后星位应重新计算')
 
   // 星官卡与测量面板：参宿四的读数是确定值，不依赖运行机器的时区
+  // 参宿四在宿群标签治理后为 hint 状态：首次点按展开参宿组星名，再次点按才开卡（tapStar 语义）
+  anchorBefore.click()
+  await settle()
   anchorBefore.click()
   await settle()
   assert(document.querySelector('.info-card h3')?.textContent === '参宿四', '点击星点打开星官卡')
@@ -152,6 +155,32 @@ try {
   await settle()
   assert(document.querySelector('.record-card h3')?.textContent === '参宿四', '记入奏折后显示最近一次观测')
   assert(document.querySelector('.record-card .mini-reading')?.textContent.includes('入参宿'), '观测记录应包含入宿度')
+  document.querySelector('.record-card .close-card')?.click()
+  await settle()
+
+  // 触屏宿群展开：hint 宿群星首次点按只展开整组星名（移动端无 hover 的兜底），再点选中该星
+  {
+    const buttonOf = (name) => [...document.querySelectorAll('.star-point')].find((element) => element.getAttribute('aria-label') === `查看${name}`)
+    const isHintedLodgeStar = (star) => star.chineseGroup.endsWith('宿') && star.chineseGroup !== '参宿' && buttonOf(star.name)?.querySelector('.star-label')?.className.includes('hint')
+    // 优先选同组有两颗以上升起成员的宿，便于验证"整组展开"
+    const groups = new Map()
+    for (const star of stars) if (isHintedLodgeStar(star)) groups.set(star.chineseGroup, [...(groups.get(star.chineseGroup) ?? []), star])
+    const [groupName, members] = [...groups.entries()].sort((a, b) => b[1].length - a[1].length)[0] ?? []
+    assert(groupName, '应存在处于 hint 状态的宿群成员')
+    const [first, second] = members
+    buttonOf(first.name).click()
+    await settle()
+    assert(!document.querySelector('.info-card'), '首次点按 hint 宿星不应打开星官卡')
+    assert(!buttonOf(first.name).querySelector('.star-label')?.className.includes('hint'), '点按后该宿星名应展开')
+    if (second) assert(!buttonOf(second.name).querySelector('.star-label')?.className.includes('hint'), `同组 ${second.name} 星名应一并展开`)
+    buttonOf(first.name).click()
+    await settle()
+    const cta = [...document.querySelectorAll('.observatory-actions .primary-button')].find((button) => button.textContent.includes('测一测'))
+    assert(cta?.textContent.includes(first.name), '再次点按应选中该星（测量按钮文案更新）')
+    document.querySelector('.sky-stage').dispatchEvent(new window.MouseEvent('click', { bubbles: true }))
+    await settle()
+    if (second) assert(buttonOf(second.name).querySelector('.star-label')?.className.includes('hint'), '点空白处应收回落组星名')
+  }
 
   // 客星剧场：入口 → 三幕场景卡与客星标记 → 切幕位移 → 退出
   document.querySelector('.theater-entry').click()

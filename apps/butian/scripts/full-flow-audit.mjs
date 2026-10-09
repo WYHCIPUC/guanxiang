@@ -10,7 +10,8 @@ const PORT = 9334
 const URL = process.env.APP_URL || 'http://localhost:5199/app.html'
 const outdir = resolve('artifacts')
 mkdirSync(outdir, { recursive: true })
-rmSync(join(outdir, '_edge-profile-audit'), { recursive: true, force: true })
+// 启动清理容错：上次运行的 Edge 子进程可能仍握着 profile 目录（Windows 句柄释放延迟）
+try { rmSync(join(outdir, '_edge-profile-audit'), { recursive: true, force: true }) } catch {}
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
@@ -29,10 +30,9 @@ const edge = spawn(EDGE, [
   '--user-data-dir=' + join(outdir, '_edge-profile-audit'),
   '--headless=new', '--no-first-run', '--no-default-browser-check', 'about:blank',
 ], { stdio: 'ignore' })
-// 退出时杀掉 Edge 并清掉浏览器残留目录——它会触发安全扫描误报，绝不能留在磁盘上
+// 退出时只杀 Edge；残留目录在正常收尾路径清理（事件循环存活、句柄已释放，exit 钩子里 rmSync 会 EBUSY）
 process.on('exit', () => {
   try { edge.kill() } catch {}
-  rmSync(join(outdir, '_edge-profile-audit'), { recursive: true, force: true })
 })
 
 const ws = new WebSocket(await getWsUrl())
@@ -203,7 +203,7 @@ try {
   await check('M03 移动端交互星齐全', `document.querySelectorAll('.star-point').length`)
   await check('M04 移动端可见标签 ≤ 18', `(document.querySelectorAll('.star-label:not(.hint)').length <= 18) + '/' + document.querySelectorAll('.star-label:not(.hint)').length`)
   await check('M05 移动端宿度环 28 宿名', `document.querySelectorAll('.lodge-name').length`)
-  await step('M06 打开星官卡', `[...document.querySelectorAll('.star-point')].find(b => b.getAttribute('aria-label')?.startsWith('查看织女一'))?.click() ?? [...document.querySelectorAll('.star-point')][0].click(); 'ok'`)
+  await step('M06 打开星官卡', `(() => { const btn = [...document.querySelectorAll('.star-point')].find(b => b.getAttribute('aria-label')?.startsWith('查看织女一')) || [...document.querySelectorAll('.star-point')][0]; btn.click(); 'ok' })()`)
   await waitState(`!!document.querySelector('.info-card')`)
   await check('M07 星官卡标题', `document.querySelector('.info-card h3')?.textContent`)
   await step('M08 移动端测量', `document.querySelector('.info-card .card-cta').click(); 'ok'`)
@@ -219,6 +219,15 @@ try {
   await step('M14 退出剧场', `document.querySelector('.theater-card .icon-button').click(); 'ok'`)
   await sleep(400)
   await check('M15 退出后无客星', `!document.querySelector('.sky-stage .guest-star')`)
+  await step('M16 点按 hint 宿星', `(() => { const b = [...document.querySelectorAll('.star-point')].find(x => /^查看.{1,3}宿[一二三四五六七八九十]/.test(x.getAttribute('aria-label') || '') && x.querySelector('.star-label.hint') && !x.className.includes('selected')); if (!b) return 'none'; window.__hinted = b.getAttribute('aria-label'); b.click(); return 'ok' })()`)
+  await sleep(350)
+  await check('M16d 点后状态', `(() => { const named = [...document.querySelectorAll('.star-label')].filter(l => !l.className.includes('hint')).length; const sel = [...document.querySelectorAll('.star-point.selected')].map(b => b.getAttribute('aria-label')); return JSON.stringify({ named, sel }) })()`)
+  await sleep(350)
+  await check('M17 整组星名展开', `(() => { const b = [...document.querySelectorAll('.star-point')].find(x => x.getAttribute('aria-label') === window.__hinted); return b ? !b.querySelector('.star-label').className.includes('hint') : false })()`)
+  await step('M18 点空白处收回', `(() => { document.querySelector('.sky-stage').click(); 'ok' })()`)
+  await sleep(300)
+  await check('M19 落组星名已收回', `(() => { const b = [...document.querySelectorAll('.star-point')].find(x => x.getAttribute('aria-label') === window.__hinted); const label = b?.querySelector('.star-label'); return !label || label.className.includes('hint') })()`)
+  await check('M19d 收回诊断', `(() => { const b = [...document.querySelectorAll('.star-point')].find(x => x.getAttribute('aria-label') === window.__hinted); return JSON.stringify({ labelCls: b?.querySelector('.star-label')?.className, btnCls: b?.className }) })()`)
 } catch (error) {
   results.push({ name: 'FATAL', pass: false, note: error.message })
 }
@@ -232,11 +241,19 @@ const report = {
 }
 writeFileSync(join(outdir, 'audit-report.json'), JSON.stringify(report, null, 2))
 
+// 正常收尾：按命令行匹配杀掉本项目 Edge（headless 下 launcher 可能早退，taskkill /PID 杀不到真浏览器进程）、
+// 等句柄释放、清浏览器残留（留磁盘会触发安全扫描误报）
+try { execSync(`taskkill /PID ${edge.pid} /T /F`, { stdio: 'ignore' }) } catch {}
+try {
+  execSync(`powershell -NoProfile -Command "Get-CimInstance Win32_Process -Filter \\"Name='msedge.exe'\\" | Where-Object { $_.CommandLine -like '*_edge-profile-audit*' } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }"`, { stdio: 'ignore' })
+} catch {}
+await sleep(600)
+try { rmSync(join(outdir, '_edge-profile-audit'), { recursive: true, force: true }) } catch {}
+
 console.log(`\n巡检完成：${results.length} 项，失败 ${failed.length} 项，控制台错误 ${consoleErrors.length} 条`)
 for (const r of results) console.log(`${r.pass ? '✓' : '✗'} ${r.name}${r.pass ? '' : ' —— ' + r.note}`)
 if (consoleErrors.length) {
   console.log('\n控制台错误：')
   for (const e of consoleErrors) console.log(`  [${e.step}] ${e.text}`)
 }
-try { edge.kill() } catch {}
 process.exit(failed.length || consoleErrors.length ? 1 : 0)
