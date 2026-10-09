@@ -25,11 +25,11 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: apps/butian/package-lock.json
+          cache-dependency-path: package-lock.json
       - name: Install dependencies
-        # --workspaces=false：避免 npm 向上找到仓库根的不完整 lockfile（会漏装平台原生包）
-        run: npm ci --workspaces=false
-        working-directory: apps/butian
+        # 仓库根统一安装：butian 依赖 workspace 包 @guanxiang/core（packages/core），
+        # 必须走根 lockfile 的全 workspace 安装；apps 下的子 lockfile 已删除
+        run: npm ci
       - name: Build and checks
         run: |
           npm run build

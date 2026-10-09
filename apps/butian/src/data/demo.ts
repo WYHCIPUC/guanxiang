@@ -1,13 +1,17 @@
 import type { LocationOption, Star } from '../types'
+import { cities } from '@guanxiang/core/cities'
 import { lodgeStars, lodgeChinaLines } from './lodges.ts'
 import { yuanStars, yuanLines } from './enclosures.ts'
 
-// 观测地点（坐标取城市代表点，教学精度）
-export const locations: LocationOption[] = [
-  { id: 'beijing', name: '北京', hint: '北纬 39.9° · 东经 116.4°', latitude: 39.9042, longitude: 116.4074 },
-  { id: 'shanghai', name: '上海', hint: '北纬 31.2° · 东经 121.5°', latitude: 31.2304, longitude: 121.4737 },
-  { id: 'guangzhou', name: '广州', hint: '北纬 23.1° · 东经 113.3°', latitude: 23.1291, longitude: 113.2644 },
-]
+// 观测地点：城市坐标来自共享内核 @guanxiang/core/cities（教学精度），hint 文案本地维护
+const LOCATION_HINTS: Record<string, string> = {
+  beijing: '北纬 39.9° · 东经 116.4°',
+  shanghai: '北纬 31.2° · 东经 121.5°',
+  guangzhou: '北纬 23.1° · 东经 113.3°',
+}
+export const locations: LocationOption[] = cities
+  .filter((city) => city.id in LOCATION_HINTS)
+  .map((city) => ({ id: city.id, name: city.name, hint: LOCATION_HINTS[city.id], latitude: city.lat, longitude: city.lon }))
 
 // 核心星表：参宿七星、北斗七星与今夜著名亮星（手工整理的标准 J2000 值，教学精度）。
 // 二十八宿其余各宿主官星在 ./lodges.ts（生成数据，成员口径待逐宿校对）。

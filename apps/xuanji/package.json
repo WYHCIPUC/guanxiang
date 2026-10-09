@@ -19,5 +19,8 @@
   },
   "devDependencies": {
     "electron": "^44.5.1"
+  },
+  "dependencies": {
+    "@guanxiang/core": "*"
   }
 }

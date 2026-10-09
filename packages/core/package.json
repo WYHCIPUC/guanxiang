@@ -1,0 +1,13 @@
+{
+  "name": "@guanxiang/core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "观象三部曲共享内核：天文引擎、历法口径、格式化与城市坐标的唯一实现（docs/07-P2共享内核盘点.md）",
+  "exports": {
+    "./format": "./src/format.ts",
+    "./cities": "./src/cities.ts",
+    "./solar": "./src/solar.ts",
+    "./sidereal": "./src/sidereal.ts"
+  }
+}

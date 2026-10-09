@@ -6,6 +6,18 @@
 
 ---
 
+## INT-011 · 2026-10-09：P2 共享内核 @guanxiang/core 落地（四模块上收）
+
+决策：按 docs/07-P2共享内核盘点.md 的边界与顺序，把 format/cities/solar/sidereal 四个低中风险模块上收到 `packages/core`（TS 源经 package exports 直发，步天/今时以门面 re-export 保持既有 import 路径与数值锚点不变）：sidereal=步天引擎（GMST/地平坐标/天穹投影/升起时刻），solar=今时 NOAA 太阳与月相，cities=城市表合并（北京/上海/广州取步天四位精度，成都/乌鲁木齐沿用今时），format=度分秒/方位格式化。步天 astro.ts 与今时 astronomy.ts/data.ts 变兼容门面；二十八宿表、入宿度、tonightAt 等产品语义留在各应用。璇玑按盘点决策暂不接代码，仅声明依赖。
+
+影响：
+
+- P2 验收达成：core 可被三应用解析；四模块迁移完成；三链 + verify:all 全绿且步天全部数值锚点（GMST 18.697374h 等）原样通过；宿名跨应用断言继续生效。lodges/terms 两模块按计划留待璇玑历法核验。
+- 工程修正：npm 无 `workspace:` 协议（pnpm/yarn 专属），依赖声明用 `*` 由 npm workspace 自动链接；删除 apps/butian、apps/jinshi 的过时子 lockfile；CI 从"butian 目录 npm ci --workspaces=false"改为仓库根 `npm ci`（否则 registry 上找不到 @guanxiang/core）。
+- 后续：今时第一轮试用、璇玑历法核验完成后，做 lodges/terms 上收与璇玑 .js 产物接入（P2 完全体）。
+
+---
+
 ## INT-001：采用"联邦式"整合，不合并产品
 
 - 日期：2026-10-06
