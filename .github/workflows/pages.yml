@@ -27,9 +27,10 @@ jobs:
           cache: npm
           cache-dependency-path: package-lock.json
       - name: Install dependencies
-        # 仓库根统一安装：butian 依赖 workspace 包 @guanxiang/core（packages/core），
-        # 必须走根 lockfile 的全 workspace 安装；apps 下的子 lockfile 已删除
-        run: npm ci
+        # 用 npm install 而非 npm ci：lockfile 在 Windows 上生成，npm 的平台 optional 依赖
+        # bug（npm/cli#4828）使 linux 二进制（@typescript/*、@rolldown/binding-*）不进 lockfile，
+        # npm ci 会漏装导致构建缺原生绑定；install 会按当前平台补装，版本仍由 lockfile 锁定
+        run: npm install --no-audit --no-fund
       - name: Build and checks
         run: |
           npm run build
