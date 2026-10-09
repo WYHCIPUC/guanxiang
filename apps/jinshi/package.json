@@ -19,6 +19,6 @@
   },
   "dependencies": {
     "lunar-javascript": "^1.7.7",
-    "@guanxiang/core": "*"
+    "@guanxiang/core": "0.1.0"
   }
 }
