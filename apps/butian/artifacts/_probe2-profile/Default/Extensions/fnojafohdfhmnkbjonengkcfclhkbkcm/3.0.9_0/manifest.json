@@ -1,0 +1,56 @@
+{
+   "action": {
+      "default_icon": {
+         "128": "icon128.plasmo.3c1ed2d2.png",
+         "16": "icon16.plasmo.6c567d50.png",
+         "32": "icon32.plasmo.76b92899.png",
+         "48": "icon48.plasmo.aced7582.png",
+         "64": "icon64.plasmo.8bb5e6e0.png"
+      },
+      "default_popup": "popup.html"
+   },
+   "author": "datatoolvip@gmail.com",
+   "background": {
+      "service_worker": "static/background/index.js"
+   },
+   "content_scripts": [ {
+      "css": [  ],
+      "js": [ "datatoolBackgroundTrans.926adca8.js" ],
+      "matches": [ "https://instagram.com/*", "https://x.com/*", "https://*/*", "https://www.xiaohongshu.com/*", "https://www.rednote.com/*", "https://www.tiktok.com/*", "https://www.snapchat.com/*", "https://web.snapchat.com/*", "https://www.kuaishou.com/*", "https://ads.tiktok.com/*", "https://creatormarketplace.tiktok.com/*", "https://www.facebook.com/*", "https://www.bilibili.com/*", "https://space.bilibili.com/*", "https://search.bilibili.com/*", "https://chatgpt.com/*", "https://chat.openai.com/*", "https://www.doubao.com/*", "https://chat.deepseek.com/*", "https://www.kimi.com/*", "https://kimi.moonshot.cn/*", "https://claude.ai/*", "https://chat.x.ai/*", "https://grok.com/*", "https://gemini.google.com/*", "https://www.kwai.com/*", "https://vimeo.com/*", "https://www.xinpianchang.com/*" ]
+   }, {
+      "css": [ "contents.4be03896.css", "contents.4dd1ecda.css" ],
+      "js": [ "contents.e02f0287.js" ],
+      "matches": [ "https://www.tiktok.com/*", "https://ads.tiktok.com/*", "https://www.instagram.com/*", "https://x.com/*", "https://www.xiaohongshu.com/*", "https://www.rednote.com/*", "https://www.douyin.com/*", "https://creatormarketplace.tiktok.com/*", "https://www.datatool.vip/*", "https://www.youtube.com/*", "https://www.facebook.com/*", "https://www.bilibili.com/*", "https://space.bilibili.com/*", "https://search.bilibili.com/*", "https://chatgpt.com/*", "https://chat.openai.com/*", "https://www.doubao.com/*", "https://chat.deepseek.com/*", "https://www.kimi.com/*", "https://kimi.moonshot.cn/*", "https://claude.ai/*", "https://chat.x.ai/*", "https://grok.com/*", "https://gemini.google.com/*", "https://www.kwai.com/*", "https://www.kuaishou.com/*", "http://test.fmpets.cn:8106/*", "https://vimeo.com/*", "https://www.xinpianchang.com/*", "https://www.taobao.com/*", "https://item.taobao.com/*", "https://detail.tmall.com/*", "https://www.tmall.com/*", "https://s.taobao.com/*", "https://chaoshi.detail.tmall.com/*", "https://chaoshi.tmall.com/*", "https://pages-fast.m.taobao.com/*", "https://huodong.taobao.com/*", "https://b.taobao.com/*", "https://uland.taobao.com/*", "https://weibo.com/*", "https://s.weibo.com/*", "https://d.weibo.com/*", "https://www.toutiao.com/*", "https://so.toutiao.com/*" ],
+      "run_at": "document_start"
+   } ],
+   "default_locale": "en",
+   "description": "__MSG_description__",
+   "externally_connectable": {
+      "matches": [ "https://www.datatool.vip/*" ]
+   },
+   "host_permissions": [ "https://www.instagram.com/*", "https://www.tiktok.com/*", "https://ads.tiktok.com/*", "https://chatgpt.com/*", "https://chat.openai.com/*", "https://www.doubao.com/*", "https://kimi.moonshot.cn/*", "https://www.kimi.com/*", "https://chat.deepseek.com/*", "https://claude.ai/*", "https://chat.x.ai/*", "https://grok.com/*", "https://gemini.google.com/*", "https://x.com/*", "https://twitter.com/*", "https://api.datatool.vip/*", "https://www.datatool.vip/*", "https://www.douyin.com/*", "https://www.xiaohongshu.com/*", "https://www.rednote.com/*", "https://creatormarketplace.tiktok.com/*", "https://www.youtube.com/*", "https://www.facebook.com/*", "https://www.bilibili.com/*", "https://space.bilibili.com/*", "https://search.bilibili.com/*", "https://www.kwai.com/*", "https://www.kuaishou.com/*", "https://vimeo.com/*", "https://www.xinpianchang.com/*", "https://mod-api.xinpianchang.com/*", "https://www.taobao.com/*", "https://item.taobao.com/*", "https://detail.tmall.com/*", "https://www.tmall.com/*", "https://s.taobao.com/*", "https://chaoshi.detail.tmall.com/*", "https://chaoshi.tmall.com/*", "https://pages-fast.m.taobao.com/*", "https://huodong.taobao.com/*", "https://b.taobao.com/*", "https://uland.taobao.com/*", "https://*.aliyuncs.com/*", "https://cn-datatool.oss-cn-hangzhou.aliyuncs.com/*", "https://oss.snappdown.com/*", "https://*.petslib.cn/*", "https://oss.datatool.vip/*", "https://sg-oss.videoseek.ai/*", "https://*.douyinvod.com/*", "https://*.byteimg.com/*", "https://*.ibyteimg.com/*", "https://weibo.com/*", "https://s.weibo.com/*", "https://d.weibo.com/*", "https://*.sinaimg.cn/*", "https://*.weibocdn.com/*", "https://www.toutiao.com/*", "https://so.toutiao.com/*", "https://*.toutiaoimg.com/*", "https://*.toutiaovod.com/*", "https://*.toutiaostatic.com/*", "https://vod.bytedanceapi.com/*" ],
+   "icons": {
+      "128": "icon128.plasmo.3c1ed2d2.png",
+      "16": "icon16.plasmo.6c567d50.png",
+      "32": "icon32.plasmo.76b92899.png",
+      "48": "icon48.plasmo.aced7582.png",
+      "64": "icon64.plasmo.8bb5e6e0.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzGio0p9cdZW4JNMoKp83gyYkm0+GwkvnV5d44Q38mZVK+EgBeF8SrLCHK5wgCi+BtPMz05GJbI9ltI1Vzz2ejsZOTx31VYZXZTlIJak+zsiW5umQVRktH0BGEOhFrhL6FISlYdeJ1hAnwUJBOOkI9i9NpkgU6QJs+1XVJhxrAiw+MwW2YIU4LblOjqt1R0RO3PZV7aWq9TxYxvjKsZiFFfyTSTql81l+lRIyP8tVAqfvCW8KRRkMUbuCgJDkry1V6ZCyqNTxPPmLRBoTKwuOTCDVPlEnNkgwPoRrNQDaJxMsYYOPpl/JunEqvPtNnMNVumrzAOPagImh1QFLtD8lpQIDAQAB",
+   "manifest_version": 3,
+   "name": "__MSG_displayName__",
+   "options_ui": {
+      "open_in_tab": true,
+      "page": "options.html"
+   },
+   "permissions": [ "storage", "scripting", "tabs", "activetab", "downloads", "downloads.open", "unlimitedStorage", "browser", "cookies", "declarativeNetRequest" ],
+   "update_url": "https://edge.microsoft.com/extensionwebstorebase/v1/crx",
+   "version": "3.0.9",
+   "web_accessible_resources": [ {
+      "matches": [ "*://*/*" ],
+      "resources": [ "assets/js/*.js", "assets/image/*.png", "assets/ffmpeg/*.js", "assets/ffmpeg/*.wasm" ]
+   }, {
+      "matches": [ "https://www.tiktok.com/*", "https://ads.tiktok.com/*", "https://www.instagram.com/*", "https://x.com/*", "https://www.xiaohongshu.com/*", "https://www.rednote.com/*", "https://www.douyin.com/*", "https://creatormarketplace.tiktok.com/*", "https://www.datatool.vip/*", "https://www.youtube.com/*", "https://www.facebook.com/*", "https://www.bilibili.com/*", "https://space.bilibili.com/*", "https://search.bilibili.com/*", "https://chatgpt.com/*", "https://chat.openai.com/*", "https://www.doubao.com/*", "https://chat.deepseek.com/*", "https://www.kimi.com/*", "https://kimi.moonshot.cn/*", "https://claude.ai/*", "https://chat.x.ai/*", "https://grok.com/*", "https://gemini.google.com/*", "https://www.kwai.com/*", "https://www.kuaishou.com/*", "http://test.fmpets.cn:8106/*", "https://vimeo.com/*", "https://www.xinpianchang.com/*", "https://www.taobao.com/*", "https://item.taobao.com/*", "https://detail.tmall.com/*", "https://www.tmall.com/*", "https://s.taobao.com/*", "https://chaoshi.detail.tmall.com/*", "https://chaoshi.tmall.com/*", "https://pages-fast.m.taobao.com/*", "https://huodong.taobao.com/*", "https://b.taobao.com/*", "https://uland.taobao.com/*", "https://weibo.com/*", "https://s.weibo.com/*", "https://d.weibo.com/*", "https://www.toutiao.com/*", "https://so.toutiao.com/*" ],
+      "resources": [ "inject.6070000c.js" ]
+   } ]
+}

@@ -116,7 +116,15 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outl
     radial-gradient(ellipse 130% 72% at 50% -12%, var(--zenith) 0, transparent 56%),
     linear-gradient(180deg, #0e1834 0%, #0a1226 46%, var(--bg-deep) 100%);
   box-shadow: inset 0 0 130px rgba(3, 6, 14, 0.78);
+  touch-action: pan-y; /* 触屏保留纵向页面滚动，横向手势留给星图拖拽 */
+  cursor: grab;
 }
+.sky-stage:active { cursor: grabbing; }
+/* 星图画布：星点、连线、客星整体的变换层（缩放/平移只动这一层，幕布纹理不动） */
+.sky-canvas { position: absolute; inset: 0; will-change: transform; }
+.sky-zoom { position: absolute; top: 12px; right: 14px; z-index: 4; display: flex; flex-direction: column; gap: 6px; }
+.sky-zoom button { width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 8px; background: rgba(7, 12, 26, 0.72); color: var(--gold); font-size: 15px; line-height: 1; cursor: pointer; backdrop-filter: blur(4px); }
+.sky-zoom button:hover { border-color: var(--border-gold); }
 .starfield { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.9; }
 .silk-grain { position: absolute; inset: 0; background-size: 240px 240px; opacity: 0.055; mix-blend-mode: screen; pointer-events: none; }
 .field-star { fill: #e6ecf6; }

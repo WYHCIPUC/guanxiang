@@ -1,0 +1,866 @@
+{
+   "_w_bar": {
+      "message": "其他"
+   },
+   "_w_boor": {
+      "message": "向右旋转"
+   },
+   "_w_carol": {
+      "message": "取消选中"
+   },
+   "_w_clog": {
+      "message": "垂直翻转"
+   },
+   "_w_diver": {
+      "message": "下载图片格式转换"
+   },
+   "_w_drawl": {
+      "message": "上一张"
+   },
+   "_w_fiasco": {
+      "message": "去重阈值："
+   },
+   "_w_gambol": {
+      "message": "隐私声明"
+   },
+   "_w_hack": {
+      "message": "向左旋转"
+   },
+   "_w_intent": {
+      "message": "页面探测选项"
+   },
+   "_w_kin": {
+      "message": "复制原始地址到剪贴板"
+   },
+   "_w_lore": {
+      "message": "拖拽下载开关"
+   },
+   "_w_patent": {
+      "message": "水平翻转"
+   },
+   "_w_polish": {
+      "message": "图片去重"
+   },
+   "_w_purse": {
+      "message": "持续滚动被提取页"
+   },
+   "_w_sheen": {
+      "message": "下一张"
+   },
+   "_w_soot": {
+      "message": "/privacy_zh_CN.md"
+   },
+   "_w_splint": {
+      "message": "选择是否对Ajax请求及Fetch请求的返回结果做探测分析。通常情况下你应该开启两者，但由于针对Fetch请求的探测可能导致个别直播网站在播放一时间后崩溃，如果这对你产生了影响，可以选择关闭Fetch请求的探测功能。"
+   },
+   "_w_stanza": {
+      "message": "选中"
+   },
+   "_w_stem": {
+      "message": "选中的图片格式将在下载时转换的格式: "
+   },
+   "_w_votary": {
+      "message": "下载"
+   },
+   "bg_warning_ntfy_msg": {
+      "message": "扩展没有从该页面中提取图片的权限。"
+   },
+   "bg_warning_ntfy_title": {
+      "message": "提示"
+   },
+   "colorbox_close": {
+      "message": "关闭"
+   },
+   "colorbox_current": {
+      "message": "当前图像: {current} / {total}"
+   },
+   "colorbox_imgError": {
+      "message": "此图片无法加载"
+   },
+   "colorbox_next": {
+      "message": "后一页"
+   },
+   "colorbox_previous": {
+      "message": "前一页"
+   },
+   "colorbox_slideshowStart": {
+      "message": "开始播放幻灯片"
+   },
+   "colorbox_slideshowStop": {
+      "message": "停止播放幻灯片"
+   },
+   "colorbox_xhrError": {
+      "message": "此内容无法加载"
+   },
+   "editor_i18n_1000": {
+      "message": "图片编辑器"
+   },
+   "editor_i18n_1001": {
+      "message": "图片编辑器(试验功能)：添加水印"
+   },
+   "editor_i18n_1002": {
+      "message": "加载图片："
+   },
+   "editor_i18n_1003": {
+      "message": "原始图片"
+   },
+   "editor_i18n_1004": {
+      "message": "图片缩放"
+   },
+   "editor_i18n_1005": {
+      "message": "文字水印"
+   },
+   "editor_i18n_1006": {
+      "message": "图片水印"
+   },
+   "editor_i18n_1007": {
+      "message": "二维码水印"
+   },
+   "editor_i18n_1008": {
+      "message": "文字字体"
+   },
+   "editor_i18n_1009": {
+      "message": "文字大小"
+   },
+   "editor_i18n_1010": {
+      "message": "文字颜色"
+   },
+   "editor_i18n_1011": {
+      "message": "文字透明度"
+   },
+   "editor_i18n_1012": {
+      "message": "描边文字"
+   },
+   "editor_i18n_1013": {
+      "message": "水印文字"
+   },
+   "editor_i18n_1014": {
+      "message": "水印图片"
+   },
+   "editor_i18n_1015": {
+      "message": "图片裁剪"
+   },
+   "editor_i18n_1016": {
+      "message": "上裁剪(px)"
+   },
+   "editor_i18n_1017": {
+      "message": "右裁剪(px)"
+   },
+   "editor_i18n_1018": {
+      "message": "下裁剪(px)"
+   },
+   "editor_i18n_1019": {
+      "message": "左裁剪(px)"
+   },
+   "editor_i18n_1020": {
+      "message": "水印缩放"
+   },
+   "editor_i18n_1021": {
+      "message": "&nbsp;亮度转透明度"
+   },
+   "editor_i18n_1022": {
+      "message": "&nbsp;反向透明"
+   },
+   "editor_i18n_1023": {
+      "message": "像素点增强"
+   },
+   "editor_i18n_1024": {
+      "message": "水印透明度"
+   },
+   "editor_i18n_1025": {
+      "message": "前景颜色"
+   },
+   "editor_i18n_1026": {
+      "message": "背景颜色"
+   },
+   "editor_i18n_1027": {
+      "message": "尺寸大小"
+   },
+   "editor_i18n_1028": {
+      "message": "背景透明度"
+   },
+   "editor_i18n_1029": {
+      "message": "边框粗细"
+   },
+   "editor_i18n_1030": {
+      "message": "二维码文字"
+   },
+   "editor_i18n_1031": {
+      "message": "平铺水印"
+   },
+   "editor_i18n_1032": {
+      "message": "定点水印"
+   },
+   "editor_i18n_1033": {
+      "message": "X轴偏移"
+   },
+   "editor_i18n_1034": {
+      "message": "Y轴偏移"
+   },
+   "editor_i18n_1035": {
+      "message": "X轴间距"
+   },
+   "editor_i18n_1036": {
+      "message": "Y轴间距"
+   },
+   "editor_i18n_1037": {
+      "message": "旋转角度"
+   },
+   "editor_i18n_1038": {
+      "message": "X轴偏移"
+   },
+   "editor_i18n_1039": {
+      "message": "&nbsp;水平居中"
+   },
+   "editor_i18n_1040": {
+      "message": "Y轴偏移"
+   },
+   "editor_i18n_1041": {
+      "message": "&nbsp;垂直居中"
+   },
+   "editor_i18n_1042": {
+      "message": "&nbsp;批量处理"
+   },
+   "editor_i18n_1043": {
+      "message": "&nbsp;打开下载目录"
+   },
+   "editor_i18n_1044": {
+      "message": "&nbsp;重置参数"
+   },
+   "editor_i18n_1045": {
+      "message": "&nbsp;\n\u003Cb>批量处理\u003C/b>&nbsp;功能仅在部分浏览器中有效\n\u003Cbr />由于国内各浏览器厂商都着重对下载功能进行了阉割修改，该功能仅针对实现上符合chrome.downloads.download定义的浏览器。"
+   },
+   "editor_i18n_1046": {
+      "message": "&nbsp;在执行&nbsp;\n\u003Cb>批量处理\u003C/b>&nbsp;前,请确保您的浏览器配置中已经取消勾选\"下载前询问每个文件的保存位置\"选项。\n\u003Cbr />"
+   },
+   "editor_i18n_1047": {
+      "message": " 下载"
+   },
+   "editor_watermark_batch_status": {
+      "message": "当前进度："
+   },
+   "editor_watermark_batch_status_finished": {
+      "message": "操作完成！"
+   },
+   "editor_watermark_image_fold_path": {
+      "message": "加水印图片(IA图片助手)"
+   },
+   "editor_watermark_image_show_rate": {
+      "message": "显示比例："
+   },
+   "editor_watermark_text": {
+      "message": "仅用于实名验证"
+   },
+   "ext_btn_cancel": {
+      "message": " 取消"
+   },
+   "ext_btn_ext_about": {
+      "message": " 关于扩展"
+   },
+   "ext_btn_ext_option": {
+      "message": " 扩展选项"
+   },
+   "ext_btn_pwd_home": {
+      "message": " 普利坞出品"
+   },
+   "ext_cb_resolution": {
+      "message": "分辨率: "
+   },
+   "ext_cb_tips": {
+      "message": "(按 \"V\" 键切换图片预览模式)"
+   },
+   "ext_cb_type": {
+      "message": "类型: "
+   },
+   "ext_doc_title": {
+      "message": "图片筛选"
+   },
+   "ext_dynamic_add_to_collection": {
+      "message": " 添加到收藏"
+   },
+   "ext_dynamic_save_all_image": {
+      "message": "自动收藏"
+   },
+   "ext_favorite_select_image_first": {
+      "message": "请先选取图片！"
+   },
+   "ext_header_summary_amount": {
+      "message": "图片数："
+   },
+   "ext_header_summary_selected": {
+      "message": "已选数："
+   },
+   "ext_header_summary_visible": {
+      "message": "可见数："
+   },
+   "ext_menu_btn_close_origin_page": {
+      "message": "关闭提取页"
+   },
+   "ext_menu_btn_filter_menu_switch": {
+      "message": "过滤器菜单开关"
+   },
+   "ext_menu_btn_operation_menu_switch": {
+      "message": "操作菜单开关"
+   },
+   "ext_menu_btn_resolution_show_switch": {
+      "message": "分辨率下标开关"
+   },
+   "ext_menu_btn_sort_switch": {
+      "message": "大小排序开关"
+   },
+   "ext_menu_btn_switch_to_origin_page": {
+      "message": "切换到原始页"
+   },
+   "ext_menu_collect_selected": {
+      "message": "收藏选中"
+   },
+   "ext_menu_direct_download": {
+      "message": "另存为"
+   },
+   "ext_menu_fun_btn_delete_selected": {
+      "message": "删除选中"
+   },
+   "ext_menu_fun_btn_delete_visible": {
+      "message": "删除不可见"
+   },
+   "ext_menu_fun_btn_down_selected": {
+      "message": "下载选中"
+   },
+   "ext_menu_fun_btn_download_all": {
+      "message": "下载所有"
+   },
+   "ext_menu_fun_btn_keep_selected": {
+      "message": "保留选中"
+   },
+   "ext_menu_fun_btn_reset_page": {
+      "message": "重置筛选"
+   },
+   "ext_menu_fun_btn_select_all": {
+      "message": "全选"
+   },
+   "ext_menu_fun_btn_select_none": {
+      "message": "不选"
+   },
+   "ext_menu_fun_btn_select_reverse": {
+      "message": "反选"
+   },
+   "ext_menu_funnel_option_def": {
+      "message": " 默认"
+   },
+   "ext_menu_generate_qrcode_for_image": {
+      "message": "为图片地址生成二维码"
+   },
+   "ext_menu_item_exact": {
+      "message": "指定大小"
+   },
+   "ext_menu_item_find_other_size_on_google": {
+      "message": "Google上查找图片的其他尺寸"
+   },
+   "ext_menu_item_find_other_size_on_sogou": {
+      "message": "Sogou上查找图片的其他尺寸"
+   },
+   "ext_menu_item_find_related_info_on_google": {
+      "message": "Google上查找图片的相关信息"
+   },
+   "ext_menu_item_find_related_info_on_sogou": {
+      "message": "Sogou上查找图片的相关信息"
+   },
+   "ext_menu_item_find_similar_image_on_google": {
+      "message": "Google上查找类似的图片"
+   },
+   "ext_menu_item_generate_url": {
+      "message": "生成URL"
+   },
+   "ext_menu_item_larger": {
+      "message": "不小于"
+   },
+   "ext_menu_item_open_download_folder": {
+      "message": "打开下载目录"
+   },
+   "ext_menu_item_send_to_image_editor": {
+      "message": "发送到图片编辑器(试验功能)"
+   },
+   "ext_menu_item_send_to_image_editor_as_watermark": {
+      "message": "作为水印发送到图片编辑器"
+   },
+   "ext_menu_label_ext_type": {
+      "message": "图片类型："
+   },
+   "ext_menu_label_funnel": {
+      "message": "尺寸漏斗："
+   },
+   "ext_menu_label_regexp": {
+      "message": "URL筛选："
+   },
+   "ext_menu_label_resolution": {
+      "message": "分辨率大小："
+   },
+   "ext_menu_preview": {
+      "message": "大图预览"
+   },
+   "ext_msg_can_ext_itself": {
+      "message": "不能对页面自身进行提取操作！"
+   },
+   "ext_msg_data_pushed_failed": {
+      "message": " 数据推送失败！"
+   },
+   "ext_msg_data_pushed_failed_auto": {
+      "message": " 数据推送失败，将自动重试。"
+   },
+   "ext_msg_data_pushed_successfully": {
+      "message": " 数据推送成功。"
+   },
+   "ext_msg_dest_not_exist": {
+      "message": "目标提取页不存在！"
+   },
+   "ext_msg_url_limited": {
+      "message": "扩展只能从URL地址以http://或https://开头的WEB页面中提取图片。"
+   },
+   "ext_msg_wait_for_available_data": {
+      "message": " 等待可推送数据。"
+   },
+   "ext_pop_auto_download": {
+      "message": "自动下载"
+   },
+   "ext_pop_auto_download_msg": {
+      "message": "新提取的图片将依配置自动下载，如果希望停止自动下载，请关闭对话框。"
+   },
+   "ext_pop_auto_downloading": {
+      "message": "自动下载中..."
+   },
+   "ext_pop_blob_download": {
+      "message": "Blob模式"
+   },
+   "ext_pop_blob_download_tooltip": {
+      "message": "转换成blob地址再下载，会消耗更多的CPU及内存资源，但能绕过部分站点的强力防盗链机制。"
+   },
+   "ext_pop_curl_script": {
+      "message": "cURL下载脚本:"
+   },
+   "ext_pop_download_api_not_found": {
+      "message": "未检测到下载接口，无法进行下载"
+   },
+   "ext_pop_download_api_not_found_msg": {
+      "message": "当前浏览器未开放下载接口，推荐使用最新原版Chrome浏览器以获得更全面的功能。"
+   },
+   "ext_pop_empty_download_list": {
+      "message": "没有可下载的内容！"
+   },
+   "ext_pop_generate_curl_script": {
+      "message": " 生成cURL下载脚本"
+   },
+   "ext_pop_msg_open_or_install_first": {
+      "message": "无法连接到客户端"
+   },
+   "ext_pop_msg_open_or_install_first_msg": {
+      "message": "本功能需要客户端的支持，请先安装客户端并启动后再操作(暂不可用)。"
+   },
+   "ext_pop_msg_server_error": {
+      "message": "客户端返回信息异常"
+   },
+   "ext_pushing_data": {
+      "message": "正在推送数据..."
+   },
+   "ext_pushing_data_retry": {
+      "message": " 重试收藏"
+   },
+   "ext_save_image_selected": {
+      "message": "已选中图片："
+   },
+   "ext_save_image_to_collection": {
+      "message": " 收藏图片"
+   },
+   "fn_download_modal_btn_cancel": {
+      "message": " 取消下载"
+   },
+   "fn_download_modal_btn_continue": {
+      "message": " 继续下载"
+   },
+   "fn_download_modal_btn_setting": {
+      "message": " 下载配置"
+   },
+   "fn_download_modal_cnt": {
+      "message": "在进行下一步操作前，请确保您的浏览器配置中已经取消勾选\"下载前询问每个文件的保存位置\"选项(注：chrome衍生浏览器中配置文字可能有差别)以保证文件能自动下载，如果后续连续弹出的\u003C另存为>对话框对你造成了困扰，请参照\u003C\u003Ca target=\"_pullywood_\" href=\"https://www.pullywood.com/ImageAssistant/#docs-faq-download-modal\">帮助\u003C/a>>进行设置。"
+   },
+   "fn_download_modal_download_setting_search": {
+      "message": "下载"
+   },
+   "fn_download_modal_save_path": {
+      "message": "保存路径："
+   },
+   "fn_download_modal_tle": {
+      "message": "保存位置"
+   },
+   "fn_notification_download_done_msg": {
+      "message": "下载任务添加完成。 ^_^"
+   },
+   "fn_notification_download_done_title": {
+      "message": "提示"
+   },
+   "global_notify_qrcode_generate_limit": {
+      "message": "扩展只能在以http://及https://开头的页面中创建二维码。"
+   },
+   "global_pop_menu_ext_image_from_link": {
+      "message": "从该链接页面提取图片"
+   },
+   "global_pop_menu_generate_qrcode_for_current_page": {
+      "message": "为本页地址生成二维码"
+   },
+   "global_pop_menu_generate_qrcode_for_image": {
+      "message": "为图片生成二维码"
+   },
+   "global_pop_menu_generate_qrcode_for_link": {
+      "message": "为链接生成二维码"
+   },
+   "global_pop_menu_generate_qrcode_for_selected_text": {
+      "message": "为选中的文字生成二维码"
+   },
+   "global_pop_menu_multi_ext_image_from_link": {
+      "message": "从该链接页面多地址提取图片"
+   },
+   "global_pop_menu_multi_ext_image_from_page": {
+      "message": "从当前页面多地址提取图片"
+   },
+   "global_pop_menu_search_keyword_on_baidu": {
+      "message": "Baidu图片搜索关键词"
+   },
+   "global_pop_menu_search_keyword_on_google": {
+      "message": "Google图片搜索关键词"
+   },
+   "manifest_description": {
+      "message": "一款用于嗅探、分析网页图片并提供批量下载等功能的浏览器扩展程序。"
+   },
+   "manifest_ext_name": {
+      "message": "图片助手(ImageAssistant) 批量图片下载器"
+   },
+   "manifest_extract_description": {
+      "message": "从当前页面中提取图片"
+   },
+   "manifest_multi_extract_description": {
+      "message": "从当前页面中多地址提取图片"
+   },
+   "manifest_short_name": {
+      "message": "IA"
+   },
+   "msg_links_filter_original_links": {
+      "message": "原始链接"
+   },
+   "multi_ext_ajax_request_concurrency": {
+      "message": "异步请求并发数："
+   },
+   "multi_ext_attribute_sniff_thread": {
+      "message": "属性嗅探并发数："
+   },
+   "multi_ext_batch_extract_images": {
+      "message": " 批量提取图片"
+   },
+   "multi_ext_batch_generate_ext_url": {
+      "message": "批量生成提取地址："
+   },
+   "multi_ext_charactistic_ext_url": {
+      "message": "特征提取URL："
+   },
+   "multi_ext_charactistic_extract_url": {
+      "message": " 特征提取地址"
+   },
+   "multi_ext_charactistic_url_ext": {
+      "message": "特征URL集采集"
+   },
+   "multi_ext_dialog_add_all_btn": {
+      "message": "添加所有"
+   },
+   "multi_ext_dialog_close_btn": {
+      "message": " 关闭"
+   },
+   "multi_ext_dialog_ext_all_btn": {
+      "message": "提取所有"
+   },
+   "multi_ext_dialog_ext_all_in_new_window_btn": {
+      "message": "开新窗口"
+   },
+   "multi_ext_end_value": {
+      "message": "结束值"
+   },
+   "multi_ext_end_value_title": {
+      "message": "结束值:"
+   },
+   "multi_ext_extract_from_current_list": {
+      "message": "采集列表"
+   },
+   "multi_ext_extract_from_new_window": {
+      "message": "开新窗口采集"
+   },
+   "multi_ext_group_keyword_filter": {
+      "message": "分组关键词过滤："
+   },
+   "multi_ext_group_keyword_filter_placeholder": {
+      "message": "请输入关键词，多个关键词以空格隔开"
+   },
+   "multi_ext_html_title": {
+      "message": "多地址提取"
+   },
+   "multi_ext_illegal_wildcard_expression": {
+      "message": "不合法的URL通配符表达式"
+   },
+   "multi_ext_illegal_wildcard_expression_content": {
+      "message": "该URL通配符表达式不合法，请输入以http:// 或 https://开头，并包含(*)通配符的表达式。"
+   },
+   "multi_ext_imageassistant_multi_url_extract": {
+      "message": "图片助手多地址提取"
+   },
+   "multi_ext_insert_into_list": {
+      "message": "加入提取列表"
+   },
+   "multi_ext_one_url_perline": {
+      "message": "每行一条URL地址"
+   },
+   "multi_ext_open_new_window_for_extract": {
+      "message": " 开新窗口批量提取图片(推荐)"
+   },
+   "multi_ext_please_do_not_close_before_finish": {
+      "message": "请等待提取完成后关闭此页！"
+   },
+   "multi_ext_redords_not_show": {
+      "message": " 条未展示"
+   },
+   "multi_ext_start_value": {
+      "message": "起始值"
+   },
+   "multi_ext_start_value_title": {
+      "message": "起始值:"
+   },
+   "multi_ext_step_value": {
+      "message": "步进值"
+   },
+   "multi_ext_step_value_title": {
+      "message": "步进值:"
+   },
+   "multi_ext_timeout_pop_msg": {
+      "message": "请输入新开Tab页面提取时自动关闭超时时间(最小8秒)："
+   },
+   "multi_ext_url_charactistic_1": {
+      "message": "URL特征1"
+   },
+   "multi_ext_url_charactistic_1_title": {
+      "message": "URL特征1:"
+   },
+   "multi_ext_url_charactistic_2": {
+      "message": "URL特征2"
+   },
+   "multi_ext_url_charactistic_2_title": {
+      "message": "URL特征2:"
+   },
+   "multi_ext_url_charactistic_3": {
+      "message": "URL特征3"
+   },
+   "multi_ext_url_charactistic_3_title": {
+      "message": "URL特征3:"
+   },
+   "multi_ext_url_list_is_empty": {
+      "message": "URL列表为空"
+   },
+   "multi_ext_url_list_is_empty_content": {
+      "message": "URL列表为空,在执行特征提取URL前，请在URL列表中加入需要进行特征提取的源URL数据。"
+   },
+   "multi_ext_url_task_amount": {
+      "message": "链接任务数："
+   },
+   "multi_ext_url_wildcard_expression": {
+      "message": "URL通配符表达式："
+   },
+   "multi_ext_urls_to_deal": {
+      "message": "待处理的URL："
+   },
+   "multi_ext_wildcard_expression": {
+      "message": "URL:http://www.domain.com/path/path/character_(*).html, 其中(*)为通配符."
+   },
+   "multi_ext_wildcard_min_length": {
+      "message": "通配符最小长度"
+   },
+   "multi_ext_wildcard_min_length_title": {
+      "message": "通配符最小长度:"
+   },
+   "opt_brand_text": {
+      "message": " 图片助手"
+   },
+   "opt_doc_title": {
+      "message": "扩展选项"
+   },
+   "opt_main_about_addon": {
+      "message": "附加信息"
+   },
+   "opt_main_about_ext_description": {
+      "message": "是一款运行于chromium(chrome环境下开发)及其衍生浏览器(如：360安全浏览器、360极速浏览器、猎豹浏览器、百度浏览器、UC浏览器等)提供分析、提取网页中的图片并以多种筛选方式辅助用户选取下载等功能的扩展软件。"
+   },
+   "opt_main_about_ext_feture": {
+      "message": "不同于以往提供类似功能的浏览器扩展，本扩展融合了多种数据提取方式来保证在各种复杂结构页面中尽可能全面地提取到出现过的图片，更多关于扩展用法、快捷键及其他帮助说明请移步至项目主页。你也可以关注我的公众号以便能快速获取到扩展的最新信息及不定期的资源推送。"
+   },
+   "opt_main_about_ext_name": {
+      "message": "图片助手(ImageAssistant)"
+   },
+   "opt_main_about_label_copyright": {
+      "message": ""
+   },
+   "opt_main_about_label_developer": {
+      "message": "开发人员: "
+   },
+   "opt_main_about_label_developer_joey": {
+      "message": "睡虫子(Joey)"
+   },
+   "opt_main_about_label_edge_store": {
+      "message": "Edge应用商店: "
+   },
+   "opt_main_about_label_ext_home": {
+      "message": "项目主页: "
+   },
+   "opt_main_about_label_ext_name": {
+      "message": "图片助手(ImageAssistant)"
+   },
+   "opt_main_about_label_firefox_store": {
+      "message": "Firefox应用商店: "
+   },
+   "opt_main_about_label_site_name": {
+      "message": "普利坞(Pullywood.com)"
+   },
+   "opt_main_about_label_source_list": {
+      "message": "资源列表: "
+   },
+   "opt_main_about_label_store": {
+      "message": "Chrome应用商店: "
+   },
+   "opt_main_about_label_version": {
+      "message": "版本: "
+   },
+   "opt_main_about_title": {
+      "message": "关于扩展"
+   },
+   "opt_main_config_click_event_action": {
+      "message": "选择"
+   },
+   "opt_main_config_click_event_action_preview": {
+      "message": "点击预览"
+   },
+   "opt_main_config_click_event_action_select": {
+      "message": "点击选中"
+   },
+   "opt_main_config_i18n_guestbook": {
+      "message": "留言簿"
+   },
+   "opt_main_config_illegal_test_URL": {
+      "message": "测试地址不合法~"
+   },
+   "opt_main_config_image_url_regexp_replace_expression": {
+      "message": "图片地址正则替换规则"
+   },
+   "opt_main_config_image_url_regexp_replace_expression_btn_default_rule": {
+      "message": "使用默认规则"
+   },
+   "opt_main_config_image_url_regexp_replace_expression_desc": {
+      "message": "每行一条规则，使用分割符 \u003Cb>{#^_^#}\u003C/b> 隔离正则匹配部分和正则替换部分, 以 // 开始的行为注释行, 清空规则将恢复默认值,规则按由上到下的顺序执行，匹配后将不再检查后续规则。"
+   },
+   "opt_main_config_image_url_regexp_replace_expression_title_test_url": {
+      "message": "测试URL："
+   },
+   "opt_main_config_no_rule_matched": {
+      "message": "无规则匹配当前URL~"
+   },
+   "opt_main_config_origin_address": {
+      "message": "原始地址："
+   },
+   "opt_main_config_origin_image_resolution": {
+      "message": "原始图片分辨率："
+   },
+   "opt_main_config_replace_address": {
+      "message": "替换地址："
+   },
+   "opt_main_config_selector_page_click_behavior": {
+      "message": "筛选页点击事件行为"
+   },
+   "opt_main_config_selector_page_click_behavior_desc": {
+      "message": "默认(不勾选)情况下，单击图片会弹出放大的图片浏览窗口，如希望点击图片仅选中，则请勾选下方选框。"
+   },
+   "opt_main_config_selector_page_dynamic_load_desc": {
+      "message": "图片筛选页载入的图片数量达到此值会启用图片动态载入功能。由于页面中图片会消耗大量内存，页面中加载大量图片可能因系统无法再为页面分配更多内存而导致页面崩溃，动态载入功能会在图片所在页面区域不可见时卸载，图片所在页面区域可见时重新载入图片，从而节省内存使用量让页面能够加载更多的图片。"
+   },
+   "opt_main_config_selector_page_dynamic_load_desc_1": {
+      "message": "图片动态载入仅在批量提取大量图片(如数千张图片)时有用，此值设置过小将影响体验；因此，在不出现筛选页崩溃的情况，此值应尽量大，如：512、1024等，根据实际机器内存情况及扩展使用情况定。"
+   },
+   "opt_main_config_selector_page_dynamic_load_limit": {
+      "message": "筛选页图片动态载入阈值"
+   },
+   "opt_main_config_selector_page_max_load_image": {
+      "message": "筛选页最大载入图片数"
+   },
+   "opt_main_config_selector_page_max_load_image_desc": {
+      "message": "筛选页最大载入图片数量，为避免加载过多图片耗尽系统内存导致浏览器崩溃，当载入图片数量达到该值时页面将暂停载入更多的图片，直到人工处理图片并删除部分图片后页面会继续加载剩余的图片数据直至再次达到本上限值。"
+   },
+   "opt_main_config_target_image_resolution": {
+      "message": "替换图片分辨率："
+   },
+   "opt_main_funnel_title": {
+      "message": "默认尺寸漏斗"
+   },
+   "opt_main_funnel_warning": {
+      "message": "注：分辨率小于此尺寸的图片将被直接忽略，请谨慎设置此项，数值设置过大将导致小尺寸图片无法提取展示。"
+   },
+   "opt_main_size_option_custom_add": {
+      "message": "添加选项"
+   },
+   "opt_main_size_option_custom_height": {
+      "message": "高度"
+   },
+   "opt_main_size_option_custom_title": {
+      "message": "自定义选项"
+   },
+   "opt_main_size_option_custom_width": {
+      "message": "宽度"
+   },
+   "opt_main_size_option_select_all": {
+      "message": "选择全部"
+   },
+   "opt_main_size_option_select_none": {
+      "message": "清空选择"
+   },
+   "opt_main_size_option_title": {
+      "message": "尺寸选项"
+   },
+   "opt_navbar_item_pwd_home": {
+      "message": " 普利坞出品"
+   },
+   "opt_sidebar_item_about": {
+      "message": " 关于扩展"
+   },
+   "opt_sidebar_item_ext_option": {
+      "message": " 扩展选项"
+   },
+   "pop_doc_title": {
+      "message": "POP菜单页"
+   },
+   "pop_menu_item_about": {
+      "message": " 关于扩展"
+   },
+   "pop_menu_item_analyze_prefetch": {
+      "message": " 分析预取数据(氢弹)"
+   },
+   "pop_menu_item_ext_cur_page": {
+      "message": " 提取本页图片"
+   },
+   "pop_menu_item_ext_favorite": {
+      "message": " 在iPhone/iPad上使用"
+   },
+   "pop_menu_item_ext_multi_url": {
+      "message": "  多地址提取"
+   },
+   "pop_menu_item_ext_option": {
+      "message": " 扩展选项"
+   },
+   "pop_menu_item_image_editor": {
+      "message": " 图片编辑器(试验功能)"
+   },
+   "pop_menu_item_prefetch_link": {
+      "message": " 预取链接(核弹)"
+   },
+   "pop_menu_item_qrcode_current_page": {
+      "message": " 为当前页面生成二维码"
+   }
+}

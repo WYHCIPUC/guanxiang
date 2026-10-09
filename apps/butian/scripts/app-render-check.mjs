@@ -182,6 +182,20 @@ try {
     if (second) assert(buttonOf(second.name).querySelector('.star-label')?.className.includes('hint'), '点空白处应收回落组星名')
   }
 
+  // 星图缩放与拖拽：变换画布层 + 控件缩放/复位
+  {
+    const canvas = document.querySelector('.sky-canvas')
+    assert(canvas, '星图应有变换画布层 sky-canvas')
+    assert((canvas.getAttribute('style') || '').includes('scale(1)'), '初始变换应为原始比例')
+    assert(document.querySelectorAll('.sky-zoom button').length === 3, '缩放控件应有放大/缩小/复位三键')
+    ;([...document.querySelectorAll('.sky-zoom button')].find((button) => button.getAttribute('aria-label') === '放大星图')).click()
+    await settle()
+    assert((canvas.getAttribute('style') || '').includes('scale(1.35'), '点击放大应提高缩放比例')
+    ;([...document.querySelectorAll('.sky-zoom button')].find((button) => button.getAttribute('aria-label') === '复位星图')).click()
+    await settle()
+    assert((canvas.getAttribute('style') || '').includes('scale(1)'), '复位应回到原始比例')
+  }
+
   // 客星剧场：入口 → 三幕场景卡与客星标记 → 切幕位移 → 退出
   document.querySelector('.theater-entry').click()
   await settle()

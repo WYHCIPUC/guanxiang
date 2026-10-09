@@ -1,0 +1,826 @@
+{
+   "BloggerAccount": {
+      "description": "",
+      "message": "Account"
+   },
+   "BloggerNickname": {
+      "description": "",
+      "message": "Nickname"
+   },
+   "ShowOnlyPlaybackMedia": {
+      "description": "",
+      "message": "Show only playback media"
+   },
+   "alreadyCommented": {
+      "description": "",
+      "message": "I have commented, enter redeem code"
+   },
+   "authentication": {
+      "description": "",
+      "message": "Authentication"
+   },
+   "authenticationMethod": {
+      "description": "",
+      "message": "Authentication Method"
+   },
+   "author": {
+      "description": "",
+      "message": "Author"
+   },
+   "autoPage": {
+      "description": "",
+      "message": "Auto Page"
+   },
+   "back": {
+      "description": "",
+      "message": "Back"
+   },
+   "bloggerDownload": {
+      "description": "",
+      "message": "User Download"
+   },
+   "bloggerFansCount": {
+      "description": "",
+      "message": "Blogger Fans"
+   },
+   "bloggerVideoCount": {
+      "description": "",
+      "message": "Blogger Videos"
+   },
+   "buy": {
+      "description": "",
+      "message": "Choose Your Plan"
+   },
+   "cancel": {
+      "description": "",
+      "message": "Cancel"
+   },
+   "chooseUnlockMethod": {
+      "description": "",
+      "message": "Choose a method to unlock download functionality"
+   },
+   "clearCacheWorks": {
+      "description": "",
+      "message": "Clear Cache Videos"
+   },
+   "collectCount": {
+      "description": "",
+      "message": "Collects"
+   },
+   "commentContent": {
+      "description": "",
+      "message": "Comment Content"
+   },
+   "commentDownload": {
+      "description": "",
+      "message": "Comment Download"
+   },
+   "commentID": {
+      "description": "",
+      "message": "Comment ID"
+   },
+   "commentLevel": {
+      "description": "",
+      "message": "Comment Level"
+   },
+   "commentList": {
+      "description": "",
+      "message": "Comment List"
+   },
+   "commentOnPlatform": {
+      "description": "",
+      "message": "Comment on the official plugin platform"
+   },
+   "commentReceive": {
+      "description": "",
+      "message": "Comment to Receive"
+   },
+   "commentTableDeleteTip": {
+      "description": "",
+      "message": "Please select the comment you want to delete."
+   },
+   "commentTime": {
+      "description": "",
+      "message": "Comment Time"
+   },
+   "commenter": {
+      "description": "",
+      "message": "Comment Author"
+   },
+   "commentsCount": {
+      "description": "",
+      "message": "Comments"
+   },
+   "completed": {
+      "description": "",
+      "message": "Completed"
+   },
+   "confirm": {
+      "description": "",
+      "message": "Confirm"
+   },
+   "contactCustomerService": {
+      "description": "",
+      "message": "Contact customer service to get redeem code"
+   },
+   "contactCustomerServiceForCode": {
+      "description": "",
+      "message": "Contact customer service to get redeem code"
+   },
+   "continue": {
+      "description": "",
+      "message": "Continue"
+   },
+   "coverImage": {
+      "description": "",
+      "message": "Cover"
+   },
+   "dataUploaded": {
+      "description": "",
+      "message": "Data Uploaded"
+   },
+   "dataUploading": {
+      "description": "",
+      "message": "Data Uploading"
+   },
+   "default": {
+      "description": "",
+      "message": "Default"
+   },
+   "delete": {
+      "description": "",
+      "message": "Delete"
+   },
+   "deleteMediaTextDownloadTotal": {
+      "description": "",
+      "message": "(Includes {$1} download)"
+   },
+   "deleteMediaTextTotal": {
+      "description": "",
+      "message": "Remove {$1} media found"
+   },
+   "description": {
+      "description": "Ext description",
+      "message": "Tik-DataTool, one-click downloads TikTok videos and images, extracts audio, deeply analyzes creator data."
+   },
+   "displayName": {
+      "description": "DataTool-Video Downloader",
+      "message": "DataTool-Video Downloader"
+   },
+   "donateNow": {
+      "description": "",
+      "message": "Donate Now"
+   },
+   "donateUnlock": {
+      "description": "",
+      "message": "Donate to Unlock"
+   },
+   "download": {
+      "description": "",
+      "message": "Download"
+   },
+   "downloadAll": {
+      "description": "",
+      "message": "Download All"
+   },
+   "downloadBtn": {
+      "description": "",
+      "message": "Download"
+   },
+   "downloadDialogDataStatistics": {
+      "description": "",
+      "message": "Data Statistics"
+   },
+   "downloadDialogMaterialList": {
+      "description": "",
+      "message": "Material List"
+   },
+   "downloadDialogProductionList": {
+      "description": "",
+      "message": "Production List"
+   },
+   "downloadDialogTiktokTitle": {
+      "description": "",
+      "message": "Tiktok Download"
+   },
+   "downloadSelected": {
+      "description": "",
+      "message": "Download Selected"
+   },
+   "downloadTable": {
+      "description": "",
+      "message": "Download Table"
+   },
+   "enterpriseCertification": {
+      "description": "",
+      "message": "Enterprise Certification"
+   },
+   "executing": {
+      "description": "",
+      "message": "Executing"
+   },
+   "fansDownload": {
+      "description": "",
+      "message": "Followers Download"
+   },
+   "fansList": {
+      "description": "",
+      "message": "Followers List"
+   },
+   "formattingData": {
+      "description": "",
+      "message": "Formatting Data"
+   },
+   "getAllComments": {
+      "description": "",
+      "message": "Get All Comments"
+   },
+   "getCommentComplete": {
+      "description": "",
+      "message": "Get Comments Complete"
+   },
+   "getFirstLevelComments": {
+      "description": "",
+      "message": "Get All First-Level Comments"
+   },
+   "gettingTheTotalCount": {
+      "description": "",
+      "message": "Getting the total count"
+   },
+   "goToDownloadSettings": {
+      "description": "",
+      "message": "Go to download settings"
+   },
+   "goToPlatformComment": {
+      "description": "",
+      "message": "Go to Platform to Comment"
+   },
+   "hiddenDownload": {
+      "description": "",
+      "message": "Automatically hide downloaded media"
+   },
+   "inputRedeemCode": {
+      "description": "",
+      "message": "Enter Redeem Code"
+   },
+   "inputRedeemCodePlaceholder": {
+      "description": "",
+      "message": "Please enter redeem code"
+   },
+   "inputTitle": {
+      "description": "",
+      "message": "Please input title"
+   },
+   "introduction": {
+      "description": "",
+      "message": "Introduction"
+   },
+   "likes": {
+      "description": "",
+      "message": "Likes"
+   },
+   "likesCount": {
+      "description": "",
+      "message": "Likes"
+   },
+   "load": {
+      "description": "",
+      "message": "Load"
+   },
+   "mapSearchClearBtn": {
+      "description": "",
+      "message": "Clear the cache"
+   },
+   "mapSearchDataListBtn": {
+      "description": "",
+      "message": "Data List"
+   },
+   "mapSearchDialogAverageRatingTableColumn": {
+      "description": "",
+      "message": "Average Rating"
+   },
+   "mapSearchDialogCategoriesTableColumn": {
+      "description": "",
+      "message": "Categories"
+   },
+   "mapSearchDialogCidTableColumn": {
+      "description": "",
+      "message": "Cid"
+   },
+   "mapSearchDialogDataEmpty": {
+      "description": "",
+      "message": "Empty data"
+   },
+   "mapSearchDialogDataListTabText": {
+      "description": "",
+      "message": "Data List"
+   },
+   "mapSearchDialogDomainTableColumn": {
+      "description": "",
+      "message": "Domain"
+   },
+   "mapSearchDialogDownloadAsCsvBtn": {
+      "description": "",
+      "message": "Download As Csv"
+   },
+   "mapSearchDialogDownloadAsExcelBtn": {
+      "description": "",
+      "message": "Download As Excel"
+   },
+   "mapSearchDialogDownloadCompletePrompt": {
+      "description": "",
+      "message": "Download Complete"
+   },
+   "mapSearchDialogDownloadingPrompt": {
+      "description": "",
+      "message": "Downloading"
+   },
+   "mapSearchDialogEmailTableColumn": {
+      "description": "",
+      "message": "Email"
+   },
+   "mapSearchDialogFacebookTableColumn": {
+      "description": "",
+      "message": "Facebook"
+   },
+   "mapSearchDialogFeaturedImageTableColumn": {
+      "description": "",
+      "message": "Featured Image"
+   },
+   "mapSearchDialogFilterKeyword": {
+      "description": "",
+      "message": "keyword"
+   },
+   "mapSearchDialogFilterKeywordPlaceholder": {
+      "description": "",
+      "message": "Search To Name"
+   },
+   "mapSearchDialogFullAddressTableColumn": {
+      "description": "",
+      "message": "Full Address"
+   },
+   "mapSearchDialogGoogleMapsUrlTableColumn": {
+      "description": "",
+      "message": "Google Maps Url"
+   },
+   "mapSearchDialogInstagramTableColumn": {
+      "description": "",
+      "message": "Instagram"
+   },
+   "mapSearchDialogLatitudeTableColumn": {
+      "description": "",
+      "message": "Latitude"
+   },
+   "mapSearchDialogLongitudeTableColumn": {
+      "description": "",
+      "message": "Longitude"
+   },
+   "mapSearchDialogMunicipalityTableColumn": {
+      "description": "",
+      "message": "Municipality"
+   },
+   "mapSearchDialogNameColumn": {
+      "description": "",
+      "message": "Name"
+   },
+   "mapSearchDialogOpeningHoursTableColumn": {
+      "description": "",
+      "message": "Opening Hours"
+   },
+   "mapSearchDialogPhoneTableColumn": {
+      "description": "",
+      "message": "Phone"
+   },
+   "mapSearchDialogPhonesTableColumn": {
+      "description": "",
+      "message": "Phones"
+   },
+   "mapSearchDialogPlaceIdTableColumn": {
+      "description": "",
+      "message": "Place Id"
+   },
+   "mapSearchDialogReviewCountTableColumn": {
+      "description": "",
+      "message": "Reviews"
+   },
+   "mapSearchDialogReviewUrlTableColumn": {
+      "description": "",
+      "message": "Review Url"
+   },
+   "mapSearchDialogSerialNumberColumn": {
+      "description": "",
+      "message": "Serial Number"
+   },
+   "mapSearchDialogStreetTableColumn": {
+      "description": "",
+      "message": "Street"
+   },
+   "mapSearchDialogTitle": {
+      "description": "",
+      "message": "Search Results"
+   },
+   "mapSearchDialogWebsiteTableColumn": {
+      "description": "",
+      "message": "Website"
+   },
+   "mapSearchScrapingStoppingBtn": {
+      "description": "",
+      "message": "Stopping"
+   },
+   "mapSearchStartScrapingBtn": {
+      "description": "",
+      "message": "Start Scraping"
+   },
+   "mapSearchStopScrapingBtn": {
+      "description": "",
+      "message": "Stop Scraping"
+   },
+   "mapSearchStopScrapingPrompt": {
+      "description": "",
+      "message": "Scraping stopped"
+   },
+   "materialListAllSelected": {
+      "description": "",
+      "message": "Select All"
+   },
+   "materialListDisplayTitle": {
+      "description": "",
+      "message": "Display title"
+   },
+   "materialListDownloadBtn": {
+      "description": "",
+      "message": "Download"
+   },
+   "materialListDownloadZipBtn": {
+      "description": "",
+      "message": "Download Zip"
+   },
+   "materialListFilter": {
+      "description": "",
+      "message": "Filtrate"
+   },
+   "materialListFilterAudio": {
+      "description": "",
+      "message": "Audio"
+   },
+   "materialListFilterImage": {
+      "description": "",
+      "message": "Image"
+   },
+   "materialListFilterVideo": {
+      "description": "",
+      "message": "Video"
+   },
+   "materialListFolderGrouping": {
+      "description": "",
+      "message": "Folder Grouping"
+   },
+   "materialListLabelVideoDpi": {
+      "description": "",
+      "message": "Video Dpi"
+   },
+   "materialListSelectedCount": {
+      "description": "",
+      "message": "{count} material is currently selected"
+   },
+   "materialListSelectedMediaCount": {
+      "description": "",
+      "message": "({videoCount} videos and {imageCount} pictures in total)"
+   },
+   "materialTableDeleteTip": {
+      "description": "",
+      "message": "Please select the material you want to delete."
+   },
+   "materialTableShowDetailTip": {
+      "description": "",
+      "message": "Please select the material for which you want to view details"
+   },
+   "materialsLimit": {
+      "description": "",
+      "message": "The maximum number of materials to be added is 1000."
+   },
+   "multipleDownloadTipDesc": {
+      "description": "",
+      "message": "When using one-by-one downloading its a good idea to choose or create save folder in advance,and switch off Ask each time where to download option."
+   },
+   "needLoginDy": {
+      "description": "",
+      "message": "Please open a new tab, login to douyin, and the process will continue automatically."
+   },
+   "needLoginXhs": {
+      "description": "",
+      "message": "After logging in to Xiaohongshu, it will automatically continue to execute"
+   },
+   "no": {
+      "description": "",
+      "message": "No"
+   },
+   "notPromptAgainBtn": {
+      "description": "",
+      "message": "Don't Show"
+   },
+   "notShow": {
+      "description": "",
+      "message": "Don't show this anymore"
+   },
+   "noteList": {
+      "description": "",
+      "message": "Note List"
+   },
+   "oneKeyDownload": {
+      "description": "",
+      "message": "Download"
+   },
+   "parentCommentID": {
+      "description": "",
+      "message": "Parent Comment ID"
+   },
+   "personalAuthentication": {
+      "description": "",
+      "message": "Personal Authentication"
+   },
+   "pleaseInputRedeemCode": {
+      "description": "",
+      "message": "Please enter redeem code"
+   },
+   "publishTime": {
+      "description": "",
+      "message": "Publish Time"
+   },
+   "reDownload": {
+      "description": "",
+      "message": "re-download"
+   },
+   "redeemCode": {
+      "description": "",
+      "message": "Redeem Code"
+   },
+   "redeemFailed": {
+      "description": "",
+      "message": "Redeem failed"
+   },
+   "redeemSuccess": {
+      "description": "",
+      "message": "Redeem successful"
+   },
+   "redeemUnlock": {
+      "description": "",
+      "message": "Redeem to Unlock"
+   },
+   "replies": {
+      "description": "",
+      "message": "Replies"
+   },
+   "repliesCount": {
+      "description": "",
+      "message": "Replies"
+   },
+   "rpaTask": {
+      "description": "",
+      "message": "RPA Task"
+   },
+   "scrapeNoteDetails": {
+      "description": "",
+      "message": "Scrape Note Details"
+   },
+   "settings": {
+      "description": "",
+      "message": "Settings"
+   },
+   "shareCount": {
+      "description": "",
+      "message": "Shares"
+   },
+   "showAllTag": {
+      "description": "",
+      "message": "Show all tabs"
+   },
+   "showFolder": {
+      "description": "",
+      "message": "Show download folder"
+   },
+   "showInPopup": {
+      "description": "",
+      "message": "Show in popup window"
+   },
+   "showInSidebar": {
+      "description": "",
+      "message": "Show in sidebar"
+   },
+   "signature": {
+      "description": "",
+      "message": "signature"
+   },
+   "sortByStatus": {
+      "description": "",
+      "message": "Sort by status"
+   },
+   "stop": {
+      "description": "",
+      "message": "Stop"
+   },
+   "stopGettingComments": {
+      "description": "",
+      "message": "Stop Getting Comments"
+   },
+   "subtitleAdvancedSpeakerHint": {
+      "description": "subtitle ui",
+      "message": "Clearer transcription with automatic speaker labels"
+   },
+   "subtitleBilingual": {
+      "description": "subtitle ui",
+      "message": "Bilingual"
+   },
+   "subtitleCloseRetranscribe": {
+      "description": "subtitle ui",
+      "message": "If you close now, you will need to transcribe again the next time you open this panel. Close anyway?"
+   },
+   "subtitleCloseRetranscribeTitle": {
+      "description": "subtitle ui",
+      "message": "Confirm close"
+   },
+   "subtitleCloseWhileTranscribing": {
+      "description": "subtitle ui",
+      "message": "Transcription is in progress. Closing will cancel the task. Close anyway?"
+   },
+   "subtitleCloseWhileTranscribingTitle": {
+      "description": "subtitle ui",
+      "message": "Cancel transcription"
+   },
+   "subtitleContent": {
+      "description": "subtitle ui",
+      "message": "Subtitles"
+   },
+   "subtitleCopy": {
+      "description": "subtitle ui",
+      "message": "Copy Subtitles"
+   },
+   "subtitleCopyFail": {
+      "description": "subtitle ui",
+      "message": "Copy failed"
+   },
+   "subtitleCopyOk": {
+      "description": "subtitle ui",
+      "message": "Copied to clipboard"
+   },
+   "subtitleDownload": {
+      "description": "subtitle ui",
+      "message": "Subtitle Download"
+   },
+   "subtitleDownloadSrt": {
+      "description": "subtitle ui",
+      "message": "Download SRT"
+   },
+   "subtitleDownloadTxt": {
+      "description": "subtitle ui",
+      "message": "Download TXT"
+   },
+   "subtitleDownloadTxtPlain": {
+      "description": "subtitle ui",
+      "message": "Download TXT (No Timestamps)"
+   },
+   "subtitleEmpty": {
+      "description": "subtitle ui",
+      "message": "This video has no external subtitles"
+   },
+   "subtitleEnableSpeakerLabel": {
+      "description": "subtitle ui",
+      "message": "Speaker diarization"
+   },
+   "subtitleExportIncludeSpeaker": {
+      "description": "subtitle ui",
+      "message": "Include speaker labels"
+   },
+   "subtitleFetchWait": {
+      "description": "subtitle ui",
+      "message": "Please wait a moment. The first parsing time is related to the length of the video and the content of the dialogue"
+   },
+   "subtitleNoData": {
+      "description": "subtitle ui",
+      "message": "No subtitles to download"
+   },
+   "subtitleShowSpeaker": {
+      "description": "subtitle ui",
+      "message": "Show speakers"
+   },
+   "subtitleSpeakerN": {
+      "description": "subtitle ui, {$1}=1-based speaker index",
+      "message": "Speaker {$1}"
+   },
+   "subtitleSummarizeChat": {
+      "description": "subtitle ui",
+      "message": "Summarize and chat"
+   },
+   "subtitleTargetLang": {
+      "description": "subtitle ui",
+      "message": "Target language"
+   },
+   "subtitleTranscribeModeAdvanced": {
+      "description": "subtitle ui",
+      "message": "Advanced"
+   },
+   "subtitleTranscribeModeBasic": {
+      "description": "subtitle ui",
+      "message": "Basic"
+   },
+   "subtitleTranscribeModeCreditCost": {
+      "description": "subtitle ui",
+      "message": "{$1} credits/min"
+   },
+   "subtitleTranscribeModeLabel": {
+      "description": "subtitle ui",
+      "message": "Transcription mode"
+   },
+   "subtitleTranslateFail": {
+      "description": "subtitle ui",
+      "message": "Translation failed, please try again later"
+   },
+   "subtitleTranslateFailed": {
+      "description": "subtitle ui",
+      "message": "Translation failed"
+   },
+   "subtitleTranslating": {
+      "description": "subtitle ui",
+      "message": "Translating..."
+   },
+   "supportDeveloper": {
+      "description": "",
+      "message": "Support the developer"
+   },
+   "tableColumnSettings": {
+      "description": "",
+      "message": "Table Column Settings"
+   },
+   "tiktokVideoDownload": {
+      "description": "",
+      "message": "Tiktok Video Download"
+   },
+   "tip": {
+      "description": "",
+      "message": "Tip"
+   },
+   "title": {
+      "description": "",
+      "message": "Title"
+   },
+   "unlockBatchDownload": {
+      "description": "",
+      "message": "Unlock Batch Download"
+   },
+   "unlockOneDayDownload": {
+      "description": "",
+      "message": "Unlock one day of unlimited downloads"
+   },
+   "unlockUnlimitedDownload": {
+      "description": "",
+      "message": "Unlock unlimited download functionality"
+   },
+   "userList": {
+      "description": "",
+      "message": "User List"
+   },
+   "versionCheckMsgForceText": {
+      "description": "",
+      "message": "Please download the new version ({$1}) to use"
+   },
+   "versionCheckText": {
+      "description": "",
+      "message": "There is a new version ({$1}) available for use"
+   },
+   "videoDuration": {
+      "description": "",
+      "message": "Video Duration"
+   },
+   "videoLink": {
+      "description": "",
+      "message": "Video Link"
+   },
+   "videoList": {
+      "description": "",
+      "message": "Video List"
+   },
+   "viewCount": {
+      "description": "",
+      "message": "Views"
+   },
+   "workDownload": {
+      "description": "",
+      "message": "Work Download"
+   },
+   "workList": {
+      "description": "",
+      "message": "Work List"
+   },
+   "yes": {
+      "description": "",
+      "message": "Yes"
+   },
+   "youtubeCommentList": {
+      "description": "",
+      "message": "Youtube Comment List"
+   },
+   "youtubeVideoList": {
+      "description": "",
+      "message": "YouTube Video List"
+   }
+}

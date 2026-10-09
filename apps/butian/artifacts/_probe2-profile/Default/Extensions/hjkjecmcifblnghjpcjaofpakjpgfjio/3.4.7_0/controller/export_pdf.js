@@ -1,0 +1,1 @@
+(()=>{"use strict";window.definePlugin("export_pdf",(function(){return e=>{!function(e,t,i){e.get("alert").then((n=>{n?t&&t(!0):e.fire("notice",{duration:5,onClose:t,message:e.i18n("alert"),btnText:i||e.i18n("got_it")},(()=>{e.set("alert",!0)}))}))}(e,(t=>{t?e.fire("print"):setTimeout((()=>{e.fire("print")}),2e3)}))}}))})();

@@ -192,6 +192,30 @@ try {
   await sleep(400)
   await check('D43 进入测量即退出剧场', `!document.querySelector('.theater-card')`)
   await check('D44 退出后天穹无客星', `!document.querySelector('.sky-stage .guest-star')`)
+  // 收起 D41 打开的测量面板（全屏 modal 会挡住星图手势）
+  await step('D44c 关闭测量面板', `document.querySelector('.measure-panel [aria-label="关闭测量"]')?.click() ?? 'gone'; 'ok'`)
+  await sleep(300)
+
+  // 星图缩放与拖拽（真实手势：CDP Input 域派发滚轮与鼠标按下-移动-松开）
+  const stageCenter = await evalJs(`(() => { const r = document.querySelector('.sky-stage').getBoundingClientRect(); return JSON.stringify({ x: Math.round(r.left + r.width / 2), y: Math.round(r.top + r.height / 2) }) })()`)
+  const { x: cx, y: cy } = JSON.parse(stageCenter)
+  await check('D45 初始为原始变换', `/scale\\(1\\)/.test(document.querySelector('.sky-canvas').style.transform)`)
+  // 合成 wheel 探针：区分原生监听缺失与 CDP 派发差异
+  await step('D45w 合成滚轮探针', `(() => { document.querySelector('.sky-stage').dispatchEvent(new WheelEvent('wheel', { deltaY: -240, cancelable: true, bubbles: true })); 'ok' })()`)
+  await sleep(300)
+  await check('D46 滚轮后放大', `(() => { const t = document.querySelector('.sky-canvas').style.transform; return t.includes('scale') && !t.includes('scale(1)') })()`)
+  // 拖拽用 touch 派发（touch 手势会产生 pointer 事件，纯 mouse 派发不会触发 React onPointerDown）
+  const touchPoint = (x, y) => ({ x, y, radiusX: 2, radiusY: 2, rotationAngle: 0, force: 1, id: 1 })
+  await cdp('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [touchPoint(cx - 120, cy)] })
+  await cdp('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [touchPoint(cx - 70, cy)] })
+  await cdp('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [touchPoint(cx - 20, cy + 14)] })
+  await cdp('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] })
+  await sleep(350)
+  await check('D47 拖拽后平移', `(() => { const t = document.querySelector('.sky-canvas').style.transform; return /translate\\((?:-|\\d)/.test(t) && !t.includes('translate(0%, 0%)') })()`)
+  await check('D48 拖拽未误开星官卡', `!document.querySelector('.info-card')`)
+  await step('D49 复位星图', `document.querySelector('[aria-label="复位星图"]').click(); 'ok'`)
+  await sleep(250)
+  await check('D50 复位恢复原始变换', `(() => { const t = document.querySelector('.sky-canvas').style.transform; return t.includes('scale(1)') && t.includes('translate(0%, 0%)') })()`)
 
   // ============ 移动端 390×844 ============
   await setViewport(390, 844, true, 2)

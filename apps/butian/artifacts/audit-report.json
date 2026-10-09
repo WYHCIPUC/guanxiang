@@ -1,7 +1,7 @@
 {
   "url": "http://localhost:5199/app.html",
-  "at": "2026-10-09T09:18:43.469Z",
-  "total": 65,
+  "at": "2026-10-09T16:01:26.725Z",
+  "total": 73,
   "failed": 0,
   "consoleErrors": [],
   "results": [
@@ -23,7 +23,7 @@
     {
       "name": "D04 背景星野 >800",
       "pass": true,
-      "note": "1344"
+      "note": "1340"
     },
     {
       "name": "D05 宿度环 28 宿名",
@@ -38,7 +38,7 @@
     {
       "name": "D07 可见标签 ≤ 24（防串珠）",
       "pass": true,
-      "note": "true/18"
+      "note": "true/17"
     },
     {
       "name": "D08 切西方星座模式",
@@ -48,7 +48,7 @@
     {
       "name": "D09 西方全天线 >200 段",
       "pass": true,
-      "note": "333"
+      "note": "332"
     },
     {
       "name": "D10 切叠合观天",
@@ -73,7 +73,7 @@
     {
       "name": "D14 时间推进星位移动",
       "pass": true,
-      "note": "3.9199%,33.2886% → 40.4792%,62.9441%"
+      "note": "3.78745%,33.8603% → 40.921%,63.0128%"
     },
     {
       "name": "D15 时间滑杆拉回最左",
@@ -93,7 +93,7 @@
     {
       "name": "D18 换地星位移动",
       "pass": true,
-      "note": "60.8971% → 61.0598%"
+      "note": "60.6958% → 60.8116%"
     },
     {
       "name": "D19 打开参宿四星官卡",
@@ -222,6 +222,46 @@
     },
     {
       "name": "D44 退出后天穹无客星",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "D44c 关闭测量面板",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "D45 初始为原始变换",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "D45w 合成滚轮探针",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "D46 滚轮后放大",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "D47 拖拽后平移",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "D48 拖拽未误开星官卡",
+      "pass": true,
+      "note": "true"
+    },
+    {
+      "name": "D49 复位星图",
+      "pass": true,
+      "note": "ok"
+    },
+    {
+      "name": "D50 复位恢复原始变换",
       "pass": true,
       "note": "true"
     },

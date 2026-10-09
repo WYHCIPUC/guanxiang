@@ -1,0 +1,866 @@
+{
+   "_w_bar": {
+      "message": "Other"
+   },
+   "_w_boor": {
+      "message": "Rotate Right"
+   },
+   "_w_carol": {
+      "message": "UnSelect"
+   },
+   "_w_clog": {
+      "message": "Vertical Flip"
+   },
+   "_w_diver": {
+      "message": "Format Conversion When Downloading"
+   },
+   "_w_drawl": {
+      "message": "Previous"
+   },
+   "_w_fiasco": {
+      "message": "DeduThres:"
+   },
+   "_w_gambol": {
+      "message": "Privacy Policy"
+   },
+   "_w_hack": {
+      "message": "Rotate Left"
+   },
+   "_w_intent": {
+      "message": "Webpage Inspect Option"
+   },
+   "_w_kin": {
+      "message": "Copy Original URL to Clipboard"
+   },
+   "_w_lore": {
+      "message": "Drag Download Switch"
+   },
+   "_w_patent": {
+      "message": "Horizontal Flip"
+   },
+   "_w_polish": {
+      "message": "Image deduplication"
+   },
+   "_w_purse": {
+      "message": "Keep scrolling the extracted page"
+   },
+   "_w_sheen": {
+      "message": "Next"
+   },
+   "_w_soot": {
+      "message": "/privacy_en.md"
+   },
+   "_w_splint": {
+      "message": "Select whether to probe and analyze the return results of Ajax requests and Fetch requests. Normally you should enable both, but since detection of Fetch requests may cause individual live streaming sites to crash after playing for a while, if this affects you, you can choose to disable detection of Fetch requests."
+   },
+   "_w_stanza": {
+      "message": "Select"
+   },
+   "_w_stem": {
+      "message": "The selected image format will be converted to format when downloading: "
+   },
+   "_w_votary": {
+      "message": "Download"
+   },
+   "bg_warning_ntfy_msg": {
+      "message": "Extension does have needed authority to extract images from that page."
+   },
+   "bg_warning_ntfy_title": {
+      "message": "Alert"
+   },
+   "colorbox_close": {
+      "message": "close"
+   },
+   "colorbox_current": {
+      "message": "Image: {current} / {total}"
+   },
+   "colorbox_imgError": {
+      "message": "This image failed to load."
+   },
+   "colorbox_next": {
+      "message": "next"
+   },
+   "colorbox_previous": {
+      "message": "previous"
+   },
+   "colorbox_slideshowStart": {
+      "message": "start slideshow"
+   },
+   "colorbox_slideshowStop": {
+      "message": "stop slideshow"
+   },
+   "colorbox_xhrError": {
+      "message": "This content failed to load."
+   },
+   "editor_i18n_1000": {
+      "message": "Image Editor"
+   },
+   "editor_i18n_1001": {
+      "message": "Image Editor(experimental): Add Watermark"
+   },
+   "editor_i18n_1002": {
+      "message": "Load Image: "
+   },
+   "editor_i18n_1003": {
+      "message": "Original Image"
+   },
+   "editor_i18n_1004": {
+      "message": "Picture Zoom"
+   },
+   "editor_i18n_1005": {
+      "message": "Text Watermark"
+   },
+   "editor_i18n_1006": {
+      "message": "Image Watermark"
+   },
+   "editor_i18n_1007": {
+      "message": "QR Code Watermark"
+   },
+   "editor_i18n_1008": {
+      "message": "Font"
+   },
+   "editor_i18n_1009": {
+      "message": "Font Size"
+   },
+   "editor_i18n_1010": {
+      "message": "Text Color"
+   },
+   "editor_i18n_1011": {
+      "message": "Text Transparency"
+   },
+   "editor_i18n_1012": {
+      "message": "Stroke Text"
+   },
+   "editor_i18n_1013": {
+      "message": "Watermark Text"
+   },
+   "editor_i18n_1014": {
+      "message": "Watermark Image"
+   },
+   "editor_i18n_1015": {
+      "message": "Picture Cropping"
+   },
+   "editor_i18n_1016": {
+      "message": "Top(px)"
+   },
+   "editor_i18n_1017": {
+      "message": "Right(px)"
+   },
+   "editor_i18n_1018": {
+      "message": "Down(px)"
+   },
+   "editor_i18n_1019": {
+      "message": "Left(px)"
+   },
+   "editor_i18n_1020": {
+      "message": "Watermark Scaling"
+   },
+   "editor_i18n_1021": {
+      "message": "&nbsp;Brightness to Transparency"
+   },
+   "editor_i18n_1022": {
+      "message": "&nbsp;Reverse Transparency"
+   },
+   "editor_i18n_1023": {
+      "message": "Pixel Enhancement"
+   },
+   "editor_i18n_1024": {
+      "message": "Watermark Transparency"
+   },
+   "editor_i18n_1025": {
+      "message": "Foreground Color"
+   },
+   "editor_i18n_1026": {
+      "message": "Background Color"
+   },
+   "editor_i18n_1027": {
+      "message": "Size"
+   },
+   "editor_i18n_1028": {
+      "message": "Background Transparency"
+   },
+   "editor_i18n_1029": {
+      "message": "Border Width"
+   },
+   "editor_i18n_1030": {
+      "message": "QR Code Text"
+   },
+   "editor_i18n_1031": {
+      "message": "Tile watermark"
+   },
+   "editor_i18n_1032": {
+      "message": "Fixed Watermark"
+   },
+   "editor_i18n_1033": {
+      "message": "X-axis Offset"
+   },
+   "editor_i18n_1034": {
+      "message": "Y-axis Offset"
+   },
+   "editor_i18n_1035": {
+      "message": "X-axis Margin"
+   },
+   "editor_i18n_1036": {
+      "message": "Y-axis Margin"
+   },
+   "editor_i18n_1037": {
+      "message": "Rotation Angle"
+   },
+   "editor_i18n_1038": {
+      "message": "X-axis Offset"
+   },
+   "editor_i18n_1039": {
+      "message": "&nbsp;Horizontal Centered"
+   },
+   "editor_i18n_1040": {
+      "message": "Y-axis Offset"
+   },
+   "editor_i18n_1041": {
+      "message": "&nbsp;Vertically Centered"
+   },
+   "editor_i18n_1042": {
+      "message": "&nbsp;Bulk Processing"
+   },
+   "editor_i18n_1043": {
+      "message": "&nbsp;Open Download Directory"
+   },
+   "editor_i18n_1044": {
+      "message": "&nbsp;Reset Parameters"
+   },
+   "editor_i18n_1045": {
+      "message": "&nbsp;\n\u003Cb>Bulk Processing\u003C/b>&nbsp;Features are only available in some browsers\n\u003Cbr />Since all browser vendors in China have focused on the castration modification of the download function, this feature is only implemented in accordance with chrome.downloads. The browser defined by download."
+   },
+   "editor_i18n_1046": {
+      "message": "&nbsp;Before executing&nbsp;\n\u003Cb>Bulk Processing\u003C/b>&nbsp;, make sure the \"Allow location for each file before download\" option is unchecked in your browser configuration.\n\u003Cbr />"
+   },
+   "editor_i18n_1047": {
+      "message": " Download"
+   },
+   "editor_watermark_batch_status": {
+      "message": "Current Progress:"
+   },
+   "editor_watermark_batch_status_finished": {
+      "message": "Finished!"
+   },
+   "editor_watermark_image_fold_path": {
+      "message": "WatermarkImage(ImageAssistant)"
+   },
+   "editor_watermark_image_show_rate": {
+      "message": "Zoom: "
+   },
+   "editor_watermark_text": {
+      "message": "ImageAssistant"
+   },
+   "ext_btn_cancel": {
+      "message": " Cancel"
+   },
+   "ext_btn_ext_about": {
+      "message": " About"
+   },
+   "ext_btn_ext_option": {
+      "message": " Options"
+   },
+   "ext_btn_pwd_home": {
+      "message": " Pullywood Production"
+   },
+   "ext_cb_resolution": {
+      "message": "Resolution: "
+   },
+   "ext_cb_tips": {
+      "message": "(Press \"V\" to switch image preview mode)"
+   },
+   "ext_cb_type": {
+      "message": "Type: "
+   },
+   "ext_doc_title": {
+      "message": "Pictures filter"
+   },
+   "ext_dynamic_add_to_collection": {
+      "message": " Add to Collection"
+   },
+   "ext_dynamic_save_all_image": {
+      "message": "Auto"
+   },
+   "ext_favorite_select_image_first": {
+      "message": "Please Select Images First!"
+   },
+   "ext_header_summary_amount": {
+      "message": "Amount: "
+   },
+   "ext_header_summary_selected": {
+      "message": "Selected: "
+   },
+   "ext_header_summary_visible": {
+      "message": "Visible: "
+   },
+   "ext_menu_btn_close_origin_page": {
+      "message": "Close current page"
+   },
+   "ext_menu_btn_filter_menu_switch": {
+      "message": "Filter menu switch"
+   },
+   "ext_menu_btn_operation_menu_switch": {
+      "message": "Operation menu switch"
+   },
+   "ext_menu_btn_resolution_show_switch": {
+      "message": "Resolution subscript switch"
+   },
+   "ext_menu_btn_sort_switch": {
+      "message": "Size sort switch"
+   },
+   "ext_menu_btn_switch_to_origin_page": {
+      "message": "Switch to original page"
+   },
+   "ext_menu_collect_selected": {
+      "message": "Save selected"
+   },
+   "ext_menu_direct_download": {
+      "message": "Save as"
+   },
+   "ext_menu_fun_btn_delete_selected": {
+      "message": "Delete Selected"
+   },
+   "ext_menu_fun_btn_delete_visible": {
+      "message": "Delete Invisible"
+   },
+   "ext_menu_fun_btn_down_selected": {
+      "message": "Download Selected"
+   },
+   "ext_menu_fun_btn_download_all": {
+      "message": "Download All"
+   },
+   "ext_menu_fun_btn_keep_selected": {
+      "message": "Keep selected"
+   },
+   "ext_menu_fun_btn_reset_page": {
+      "message": "Reset Page"
+   },
+   "ext_menu_fun_btn_select_all": {
+      "message": "Select All"
+   },
+   "ext_menu_fun_btn_select_none": {
+      "message": "Select None"
+   },
+   "ext_menu_fun_btn_select_reverse": {
+      "message": "Reverse Select"
+   },
+   "ext_menu_funnel_option_def": {
+      "message": " default"
+   },
+   "ext_menu_generate_qrcode_for_image": {
+      "message": "Generate QR Code"
+   },
+   "ext_menu_item_exact": {
+      "message": "Extract"
+   },
+   "ext_menu_item_find_other_size_on_google": {
+      "message": "Find Other Sizes On Google"
+   },
+   "ext_menu_item_find_other_size_on_sogou": {
+      "message": "Find Other Sizes On Sogou"
+   },
+   "ext_menu_item_find_related_info_on_google": {
+      "message": "Find Related Information On Google"
+   },
+   "ext_menu_item_find_related_info_on_sogou": {
+      "message": "Find Related Information On Sogou"
+   },
+   "ext_menu_item_find_similar_image_on_google": {
+      "message": "Find Similar Images On Google"
+   },
+   "ext_menu_item_generate_url": {
+      "message": "Generate URL"
+   },
+   "ext_menu_item_larger": {
+      "message": "Larger"
+   },
+   "ext_menu_item_open_download_folder": {
+      "message": "Open Download Folder"
+   },
+   "ext_menu_item_send_to_image_editor": {
+      "message": "Send To Image Editor(experimental)"
+   },
+   "ext_menu_item_send_to_image_editor_as_watermark": {
+      "message": "Send To Image Editor As Watermark"
+   },
+   "ext_menu_label_ext_type": {
+      "message": "Image Type: "
+   },
+   "ext_menu_label_funnel": {
+      "message": "Size Funnel: "
+   },
+   "ext_menu_label_regexp": {
+      "message": "URL Filter:"
+   },
+   "ext_menu_label_resolution": {
+      "message": "Resolution: "
+   },
+   "ext_menu_preview": {
+      "message": "Preview"
+   },
+   "ext_msg_can_ext_itself": {
+      "message": "Extracting from extension web page is not allowed!"
+   },
+   "ext_msg_data_pushed_failed": {
+      "message": " Image data push failed!"
+   },
+   "ext_msg_data_pushed_failed_auto": {
+      "message": " Image data push failed and will be automatically retried."
+   },
+   "ext_msg_data_pushed_successfully": {
+      "message": " Image Data was pushed successfully."
+   },
+   "ext_msg_dest_not_exist": {
+      "message": "The web page you want extract is not exist!"
+   },
+   "ext_msg_url_limited": {
+      "message": "Extension only works on the web page with URL started with http:// or https://."
+   },
+   "ext_msg_wait_for_available_data": {
+      "message": " Waiting for Available Image Data."
+   },
+   "ext_pop_auto_download": {
+      "message": "Auto"
+   },
+   "ext_pop_auto_download_msg": {
+      "message": "The newly extracted image will be automatically downloaded according to the configuration. If you want to stop the automatic download, please close the dialog box."
+   },
+   "ext_pop_auto_downloading": {
+      "message": "Automatic Downloading..."
+   },
+   "ext_pop_blob_download": {
+      "message": "BlobMode"
+   },
+   "ext_pop_blob_download_tooltip": {
+      "message": "Convert to blob url before download, take more cpu and memory resource, but can bypass the anti-theft chain mechanism of some sites. "
+   },
+   "ext_pop_curl_script": {
+      "message": "cURL Download Script: "
+   },
+   "ext_pop_download_api_not_found": {
+      "message": "The download API is not detected and cannot invoke download function."
+   },
+   "ext_pop_download_api_not_found_msg": {
+      "message": "Current browser does not open the download API, it is recommended to use the latest original Chrome browser for more comprehensive features."
+   },
+   "ext_pop_empty_download_list": {
+      "message": "No Images selected to Download!"
+   },
+   "ext_pop_generate_curl_script": {
+      "message": " Generate cURL Download Script"
+   },
+   "ext_pop_msg_open_or_install_first": {
+      "message": "Unable to Connect to Client"
+   },
+   "ext_pop_msg_open_or_install_first_msg": {
+      "message": "This feature requires client support. Please install the client first and start it first(Not Available Yet)."
+   },
+   "ext_pop_msg_server_error": {
+      "message": "The client returns an abnormal information."
+   },
+   "ext_pushing_data": {
+      "message": "Pushing data..."
+   },
+   "ext_pushing_data_retry": {
+      "message": " Retry"
+   },
+   "ext_save_image_selected": {
+      "message": "Image selected: "
+   },
+   "ext_save_image_to_collection": {
+      "message": " Save to Collection"
+   },
+   "fn_download_modal_btn_cancel": {
+      "message": " cancel"
+   },
+   "fn_download_modal_btn_continue": {
+      "message": " Continue"
+   },
+   "fn_download_modal_btn_setting": {
+      "message": " Setting"
+   },
+   "fn_download_modal_cnt": {
+      "message": "Before the follow steping, please make sure the download configure option \"Ask where to save each file before downloading\" of chrome  has been unchecked, or the continuous pop \u003CSave as> dialog may makes you feel confused."
+   },
+   "fn_download_modal_download_setting_search": {
+      "message": "Downloads"
+   },
+   "fn_download_modal_save_path": {
+      "message": "Download location："
+   },
+   "fn_download_modal_tle": {
+      "message": "Save Path"
+   },
+   "fn_notification_download_done_msg": {
+      "message": "All download tasks are queued. ^_^"
+   },
+   "fn_notification_download_done_title": {
+      "message": "Notice"
+   },
+   "global_notify_qrcode_generate_limit": {
+      "message": "Extensions can only create QR codes on pages that start with http:// and https://."
+   },
+   "global_pop_menu_ext_image_from_link": {
+      "message": "Extract Images From Current Link"
+   },
+   "global_pop_menu_generate_qrcode_for_current_page": {
+      "message": "Generate QRCode for Current Page"
+   },
+   "global_pop_menu_generate_qrcode_for_image": {
+      "message": "Generate QRCode for image"
+   },
+   "global_pop_menu_generate_qrcode_for_link": {
+      "message": "Generate QRCode for Link"
+   },
+   "global_pop_menu_generate_qrcode_for_selected_text": {
+      "message": "Generate QRCode for Selected Text"
+   },
+   "global_pop_menu_multi_ext_image_from_link": {
+      "message": "Multi Extract From The Link"
+   },
+   "global_pop_menu_multi_ext_image_from_page": {
+      "message": "Multi Extract From Current Page"
+   },
+   "global_pop_menu_search_keyword_on_baidu": {
+      "message": "Search Keywords On Baidu Image"
+   },
+   "global_pop_menu_search_keyword_on_google": {
+      "message": "Search Keywords On Google Image"
+   },
+   "manifest_description": {
+      "message": "An image extractor for sniffing, analyzing and batch downloading images from web page."
+   },
+   "manifest_ext_name": {
+      "message": "ImageAssistant Batch Image Downloader"
+   },
+   "manifest_extract_description": {
+      "message": "Extract images from current page"
+   },
+   "manifest_multi_extract_description": {
+      "message": "Multi Extract From Current Page"
+   },
+   "manifest_short_name": {
+      "message": "IA"
+   },
+   "msg_links_filter_original_links": {
+      "message": "Original Links"
+   },
+   "multi_ext_ajax_request_concurrency": {
+      "message": "Async request concurrency: "
+   },
+   "multi_ext_attribute_sniff_thread": {
+      "message": "Attribute sniffing concurrency: "
+   },
+   "multi_ext_batch_extract_images": {
+      "message": " Extract images in batches"
+   },
+   "multi_ext_batch_generate_ext_url": {
+      "message": "Generate Batch extract URL: "
+   },
+   "multi_ext_charactistic_ext_url": {
+      "message": "Charactistic extract URL:"
+   },
+   "multi_ext_charactistic_extract_url": {
+      "message": " Charactistic extract URL"
+   },
+   "multi_ext_charactistic_url_ext": {
+      "message": "Charactistic URL extract"
+   },
+   "multi_ext_dialog_add_all_btn": {
+      "message": "Add all"
+   },
+   "multi_ext_dialog_close_btn": {
+      "message": "close"
+   },
+   "multi_ext_dialog_ext_all_btn": {
+      "message": "Ext all"
+   },
+   "multi_ext_dialog_ext_all_in_new_window_btn": {
+      "message": "In new Window"
+   },
+   "multi_ext_end_value": {
+      "message": " End value"
+   },
+   "multi_ext_end_value_title": {
+      "message": " End value:"
+   },
+   "multi_ext_extract_from_current_list": {
+      "message": "Extract"
+   },
+   "multi_ext_extract_from_new_window": {
+      "message": "In new window"
+   },
+   "multi_ext_group_keyword_filter": {
+      "message": "Group keyword filter:"
+   },
+   "multi_ext_group_keyword_filter_placeholder": {
+      "message": "Please enter keywords, multiple keywords separated by spaces"
+   },
+   "multi_ext_html_title": {
+      "message": "Multiple URL extraction"
+   },
+   "multi_ext_illegal_wildcard_expression": {
+      "message": "Invalid URL wildcard expression"
+   },
+   "multi_ext_illegal_wildcard_expression_content": {
+      "message": "The URL wildcard expression is not valid. Please enter an expression that begins with http:// or https:// and contains a (*) wildcard."
+   },
+   "multi_ext_imageassistant_multi_url_extract": {
+      "message": "ImageAssistant multiple URL extractor"
+   },
+   "multi_ext_insert_into_list": {
+      "message": "Add Tasks"
+   },
+   "multi_ext_one_url_perline": {
+      "message": "One URL per line"
+   },
+   "multi_ext_open_new_window_for_extract": {
+      "message": " Extract images in new window (Recommend)"
+   },
+   "multi_ext_please_do_not_close_before_finish": {
+      "message": "Please do not close before extraction finished!"
+   },
+   "multi_ext_redords_not_show": {
+      "message": " items not shown"
+   },
+   "multi_ext_start_value": {
+      "message": "Start value"
+   },
+   "multi_ext_start_value_title": {
+      "message": "Start value: "
+   },
+   "multi_ext_step_value": {
+      "message": "step value"
+   },
+   "multi_ext_step_value_title": {
+      "message": "step value:"
+   },
+   "multi_ext_timeout_pop_msg": {
+      "message": "Please enter the newly opened tab page to automatically close the timeout when extracting(minimum 8 seconds):"
+   },
+   "multi_ext_url_charactistic_1": {
+      "message": "URL characteristic 1"
+   },
+   "multi_ext_url_charactistic_1_title": {
+      "message": "URL characteristic 1:"
+   },
+   "multi_ext_url_charactistic_2": {
+      "message": "URL characteristic 2"
+   },
+   "multi_ext_url_charactistic_2_title": {
+      "message": "URL characteristic 2:"
+   },
+   "multi_ext_url_charactistic_3": {
+      "message": "URL characteristic 3"
+   },
+   "multi_ext_url_charactistic_3_title": {
+      "message": "URL characteristic 3:"
+   },
+   "multi_ext_url_list_is_empty": {
+      "message": "URL list is empty"
+   },
+   "multi_ext_url_list_is_empty_content": {
+      "message": "The URL list is empty. Before executing the feature extraction URL, add the source URL data that needs to be extracted from the URL list."
+   },
+   "multi_ext_url_task_amount": {
+      "message": "Number of URL tasks: "
+   },
+   "multi_ext_url_wildcard_expression": {
+      "message": "URL wildcard expression: "
+   },
+   "multi_ext_urls_to_deal": {
+      "message": "Task URL: "
+   },
+   "multi_ext_wildcard_expression": {
+      "message": "URL:http://www.domain.com/path/path/character_(*).html, where (*) is a wildcard."
+   },
+   "multi_ext_wildcard_min_length": {
+      "message": "Wildcard minimum length"
+   },
+   "multi_ext_wildcard_min_length_title": {
+      "message": "Wildcard minimum length:"
+   },
+   "opt_brand_text": {
+      "message": " ImageAssistant"
+   },
+   "opt_doc_title": {
+      "message": "Options"
+   },
+   "opt_main_about_addon": {
+      "message": "Additional Information"
+   },
+   "opt_main_about_ext_description": {
+      "message": "Is an image extractor for sniffing, analyzing and downloading images from web page, it's good compatibility allows users to easily extract images loaded by flash or ajax."
+   },
+   "opt_main_about_ext_feture": {
+      "message": "More information about usage, \u003Cb>\u003Ca target=\"_pullywood_\" href=\"https://www.pullywood.com/ImageAssistant/shortcut.html\">shortcut \u003Cspan class=\"glyphicon glyphicon-paperclip\" />\u003C/a>\u003C/b> and FAQ please visit Project Home(simplified chinese), or follow me on twitter to get latest version information."
+   },
+   "opt_main_about_ext_name": {
+      "message": "ImageAssistant"
+   },
+   "opt_main_about_label_copyright": {
+      "message": ""
+   },
+   "opt_main_about_label_developer": {
+      "message": "Developer: "
+   },
+   "opt_main_about_label_developer_joey": {
+      "message": "Joey"
+   },
+   "opt_main_about_label_edge_store": {
+      "message": "Edge Addon Store: "
+   },
+   "opt_main_about_label_ext_home": {
+      "message": "Project Home: "
+   },
+   "opt_main_about_label_ext_name": {
+      "message": "ImageAssistant"
+   },
+   "opt_main_about_label_firefox_store": {
+      "message": "Firefox Addon Store: "
+   },
+   "opt_main_about_label_site_name": {
+      "message": "Pullywood.com"
+   },
+   "opt_main_about_label_source_list": {
+      "message": "Reource list: "
+   },
+   "opt_main_about_label_store": {
+      "message": "Chrome Web Store: "
+   },
+   "opt_main_about_label_version": {
+      "message": "Version: "
+   },
+   "opt_main_about_title": {
+      "message": "About"
+   },
+   "opt_main_config_click_event_action": {
+      "message": "Select"
+   },
+   "opt_main_config_click_event_action_preview": {
+      "message": "Click To Preview"
+   },
+   "opt_main_config_click_event_action_select": {
+      "message": "Click To Select"
+   },
+   "opt_main_config_i18n_guestbook": {
+      "message": "Guestbook"
+   },
+   "opt_main_config_illegal_test_URL": {
+      "message": "The test URL is illegal~"
+   },
+   "opt_main_config_image_url_regexp_replace_expression": {
+      "message": "Image URL Regexp Replacement Rule"
+   },
+   "opt_main_config_image_url_regexp_replace_expression_btn_default_rule": {
+      "message": "Restore Default Rules"
+   },
+   "opt_main_config_image_url_regexp_replace_expression_desc": {
+      "message": "One rule per line, using the separator \u003Cb>{#^_^#}\u003C/b> to isolate the regular matching part and the regular replacement part, starting with the behavior comment line, the emptying rule will restore the default value, the rules are in order from top to bottom After execution, the subsequent rules will not be checked after matching."
+   },
+   "opt_main_config_image_url_regexp_replace_expression_title_test_url": {
+      "message": "Test URL: "
+   },
+   "opt_main_config_no_rule_matched": {
+      "message": "No rule match current URL~"
+   },
+   "opt_main_config_origin_address": {
+      "message": "Original URL: "
+   },
+   "opt_main_config_origin_image_resolution": {
+      "message": "Original Image Resolution: "
+   },
+   "opt_main_config_replace_address": {
+      "message": "Target URL: "
+   },
+   "opt_main_config_selector_page_click_behavior": {
+      "message": "Filter Page Click Event Behavior"
+   },
+   "opt_main_config_selector_page_click_behavior_desc": {
+      "message": "By default (unchecked), clicking on the image will bring up the enlarged image preview window. If you want to click the image to select only, please check the box below."
+   },
+   "opt_main_config_selector_page_dynamic_load_desc": {
+      "message": "The number of images loaded on the image filter page reaches this value to enable image streaming. Since the image on the page consumes a lot of memory, loading a large number of images on the page may cause the page to crash because the system can no longer allocate more memory for the page. The dynamic loading function will be uninstalled when the page area where the image is located is not visible, and the page area where the image is located is visible. Reload the image to save memory usage and allow the page to load more images."
+   },
+   "opt_main_config_selector_page_dynamic_load_desc_1": {
+      "message": "Image streaming is only useful when bulk extracting large numbers of images (such as thousands of images). Setting this value too small will affect the experience; therefore, in the absence of a filtered page crash, this value should be as large as possible, such as: 512, 1024 Etc., according to the actual machine memory conditions and extended usage."
+   },
+   "opt_main_config_selector_page_dynamic_load_limit": {
+      "message": "Filter Page Image Dynamic Load Threshold"
+   },
+   "opt_main_config_selector_page_max_load_image": {
+      "message": "Filter Page Maximum Number of Images Loaded"
+   },
+   "opt_main_config_selector_page_max_load_image_desc": {
+      "message": "The maximum number of images loaded in the filter page. To avoid loading too many images and exhausting the system memory, the browser crashes. When the number of loaded images reaches this value, the page will pause loading more images until the image is manually processed and some images are deleted. The subsequent pages will continue to load the remaining image data until the upper limit is reached again."
+   },
+   "opt_main_config_target_image_resolution": {
+      "message": "Target Image Resolution: "
+   },
+   "opt_main_funnel_title": {
+      "message": "Default Funnel Size"
+   },
+   "opt_main_funnel_warning": {
+      "message": "Tips: Pictures with resolution small than this will not shown in Pictures filter page."
+   },
+   "opt_main_size_option_custom_add": {
+      "message": "Add Item"
+   },
+   "opt_main_size_option_custom_height": {
+      "message": "Height"
+   },
+   "opt_main_size_option_custom_title": {
+      "message": "Custom Option"
+   },
+   "opt_main_size_option_custom_width": {
+      "message": "Width"
+   },
+   "opt_main_size_option_select_all": {
+      "message": "Select All"
+   },
+   "opt_main_size_option_select_none": {
+      "message": "Clear All"
+   },
+   "opt_main_size_option_title": {
+      "message": "Size Option"
+   },
+   "opt_navbar_item_pwd_home": {
+      "message": " Pullywood Production"
+   },
+   "opt_sidebar_item_about": {
+      "message": " About"
+   },
+   "opt_sidebar_item_ext_option": {
+      "message": " Options"
+   },
+   "pop_doc_title": {
+      "message": "Popup Menu"
+   },
+   "pop_menu_item_about": {
+      "message": " About"
+   },
+   "pop_menu_item_analyze_prefetch": {
+      "message": " Analyze Prefetch(Bomb+)"
+   },
+   "pop_menu_item_ext_cur_page": {
+      "message": " Extract Current Page"
+   },
+   "pop_menu_item_ext_favorite": {
+      "message": " Use on iPhone/iPad"
+   },
+   "pop_menu_item_ext_multi_url": {
+      "message": "  multi URL extractor"
+   },
+   "pop_menu_item_ext_option": {
+      "message": " Options"
+   },
+   "pop_menu_item_image_editor": {
+      "message": " Image Editor(experimental)"
+   },
+   "pop_menu_item_prefetch_link": {
+      "message": " Prefetch Links(Bomb)"
+   },
+   "pop_menu_item_qrcode_current_page": {
+      "message": " QRCode Current Page"
+   }
+}

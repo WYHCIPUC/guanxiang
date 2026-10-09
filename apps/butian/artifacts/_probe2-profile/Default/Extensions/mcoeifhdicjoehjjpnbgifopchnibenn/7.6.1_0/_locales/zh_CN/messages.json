@@ -1,0 +1,146 @@
+{
+   "appDesc": {
+      "description": "扩展程序的描述。",
+      "message": "网页收藏、高亮标注、阅读笔记。为学习而生的 AI 阅读器。"
+   },
+   "appName": {
+      "description": "扩展程序名称。",
+      "message": "Cubox"
+   },
+   "appNameShort": {
+      "description": "扩展程序的简称。",
+      "message": "Cubox"
+   },
+   "bookmark_save_description_prefix": {
+      "description": "「来自 XX 的收藏」描述内容格式前缀",
+      "message": "来自"
+   },
+   "bookmark_save_description_suffix": {
+      "description": "「来自 XX 的收藏」描述内容格式后缀",
+      "message": "的收藏"
+   },
+   "context_menu_all_bookmarks": {
+      "description": "右键菜单的「所有收藏」标题。",
+      "message": "我的所有收藏"
+   },
+   "context_menu_save_image": {
+      "description": "save image to cubox",
+      "message": "收藏图片到 Cubox"
+   },
+   "context_menu_save_link": {
+      "description": "save link to cubox",
+      "message": "收藏链接到 Cubox"
+   },
+   "context_menu_save_page": {
+      "description": "save page to cubox",
+      "message": "收藏网页到 Cubox"
+   },
+   "context_menu_save_selection": {
+      "description": "save selection to cubox",
+      "message": "收藏内容到 Cubox"
+   },
+   "context_menu_setting_keyboard": {
+      "description": "右键菜单的「快捷键设置」标题。",
+      "message": "快捷键设置"
+   },
+   "context_menu_tutorial": {
+      "description": "右键菜单的「收藏教程」标题。",
+      "message": "收藏教程"
+   },
+   "context_setting": {
+      "description": "扩展设置",
+      "message": "扩展设置"
+   },
+   "cubox_bookmark": {
+      "description": "书签",
+      "message": "书签"
+   },
+   "cubox_bookmark_0_1": {
+      "description": "网页",
+      "message": "网页"
+   },
+   "cubox_bookmark_0_2": {
+      "description": "文章",
+      "message": "文章"
+   },
+   "cubox_bookmark_1": {
+      "description": "片段",
+      "message": "片段"
+   },
+   "cubox_bookmark_2": {
+      "description": "速记",
+      "message": "速记"
+   },
+   "cubox_bookmark_3": {
+      "description": "图片",
+      "message": "图片"
+   },
+   "cubox_bookmark_4": {
+      "description": "语音",
+      "message": "语音"
+   },
+   "cubox_bookmark_5": {
+      "description": "视频",
+      "message": "视频"
+   },
+   "cubox_bookmark_6": {
+      "description": "文件",
+      "message": "文件"
+   },
+   "cubox_folder": {
+      "description": "收藏夹",
+      "message": "收藏夹"
+   },
+   "cubox_folder_smart": {
+      "description": "智能列表",
+      "message": "智能列表"
+   },
+   "cubox_tag": {
+      "description": "标签",
+      "message": "标签"
+   },
+   "cubox_web_inbox": {
+      "description": "cubox web inbox page",
+      "message": "访问我的 Cubox"
+   },
+   "extension_browser_action_default_title": {
+      "description": "popup 悬浮提示文案。",
+      "message": "保存到 Cubox (⌘⇧X)"
+   },
+   "extension_homepage": {
+      "description": "扩展程序主页。",
+      "message": "https://cubox.pro"
+   },
+   "extension_suggested_key_description": {
+      "description": "快捷键打开 popup 提示文案",
+      "message": "Open Cubox."
+   },
+   "notification_title_account_login": {
+      "description": "鉴权失败，重新登录的通知文案，chrome 适用。",
+      "message": "请先登录 Cubox"
+   },
+   "notification_title_account_plus": {
+      "description": "账户升级的通知文案，chrome 适用。",
+      "message": "基础账户最多收藏 200 个书签，请升级会员。"
+   },
+   "notification_title_save_error": {
+      "description": "收藏失败的通知文案，chrome 适用。",
+      "message": "收藏失败"
+   },
+   "notification_title_save_error_url": {
+      "description": "链接地址错误导致的收藏失败的通知文案，chrome 适用。",
+      "message": "未找到可收藏的地址"
+   },
+   "notification_title_save_start": {
+      "description": "正在收藏的通知文案，chrome 适用。",
+      "message": "正在收藏到 Cubox"
+   },
+   "notification_title_save_success": {
+      "description": "收藏成功的通知文案，chrome 适用。",
+      "message": "收藏成功"
+   },
+   "omnibox_suggestion_prefix": {
+      "description": "omnibox 搜索提示前缀，chrome 适用",
+      "message": "在 Cubox 中搜索 "
+   }
+}

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent, type KeyboardEvent as ReactKeyboardEvent } from 'react'
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent as ReactMouseEvent } from 'react'
 import { ArrowLeft, ChevronDown, Download, Info, RotateCcw, Sparkles, X } from 'lucide-react'
 import { chinaLines, locations, stars, timeLabels, westernLines } from '../data/demo'
 import { starfield as hygStars } from '../data/starfield'
@@ -294,6 +294,56 @@ function App() {
     pickStar(star)
   }
 
+  // 星图缩放与拖拽：滚轮/按钮缩放（1–3.5 倍）、拖拽平移（位移超阈值才认，防误触星点点击）、
+  // 双击或按钮复位。触屏保留纵向页面滚动（touch-action: pan-y），横向拖动星图。
+  const [skyView, setSkyView] = useState({ scale: 1, tx: 0, ty: 0 })
+  const skyStageRef = useRef<HTMLDivElement>(null)
+  const skyDragRef = useRef({ active: false, moved: false, lastX: 0, lastY: 0 })
+  const clampSkyView = (view: { scale: number; tx: number; ty: number }) => ({
+    scale: Math.min(3.5, Math.max(1, view.scale)),
+    tx: Math.max(-46, Math.min(46, view.tx)),
+    ty: Math.max(-46, Math.min(46, view.ty)),
+  })
+  const resetSkyView = () => setSkyView({ scale: 1, tx: 0, ty: 0 })
+
+  useEffect(() => {
+    if (!isReady) return
+    const stage = skyStageRef.current
+    if (!stage) return
+    const onWheel = (event: WheelEvent) => {
+      event.preventDefault()
+      setSkyView((view) => clampSkyView({ ...view, scale: view.scale * (event.deltaY < 0 ? 1.18 : 1 / 1.18) }))
+    }
+    stage.addEventListener('wheel', onWheel, { passive: false })
+    return () => stage.removeEventListener('wheel', onWheel)
+  }, [isReady])
+
+  const onSkyPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    skyDragRef.current = { active: true, moved: false, lastX: event.clientX, lastY: event.clientY }
+  }
+  const onSkyPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const drag = skyDragRef.current
+    if (!drag.active) return
+    const dx = event.clientX - drag.lastX
+    const dy = event.clientY - drag.lastY
+    drag.lastX = event.clientX
+    drag.lastY = event.clientY
+    if (!drag.moved && Math.abs(dx) + Math.abs(dy) < 2) return
+    drag.moved = true
+    const rect = skyStageRef.current?.getBoundingClientRect()
+    if (!rect) return
+    setSkyView((view) => clampSkyView({ ...view, tx: view.tx + (dx / rect.width) * 100, ty: view.ty + (dy / rect.height) * 100 }))
+  }
+  const onSkyPointerEnd = () => { skyDragRef.current.active = false }
+  // 拖拽后的松手 click 不应选中星点/触发展开——捕获阶段拦截
+  const onCanvasClickCapture = (event: ReactMouseEvent<HTMLDivElement>) => {
+    if (skyDragRef.current.moved) {
+      event.stopPropagation()
+      event.preventDefault()
+      skyDragRef.current.moved = false
+    }
+  }
+
   const startMeasuring = (star: Star = target) => {
     setSelectedStar(star)
     setShowLocation(false)
@@ -430,10 +480,17 @@ function App() {
         </div>
 
         <div
+          ref={skyStageRef}
           className={`sky-stage${selectedStar ? ' has-selection' : ''}${guestPlacement?.scene.daytime ? ' daytime' : ''}`}
+          onPointerDown={onSkyPointerDown}
+          onPointerMove={onSkyPointerMove}
+          onPointerUp={onSkyPointerEnd}
+          onPointerLeave={onSkyPointerEnd}
+          onDoubleClick={resetSkyView}
           onClick={(event) => { if (event.target === event.currentTarget) setRevealedGroup(null) }}
         >
           <div className="silk-grain" style={{ backgroundImage: `url("${silkGrain}")` }} aria-hidden="true" />
+          <div className="sky-canvas" onClickCapture={onCanvasClickCapture} style={{ transform: `translate(${skyView.tx}%, ${skyView.ty}%) scale(${skyView.scale})` }}>
           <svg className="constellation-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
             {fieldDots.map((dot, index) => (
               <circle key={index} className="field-star" cx={dot.x} cy={dot.y} r={dot.r} fillOpacity={dot.o} />
@@ -513,6 +570,12 @@ function App() {
               <span className="guest-label">{guestPlacement.scene.visible ? '天关客星' : '客星已没'}</span>
             </div>
           )}
+          </div>
+          <div className="sky-zoom" role="group" aria-label="星图缩放" onPointerDown={(event) => event.stopPropagation()}>
+            <button onClick={() => setSkyView((view) => clampSkyView({ ...view, scale: view.scale * 1.35 }))} aria-label="放大星图">＋</button>
+            <button onClick={() => setSkyView((view) => clampSkyView({ ...view, scale: view.scale / 1.35 }))} aria-label="缩小星图">－</button>
+            <button onClick={resetSkyView} aria-label="复位星图"><RotateCcw size={13} /></button>
+          </div>
         </div>
 
         <div className="observatory-actions">

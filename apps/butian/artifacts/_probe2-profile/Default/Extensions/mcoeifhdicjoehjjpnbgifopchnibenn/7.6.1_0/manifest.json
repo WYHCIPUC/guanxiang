@@ -1,0 +1,55 @@
+{
+   "action": {
+      "default_icon": {
+         "16": "icon/toolbar-icon-16.png",
+         "24": "icon/toolbar-icon-24.png",
+         "32": "icon/toolbar-icon-32.png"
+      }
+   },
+   "author": "Odd Lab",
+   "background": {
+      "service_worker": "js/worker.js"
+   },
+   "commands": {
+      "_execute_action": {
+         "description": "__MSG_extension_suggested_key_description__",
+         "suggested_key": {
+            "chromeos": "Ctrl+Shift+X",
+            "default": "Ctrl+Shift+X",
+            "linux": "Ctrl+Shift+X",
+            "mac": "Command+Shift+X",
+            "windows": "Ctrl+Shift+X"
+         }
+      }
+   },
+   "content_scripts": [ {
+      "js": [ "js/content.js" ],
+      "matches": [ "http://*/*", "https://*/*", "file://*/*" ],
+      "run_at": "document_end"
+   } ],
+   "default_locale": "en",
+   "description": "__MSG_appDesc__",
+   "host_permissions": [ "https://*.cubox.pro/", "https://*.cubox.cc/" ],
+   "icons": {
+      "128": "icon/icon-128.png",
+      "16": "icon/icon-16.png",
+      "48": "icon/icon-48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsxxb1WJ5TGpUMYMlBywQyACbcbVgEXL7yvyo/p2A6lDlPOiHAOf39f09+nMl1mhv1Dw2q2NXivqWYpoTR2AiRtHK1au3WsuCIIVYZLxxfnXMPSSOR3VIOjxj/3pzjnSbAG2n8wMi783TC/D3n7u78dteOSwVkRu1Zs6zDpbXyCYza7lmmRxjdQpe6FdPG6qkhlUnrN7tz5hXRS5Hi7T/HMfGUot3aFpF7pW2LfKIGayWAcD9FfsHSLbpMfplPJrgi8O7qnRLKsZAWBotLt3/PSzsCtCeQpWNgan7Cs5qAAUOjknjTnTSsdt+5V0ccsfEvWmsb+V+DN5FiAfYXfNy0QIDAQAB",
+   "manifest_version": 3,
+   "name": "__MSG_appName__",
+   "omnibox": {
+      "keyword": "c"
+   },
+   "optional_permissions": [  ],
+   "options_page": "html/preferences.html",
+   "permissions": [ "activeTab", "storage", "cookies", "contextMenus", "tabs" ],
+   "short_name": "__MSG_appNameShort__",
+   "update_url": "https://edge.microsoft.com/extensionwebstorebase/v1/crx",
+   "version": "7.6.1",
+   "version_name": "7.6.1",
+   "web_accessible_resources": [ {
+      "matches": [ "http://*/*", "https://*/*" ],
+      "resources": [ "html/*", "css/*", "fonts/*", "audio/*" ]
+   } ]
+}
