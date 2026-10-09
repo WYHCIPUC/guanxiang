@@ -29,11 +29,13 @@ jobs:
       - name: Install dependencies
         # npm 的平台 optional 依赖 bug（npm/cli#4828）：Windows 生成的 lockfile 只含 win32 二进制，
         # linux 上 npm ci/install 都不会补装 linux 原生绑定。typescript 的已用 lockfile 条目补齐；
-        # rolldown binding 与其主包版本严格绑定，按实际安装的 rolldown 版本显式补装。
+        # rolldown/lightningcss 的 binding 与主包版本严格绑定，按实际安装版本显式补装。
         run: |
           npm install --no-audit --no-fund
-          ROLLDOWN_VER=$(node -p "require('./apps/butian/node_modules/rolldown/package.json').version")
-          npm install --no-save --no-audit "@rolldown/binding-linux-x64-gnu@$ROLLDOWN_VER"
+          cd apps/butian
+          npm install --no-save --no-audit \
+            "@rolldown/binding-linux-x64-gnu@$(node -p "require('rolldown/package.json').version")" \
+            "lightningcss-linux-x64-gnu@$(node -p "require('lightningcss/package.json').version")"
       - name: Build and checks
         run: |
           npm run build
