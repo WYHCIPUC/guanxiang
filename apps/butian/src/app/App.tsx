@@ -37,6 +37,8 @@ const AIM_HOME = { x: 21, y: 28 }
 function App() {
   const [mode, setMode] = useState<SkyMode>('china')
   const [selectedStar, setSelectedStar] = useState<Star | null>(null)
+  // 星图缩放与平移状态（声明在 labelPlan 之前——标签碰撞盒随缩放倍数缩放）
+  const [skyView, setSkyView] = useState({ scale: 1, tx: 0, ty: 0 })
   // 触屏无 hover：点按宿群成员展开整组星名（再点同组或点空白处收回）；桌面 hover 行为不变
   const [revealedGroup, setRevealedGroup] = useState<string | null>(null)
   const [isMeasuring, setIsMeasuring] = useState(false)
@@ -193,10 +195,13 @@ function App() {
     const plan = new Map<string, LabelSpot>()
     const anchorHidden = new Map<string, number>()
     const visible = stars.filter((star) => placements.get(star.id)?.above)
-    // 叠合模式的双行芯片高度约为单行标签两倍，碰撞盒同步放大，否则必然互压
+    // 叠合模式的双行芯片高度约为单行标签两倍，碰撞盒同步放大，否则必然互压。
+    // 星图放大时屏幕上同样物理间距对应画布坐标的 1/scale——碰撞盒同步除以缩放倍数，
+    // 凑近看星时标签自然多亮出来，复位即回到疏朗全景。
+    const zoom = Math.max(1, skyView.scale)
     const isBoth = mode === 'both'
-    const boxW = isNarrow ? 15 : isBoth ? 5.6 : 4.8
-    const boxH = isNarrow ? (isBoth ? 9.5 : 4.8) : isBoth ? 6.6 : 3.2
+    const boxW = (isNarrow ? 15 : isBoth ? 5.6 : 4.8) / zoom
+    const boxH = (isNarrow ? (isBoth ? 9.5 : 4.8) : isBoth ? 6.6 : 3.2) / zoom
     // 宿群锚点：同组升起成员 ≥4 时只保留组内第一颗（距星）参与排布，其余降为悬停展开并计入"+N"
     // 宿度环已挂牌二十八宿宿名：普通宿无论升起几颗都整组降为悬停（哨兵 ''），避免"奎娄壁室"一带的标签串珠
     const groupCounts = new Map<string, number>()
@@ -235,17 +240,17 @@ function App() {
         continue
       }
       const p = placements.get(star.id)!
-      const w = boxW + (anchorHidden.has(star.id) ? 2.4 : 0)
-      const below = { x: p.x, y: p.y + (isBoth ? (isNarrow ? 4.6 : 3.6) : isNarrow ? 3.2 : 2.9) }
+      const w = boxW + (anchorHidden.has(star.id) ? 2.4 / zoom : 0)
+      const below = { x: p.x, y: p.y + ((isBoth ? (isNarrow ? 4.6 : 3.6) : isNarrow ? 3.2 : 2.9) / zoom) }
       // 右缘标签向左挂，避免被视口裁切（移动端阈值更宽）
       const sideLeft = p.x > (isNarrow ? 76 : 80)
-      const side = { x: p.x + (sideLeft ? -(w / 2 + 2.2) : w / 2 + 2.2), y: p.y }
+      const side = { x: p.x + (sideLeft ? -(w / 2 + 2.2 / zoom) : w / 2 + 2.2 / zoom), y: p.y }
       if (!hits(below, w)) { placed.push(below); plan.set(star.id, 'below') }
       else if (!hits(side, w)) { placed.push(side); plan.set(star.id, 'side') }
       else plan.set(star.id, 'hint')
     }
     return { plan, anchorHidden }
-  }, [placements, isNarrow, mode])
+  }, [placements, isNarrow, mode, skyView.scale])
 
   // 参宿四作为“参宿是否已升”的锚点；未升时给出今夜的升起时刻
   const shenAnchor = stars.find((star) => star.id === 'shen-4') ?? stars[0]
@@ -296,7 +301,6 @@ function App() {
 
   // 星图缩放与拖拽：滚轮/按钮缩放（1–3.5 倍）、拖拽平移（位移超阈值才认，防误触星点点击）、
   // 双击或按钮复位。触屏保留纵向页面滚动（touch-action: pan-y），横向拖动星图。
-  const [skyView, setSkyView] = useState({ scale: 1, tx: 0, ty: 0 })
   const skyStageRef = useRef<HTMLDivElement>(null)
   const skyDragRef = useRef({ active: false, moved: false, lastX: 0, lastY: 0 })
   const clampSkyView = (view: { scale: number; tx: number; ty: number }) => ({
@@ -490,7 +494,7 @@ function App() {
           onClick={(event) => { if (event.target === event.currentTarget) setRevealedGroup(null) }}
         >
           <div className="silk-grain" style={{ backgroundImage: `url("${silkGrain}")` }} aria-hidden="true" />
-          <div className="sky-canvas" onClickCapture={onCanvasClickCapture} style={{ transform: `translate(${skyView.tx}%, ${skyView.ty}%) scale(${skyView.scale})` }}>
+          <div className="sky-canvas" onClickCapture={onCanvasClickCapture} style={{ transform: `translate(${skyView.tx}%, ${skyView.ty}%) scale(${skyView.scale})`, ['--sky-zoom' as string]: skyView.scale }}>
           <svg className="constellation-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
             {fieldDots.map((dot, index) => (
               <circle key={index} className="field-star" cx={dot.x} cy={dot.y} r={dot.r} fillOpacity={dot.o} />

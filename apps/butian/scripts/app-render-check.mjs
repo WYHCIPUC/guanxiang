@@ -191,6 +191,15 @@ try {
     ;([...document.querySelectorAll('.sky-zoom button')].find((button) => button.getAttribute('aria-label') === '放大星图')).click()
     await settle()
     assert((canvas.getAttribute('style') || '').includes('scale(1.35'), '点击放大应提高缩放比例')
+    // 放大后碰撞盒按倍数缩小：原本被挤压降隐的标签应亮出更多
+    const hintsBefore = document.querySelectorAll('.star-label.hint').length
+    for (let i = 0; i < 2; i++) {
+      ;([...document.querySelectorAll('.sky-zoom button')].find((button) => button.getAttribute('aria-label') === '放大星图')).click()
+      await settle()
+    }
+    const hintsAfter = document.querySelectorAll('.star-label.hint').length
+    assert(hintsAfter < hintsBefore, `放大后隐藏标签应减少（${hintsBefore} → ${hintsAfter}）`)
+    assert(canvas.getAttribute('style')?.includes('--sky-zoom'), '画布应暴露缩放变量供标签反缩放')
     ;([...document.querySelectorAll('.sky-zoom button')].find((button) => button.getAttribute('aria-label') === '复位星图')).click()
     await settle()
     assert((canvas.getAttribute('style') || '').includes('scale(1)'), '复位应回到原始比例')
