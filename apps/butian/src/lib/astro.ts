@@ -51,7 +51,7 @@ export const lodges: Lodge[] = [
   { name: '鬼', determinative: '鬼宿一 · θ Cnc', raHours: 8.5266, decDegrees: 18.0944 },
   { name: '柳', determinative: '柳宿一 · δ Hya', raHours: 8.6276, decDegrees: 5.7038 },
   { name: '星', determinative: '星宿一 · α Hya', raHours: 9.4598, decDegrees: -8.6586 },
-  { name: '张', determinative: '张宿一 · ν¹ Hya', raHours: 10.8271, decDegrees: -16.1936 },
+  { name: '张', determinative: '张宿一 · υ¹ Hya', raHours: 9.858, decDegrees: -14.8466 },
   { name: '翼', determinative: '翼宿一 · α Crt', raHours: 10.9962, decDegrees: -18.2988 },
   { name: '轸', determinative: '轸宿一 · γ Crv', raHours: 12.2634, decDegrees: -17.5419 },
 ]

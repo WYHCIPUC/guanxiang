@@ -19,7 +19,7 @@ const memberships = [
   { id: 'wei', name: '尾', con: 'Sco', members: ['bayer:μ¹', 'bayer:ε', 'bayer:ζ²', 'bayer:η', 'bayer:θ', 'bayer:ι¹', 'bayer:κ', 'bayer:λ', 'bayer:υ'], note: '苍龙之尾，即天蝎弯钩的毒刺。尾宿九星蜿蜒于银河最亮处。' },
   { id: 'ji', name: '箕', con: 'Sgr', members: ['bayer:γ', 'bayer:δ', 'bayer:ε', 'bayer:η'], note: '簸箕。箕宿四星成梯形，《诗经》「维南有箕，不可以簸扬」。' },
   { id: 'nandou', name: '斗', con: 'Sgr', members: ['bayer:φ', 'bayer:λ', 'bayer:μ', 'bayer:σ', 'bayer:τ', 'bayer:ζ'], note: '南斗六星，与北斗隔天相对。人马座的「奶勺」，浸在银河里。' },
-  { id: 'niu', name: '牛', con: 'Cap', members: ['bayer:β', 'bayer:α²', 'bayer:θ', 'bayer:ι', 'bayer:γ'], note: '牵牛之宿（非牛郎星）。牛宿在摩羯座，古以牛宿纪冬至。' },
+  { id: 'niu', name: '牛', con: 'Cap', members: ['bayer:β', 'bayer:α²', 'bayer:ξ²', 'bayer:π', 'bayer:ο', 'bayer:ρ'], note: '牵牛之宿（非牛郎星）。牛宿在摩羯座，古以牛宿纪冬至。' },
   { id: 'nv', name: '女', con: 'Aqr', members: ['bayer:ε', 'bayer:μ', 'fl:4', 'fl:3'], note: '婺女，又称须女。宝瓶座一小簇暗星，织布之女的象征。' },
   { id: 'xu', name: '虚', con: 'Aqr', members: ['bayer:β', 'bayer:α'], note: '虚无之宿，古记「虚星为秋分」。尧典「日短星昴」的对宫。' },
   { id: 'weix', name: '危', con: 'Aqr', members: ['bayer:α', 'con+bayer:Peg:θ', 'con+bayer:Peg:ε'], note: '危者高也，屋脊之象。三星跨宝瓶与飞马，秋夜南中。' },
@@ -29,15 +29,15 @@ const memberships = [
   { id: 'lou', name: '娄', con: 'Ari', members: ['bayer:β', 'bayer:γ', 'bayer:α'], note: '娄者聚也。娄宿三星在白羊座，古以娄宿纪春分日所在。' },
   { id: 'wei2', name: '胃', con: 'Ari', members: ['fl:35', 'fl:39', 'fl:41'], note: '胃为仓廪，天库。白羊座三颗小星，朴素得需要耐心找。' },
   { id: 'mao', name: '昴', con: 'Tau', members: ['fl:17', 'fl:19', 'fl:20', 'fl:23', 'fl:25', 'fl:27', 'fl:28'], note: '昴宿即七姊妹星团。肉眼能数清几颗，自古就是视力的试金石。' },
-  { id: 'bii', name: '毕', con: 'Tau', members: ['bayer:ε', 'bayer:δ³', 'bayer:δ¹', 'bayer:γ', 'ref:bi-5', 'bayer:θ', 'bayer:λ'], note: '毕是捕兔的网。《诗经》「月离于毕，俾滂沱矣」——月亮走进毕宿要下大雨。' },
+  { id: 'bii', name: '毕', con: 'Tau', members: ['bayer:ε', 'bayer:δ³', 'bayer:δ¹', 'bayer:γ', 'ref:bi-5', 'bayer:θ', 'skip:毕宿七为暗星未入亮星表', 'bayer:λ'], note: '毕是捕兔的网。《诗经》「月离于毕，俾滂沱矣」——月亮走进毕宿要下大雨。' },
   { id: 'zi', name: '觜', con: 'Ori', members: ['bayer:λ', 'bayer:φ¹', 'bayer:φ²'], note: '觜为虎首。觜宿三星在猎户头顶，与参宿距星相距不足一度，古有「觜参之辩」。' },
-  { id: 'jing', name: '井', con: 'Gem', members: ['bayer:μ', 'bayer:ε', 'bayer:ζ', 'bayer:γ', 'bayer:ξ', 'bayer:δ', 'bayer:λ'], note: '井为水井，八星如井栏横银河。双子座全域，冬夜最热闹的天区。' },
-  { id: 'gui', name: '鬼', con: 'Cnc', members: ['bayer:θ', 'bayer:η', 'bayer:γ', 'bayer:δ', 'bayer:κ'], note: '鬼宿中央的朦胧光斑（积尸气，M44蜂巢星团）肉眼可见，古称「白骨之气」。' },
+  { id: 'jing', name: '井', con: 'Gem', members: ['bayer:μ', 'bayer:ε', 'bayer:ζ', 'bayer:γ', 'bayer:ξ', 'bayer:δ', 'bayer:λ', 'bayer:ν'], note: '井为水井，八星如井栏横银河。双子座全域，冬夜最热闹的天区。' },
+  { id: 'gui', name: '鬼', con: 'Cnc', members: ['bayer:θ', 'bayer:η', 'bayer:γ', 'bayer:δ'], note: '鬼宿中央的朦胧光斑（积尸气，M44蜂巢星团）肉眼可见，古称「白骨之气」。' },
   { id: 'liu', name: '柳', con: 'Hya', members: ['bayer:δ', 'bayer:σ', 'bayer:η', 'bayer:ρ', 'bayer:ε', 'bayer:ζ', 'bayer:ω', 'bayer:θ'], note: '柳为朱雀之喙。长蛇座一曲垂星，春夜横亘南方。' },
   { id: 'xing', name: '星', con: 'Hya', members: ['bayer:α', 'bayer:τ¹', 'bayer:τ²', 'bayer:ι', 'fl:26', 'fl:27'], note: '七星为朱雀之颈。星宿一（Alphard）独亮于长蛇背上，阿拉伯人称「孤独者」。' },
-  { id: 'zhang', name: '张', con: 'Hya', members: ['bayer:ν¹', 'bayer:ν²', 'bayer:μ', 'bayer:λ'], note: '张为朱雀之嗉。春夜南方长蛇中段的小星群。' },
+  { id: 'zhang', name: '张', con: 'Hya', members: ['bayer:υ¹', 'bayer:λ', 'bayer:μ', 'skip:张宿四为暗星未入亮星表', 'bayer:κ', 'bayer:φ¹'], note: '张为朱雀之嗉。春夜南方长蛇中段的小星群。' },
   { id: 'yi', name: '翼', con: 'Crt', members: ['bayer:α', 'bayer:γ', 'bayer:δ', 'bayer:β'], note: '翼为朱雀之翼，廿二星铺开如翅，主体在巨爵座（此处取其代表星）。' },
-  { id: 'zhen', name: '轸', con: 'Crv', members: ['bayer:γ', 'bayer:β', 'bayer:δ', 'bayer:ε', 'bayer:η'], note: '轸为车后横木，又主风。乌鸦座五星是春夜的明显路标。' },
+  { id: 'zhen', name: '轸', con: 'Crv', members: ['bayer:γ', 'bayer:ε', 'bayer:δ', 'bayer:β'], note: '轸为车后横木，又主风。乌鸦座四星是春夜的明显路标，另辖左辖右辖长沙诸附官。' },
 ]
 
 // 西方星座中文名
@@ -114,6 +114,11 @@ for (const lodge of memberships) {
       ids.push(spec.slice(4))
       return
     }
+    // skip: 占用传统编号但不入表（暗星未达亮星门槛），保证后续成员编号与《仪象考成》位次一致
+    if (spec.startsWith('skip:')) {
+      ids.push(null)
+      return
+    }
     const star = findStar(spec, lodge.con)
     if (!star) throw new Error(`${lodge.name}宿第 ${index + 1} 星未找到：${spec}`)
     const id = `${lodge.id}-${index + 1}`
@@ -133,7 +138,7 @@ for (const lodge of memberships) {
       decDegrees: Math.round(star.dec * 10000) / 10000,
     })
   })
-  for (let i = 0; i + 1 < ids.length; i++) lineEntries.push([ids[i], ids[i + 1]])
+  for (let i = 0; i + 1 < ids.length; i++) if (ids[i] && ids[i + 1]) lineEntries.push([ids[i], ids[i + 1]])
 }
 
 const banner = [

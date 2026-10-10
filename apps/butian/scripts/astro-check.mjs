@@ -235,15 +235,24 @@ near(astro.greenwichSiderealTimeHours(new Date(Date.UTC(2000, 0, 1, 12, 0, 0))),
   near(shen.decDegrees, -0.299088, 0.001, '参宿三赤纬应与权威值一致（校对报告锚点）')
 }
 
-// 成员星考据锚点（docs/butian/lodge-members-calibration.md，2026-10-10 四处错认修正后钉死）：
-// 壁宿二=α And、危宿二=θ Peg、危宿三=ε Peg、毕宿末位=λ Tau（β Tau 属五车星官不属毕宿）
+// 成员星考据锚点（docs/butian/lodge-members-calibration.md，两轮修正后钉死）：
+// 壁宿二=α And、危宿二=θ Peg、危宿三=ε Peg、毕宿八=λ Tau、张宿一=υ¹ Hya（IAU 正式名 Zhang）、
+// 轸宿四星正序、牛宿六星正官、鬼宿四星正官、井宿八星
 {
   const byName = Object.fromEntries(lodgeStars.map((star) => [star.name, star]))
   assert(byName['壁宿二']?.modernName.includes('α And'), '壁宿二应为仙女座 α（Alpheratz）')
   assert(byName['危宿二']?.modernName.includes('θ Peg'), '危宿二应为飞马座 θ（Biham）')
   assert(byName['危宿三']?.modernName.includes('ε Peg'), '危宿三应为飞马座 ε（Enif）')
-  assert(byName['毕宿七']?.modernName.includes('λ Tau'), '毕宿成员应为 λ Tau（β Tau 属五车星官）')
-  for (const name of ['壁宿二', '危宿二', '危宿三', '毕宿七']) {
+  assert(byName['毕宿八']?.modernName.includes('λ Tau'), '毕宿八应为 λ Tau（β Tau 属五车星官）')
+  assert(byName['张宿一']?.modernName.includes('υ¹ Hya'), '张宿一应为长蛇座 υ¹（IAU 正式名 Zhang）')
+  assert(!byName['毕宿七'], '毕宿七（暗星）应以 skip 占位不入表')
+  assert(!lodgeStars.some((star) => star.name === '鬼宿五'), '鬼宿正官应为四星（κ Cnc 属柳宿增星）')
+  assert(!lodgeStars.some((star) => star.name === '轸宿五'), '轸宿正官应为四星（η Crv 属左辖星官）')
+  assert(byName['牛宿三']?.modernName.includes('ξ² Cap'), '牛宿三应为摩羯座 ξ²')
+  assert(byName['牛宿六']?.modernName.includes('ρ Cap'), '牛宿六应为摩羯座 ρ')
+  assert(byName['井宿八']?.modernName.includes('ν Gem'), '井宿八应为双子座 ν')
+  assert(byName['轸宿四']?.modernName.includes('β Crv'), '轸宿四应为乌鸦座 β（Kraz）')
+  for (const name of ['壁宿二', '危宿二', '危宿三', '毕宿八', '张宿一', '牛宿三', '井宿八']) {
     const entry = astro.lodgeEntry(byName[name].raHours)
     assert(entry.lodge !== '未知', `${name} 的入宿度应可解析`)
   }
