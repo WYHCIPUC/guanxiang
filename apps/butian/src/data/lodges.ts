@@ -1,7 +1,8 @@
 // 二十八宿星官数据：由 scripts/build-lodges.mjs 生成，勿手改。
-// 成员识别为常见口径的手工整理（待逐宿校对）；J2000 坐标取自 HYG v3.5（CC BY-SA 4.0）。
-// 参宿已在 demo.ts 核心星表中，此处不含。距星在各宿首位。
-// 生成日期：2026-10-06
+// 成员认定经步天歌体系对照校对（docs/butian/lodge-members-calibration.md，错认已清零、
+// 暗星截断与附属星官口径已披露）；距星坐标经权威源核验（docs/butian/lodge-calibration.md）。
+// J2000 坐标取自 HYG v3.5（CC BY-SA 4.0）。参宿已在 demo.ts 核心星表中，此处不含。距星在各宿首位。
+// 生成日期：2026-10-10
 import type { Star } from '../types'
 
 export const lodgeStars: Star[] = [
@@ -53,12 +54,12 @@ export const lodgeStars: Star[] = [
   { id: 'xu-1', name: '虚宿一', modernName: '虚宿一 · β Aqr', x: 90, y: 96, magnitude: 2.9, chineseGroup: '虚宿', westernGroup: '宝瓶座', chineseNote: '虚无之宿，古记「虚星为秋分」。尧典「日短星昴」的对宫。', raHours: 21.526, decDegrees: -5.5712 },
   { id: 'xu-2', name: '虚宿二', modernName: '虚宿二 · α Aqr', x: 92, y: 90, magnitude: 2.95, chineseGroup: '虚宿', westernGroup: '宝瓶座', chineseNote: '虚无之宿，古记「虚星为秋分」。尧典「日短星昴」的对宫。', raHours: 22.0964, decDegrees: -0.3199 },
   { id: 'weix-1', name: '危宿一', modernName: '危宿一 · α Aqr', x: 92, y: 90, magnitude: 2.95, chineseGroup: '危宿', westernGroup: '宝瓶座', chineseNote: '危者高也，屋脊之象。三星跨宝瓶与飞马，秋夜南中。', raHours: 22.0964, decDegrees: -0.3199 },
-  { id: 'weix-2', name: '危宿二', modernName: '危宿二 · θ Aqr', x: 93, y: 98, magnitude: 4.17, chineseGroup: '危宿', westernGroup: '宝瓶座', chineseNote: '危者高也，屋脊之象。三星跨宝瓶与飞马，秋夜南中。', raHours: 22.2806, decDegrees: -7.7833 },
-  { id: 'weix-3', name: '危宿三', modernName: '危宿三 · 8 Peg', x: 91, y: 80, magnitude: 2.38, chineseGroup: '危宿', westernGroup: '飞马座', chineseNote: '危者高也，屋脊之象。三星跨宝瓶与飞马，秋夜南中。', raHours: 21.7364, decDegrees: 9.875 },
+  { id: 'weix-2', name: '危宿二', modernName: '危宿二 · θ Peg', x: 92, y: 84, magnitude: 3.52, chineseGroup: '危宿', westernGroup: '飞马座', chineseNote: '危者高也，屋脊之象。三星跨宝瓶与飞马，秋夜南中。', raHours: 22.17, decDegrees: 6.1979 },
+  { id: 'weix-3', name: '危宿三', modernName: '危宿三 · ε Peg', x: 91, y: 80, magnitude: 2.38, chineseGroup: '危宿', westernGroup: '飞马座', chineseNote: '危者高也，屋脊之象。三星跨宝瓶与飞马，秋夜南中。', raHours: 21.7364, decDegrees: 9.875 },
   { id: 'shi-1', name: '室宿一', modernName: '室宿一 · α Peg', x: 96, y: 75, magnitude: 2.49, chineseGroup: '室宿', westernGroup: '飞马座', chineseNote: '营室，天子的宫室。室壁二宿合为秋季四边形，今夜观天的路标。', raHours: 23.0793, decDegrees: 15.2053 },
   { id: 'shi-2', name: '室宿二', modernName: '室宿二 · β Peg', x: 96, y: 62, magnitude: 2.44, chineseGroup: '室宿', westernGroup: '飞马座', chineseNote: '营室，天子的宫室。室壁二宿合为秋季四边形，今夜观天的路标。', raHours: 23.0629, decDegrees: 28.0828 },
   { id: 'bi-1', name: '壁宿一', modernName: '壁宿一 · γ Peg', x: 1, y: 75, magnitude: 2.83, chineseGroup: '壁宿', westernGroup: '飞马座', chineseNote: '东壁，藏书之府。壁宿二（壁宿二·α And）是秋四边形的东北角。', raHours: 0.2206, decDegrees: 15.1836 },
-  { id: 'bi-2', name: '壁宿二', modernName: '壁宿二 · 21 And', x: 1, y: 61, magnitude: 2.07, chineseGroup: '壁宿', westernGroup: '仙女座', chineseNote: '东壁，藏书之府。壁宿二（壁宿二·α And）是秋四边形的东北角。', raHours: 0.1398, decDegrees: 29.0904 },
+  { id: 'bi-2', name: '壁宿二', modernName: '壁宿二 · α And', x: 1, y: 61, magnitude: 2.07, chineseGroup: '壁宿', westernGroup: '仙女座', chineseNote: '东壁，藏书之府。壁宿二（壁宿二·α And）是秋四边形的东北角。', raHours: 0.1398, decDegrees: 29.0904 },
   { id: 'kui-1', name: '奎宿一', modernName: '奎宿一 · η And', x: 4, y: 67, magnitude: 4.4, chineseGroup: '奎宿', westernGroup: '仙女座', chineseNote: '奎为沟渎，又主文运——「奎主文章」。仙女座一线连向飞马。', raHours: 0.9534, decDegrees: 23.4176 },
   { id: 'kui-2', name: '奎宿二', modernName: '奎宿二 · ζ And', x: 3, y: 66, magnitude: 4.08, chineseGroup: '奎宿', westernGroup: '仙女座', chineseNote: '奎为沟渎，又主文运——「奎主文章」。仙女座一线连向飞马。', raHours: 0.789, decDegrees: 24.2672 },
   { id: 'kui-3', name: '奎宿三', modernName: '奎宿三 · ε And', x: 3, y: 61, magnitude: 4.34, chineseGroup: '奎宿', westernGroup: '仙女座', chineseNote: '奎为沟渎，又主文运——「奎主文章」。仙女座一线连向飞马。', raHours: 0.6426, decDegrees: 29.3118 },
@@ -83,7 +84,7 @@ export const lodgeStars: Star[] = [
   { id: 'bii-3', name: '毕宿三', modernName: '毕宿三 · δ¹ Tau', x: 18, y: 72, magnitude: 3.77, chineseGroup: '毕宿', westernGroup: '金牛座', chineseNote: '毕是捕兔的网。《诗经》「月离于毕，俾滂沱矣」——月亮走进毕宿要下大雨。', raHours: 4.3822, decDegrees: 17.5425 },
   { id: 'bii-4', name: '毕宿四', modernName: '毕宿四 · γ Tau', x: 18, y: 74, magnitude: 3.65, chineseGroup: '毕宿', westernGroup: '金牛座', chineseNote: '毕是捕兔的网。《诗经》「月离于毕，俾滂沱矣」——月亮走进毕宿要下大雨。', raHours: 4.3299, decDegrees: 15.6276 },
   { id: 'bii-6', name: '毕宿六', modernName: '毕宿六 · θ Tau', x: 19, y: 74, magnitude: 3.4, chineseGroup: '毕宿', westernGroup: '金牛座', chineseNote: '毕是捕兔的网。《诗经》「月离于毕，俾滂沱矣」——月亮走进毕宿要下大雨。', raHours: 4.4777, decDegrees: 15.8709 },
-  { id: 'bii-7', name: '毕宿七', modernName: '毕宿七 · β Tau', x: 23, y: 61, magnitude: 1.65, chineseGroup: '毕宿', westernGroup: '金牛座', chineseNote: '毕是捕兔的网。《诗经》「月离于毕，俾滂沱矣」——月亮走进毕宿要下大雨。', raHours: 5.4382, decDegrees: 28.6075 },
+  { id: 'bii-7', name: '毕宿七', modernName: '毕宿七 · λ Tau', x: 17, y: 78, magnitude: 3.41, chineseGroup: '毕宿', westernGroup: '金牛座', chineseNote: '毕是捕兔的网。《诗经》「月离于毕，俾滂沱矣」——月亮走进毕宿要下大雨。', raHours: 4.0113, decDegrees: 12.4903 },
   { id: 'zi-1', name: '觜宿一', modernName: '觜宿一 · λ Ori', x: 23, y: 80, magnitude: 3.39, chineseGroup: '觜宿', westernGroup: '猎户座', chineseNote: '觜为虎首。觜宿三星在猎户头顶，与参宿距星相距不足一度，古有「觜参之辩」。', raHours: 5.5856, decDegrees: 9.9342 },
   { id: 'zi-2', name: '觜宿二', modernName: '觜宿二 · φ¹ Ori', x: 23, y: 81, magnitude: 4.39, chineseGroup: '觜宿', westernGroup: '猎户座', chineseNote: '觜为虎首。觜宿三星在猎户头顶，与参宿距星相距不足一度，古有「觜参之辩」。', raHours: 5.5803, decDegrees: 9.4896 },
   { id: 'zi-3', name: '觜宿三', modernName: '觜宿三 · φ² Ori', x: 23, y: 81, magnitude: 4.09, chineseGroup: '觜宿', westernGroup: '猎户座', chineseNote: '觜为虎首。觜宿三星在猎户头顶，与参宿距星相距不足一度，古有「觜参之辩」。', raHours: 5.6151, decDegrees: 9.2907 },

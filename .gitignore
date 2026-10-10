@@ -12,3 +12,4 @@ dist/
 **/_edge-profile*/
 .western-lines.json
 _probe-profile*/
+**/_probe*-profile/

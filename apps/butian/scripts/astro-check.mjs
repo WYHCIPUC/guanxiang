@@ -235,5 +235,19 @@ near(astro.greenwichSiderealTimeHours(new Date(Date.UTC(2000, 0, 1, 12, 0, 0))),
   near(shen.decDegrees, -0.299088, 0.001, '参宿三赤纬应与权威值一致（校对报告锚点）')
 }
 
+// 成员星考据锚点（docs/butian/lodge-members-calibration.md，2026-10-10 四处错认修正后钉死）：
+// 壁宿二=α And、危宿二=θ Peg、危宿三=ε Peg、毕宿末位=λ Tau（β Tau 属五车星官不属毕宿）
+{
+  const byName = Object.fromEntries(lodgeStars.map((star) => [star.name, star]))
+  assert(byName['壁宿二']?.modernName.includes('α And'), '壁宿二应为仙女座 α（Alpheratz）')
+  assert(byName['危宿二']?.modernName.includes('θ Peg'), '危宿二应为飞马座 θ（Biham）')
+  assert(byName['危宿三']?.modernName.includes('ε Peg'), '危宿三应为飞马座 ε（Enif）')
+  assert(byName['毕宿七']?.modernName.includes('λ Tau'), '毕宿成员应为 λ Tau（β Tau 属五车星官）')
+  for (const name of ['壁宿二', '危宿二', '危宿三', '毕宿七']) {
+    const entry = astro.lodgeEntry(byName[name].raHours)
+    assert(entry.lodge !== '未知', `${name} 的入宿度应可解析`)
+  }
+}
+
 console.log('天文计算校验通过')
 console.log('覆盖：恒星时、地平坐标、天穹投影、入宿度、去极度、升起时刻、日期进位、HYG 星表抽检、二十八宿距星交叉校验、距星权威锚点、西方星座数据、客星剧场、跨应用宿名序列一致')

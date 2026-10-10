@@ -22,14 +22,14 @@ const memberships = [
   { id: 'niu', name: '牛', con: 'Cap', members: ['bayer:β', 'bayer:α²', 'bayer:θ', 'bayer:ι', 'bayer:γ'], note: '牵牛之宿（非牛郎星）。牛宿在摩羯座，古以牛宿纪冬至。' },
   { id: 'nv', name: '女', con: 'Aqr', members: ['bayer:ε', 'bayer:μ', 'fl:4', 'fl:3'], note: '婺女，又称须女。宝瓶座一小簇暗星，织布之女的象征。' },
   { id: 'xu', name: '虚', con: 'Aqr', members: ['bayer:β', 'bayer:α'], note: '虚无之宿，古记「虚星为秋分」。尧典「日短星昴」的对宫。' },
-  { id: 'weix', name: '危', con: 'Aqr', members: ['bayer:α', 'bayer:θ', 'con+fl:Peg:8'], note: '危者高也，屋脊之象。三星跨宝瓶与飞马，秋夜南中。' },
+  { id: 'weix', name: '危', con: 'Aqr', members: ['bayer:α', 'con+bayer:Peg:θ', 'con+bayer:Peg:ε'], note: '危者高也，屋脊之象。三星跨宝瓶与飞马，秋夜南中。' },
   { id: 'shi', name: '室', con: 'Peg', members: ['bayer:α', 'bayer:β'], note: '营室，天子的宫室。室壁二宿合为秋季四边形，今夜观天的路标。' },
-  { id: 'bi', name: '壁', con: 'Peg', members: ['bayer:γ', 'con+fl:And:21'], note: '东壁，藏书之府。壁宿二（壁宿二·α And）是秋四边形的东北角。' },
+  { id: 'bi', name: '壁', con: 'Peg', members: ['bayer:γ', 'con+bayer:And:α'], note: '东壁，藏书之府。壁宿二（壁宿二·α And）是秋四边形的东北角。' },
   { id: 'kui', name: '奎', con: 'And', members: ['bayer:η', 'bayer:ζ', 'bayer:ε', 'bayer:δ', 'bayer:π', 'bayer:β'], note: '奎为沟渎，又主文运——「奎主文章」。仙女座一线连向飞马。' },
   { id: 'lou', name: '娄', con: 'Ari', members: ['bayer:β', 'bayer:γ', 'bayer:α'], note: '娄者聚也。娄宿三星在白羊座，古以娄宿纪春分日所在。' },
   { id: 'wei2', name: '胃', con: 'Ari', members: ['fl:35', 'fl:39', 'fl:41'], note: '胃为仓廪，天库。白羊座三颗小星，朴素得需要耐心找。' },
   { id: 'mao', name: '昴', con: 'Tau', members: ['fl:17', 'fl:19', 'fl:20', 'fl:23', 'fl:25', 'fl:27', 'fl:28'], note: '昴宿即七姊妹星团。肉眼能数清几颗，自古就是视力的试金石。' },
-  { id: 'bii', name: '毕', con: 'Tau', members: ['bayer:ε', 'bayer:δ³', 'bayer:δ¹', 'bayer:γ', 'ref:bi-5', 'bayer:θ', 'bayer:β'], note: '毕是捕兔的网。《诗经》「月离于毕，俾滂沱矣」——月亮走进毕宿要下大雨。' },
+  { id: 'bii', name: '毕', con: 'Tau', members: ['bayer:ε', 'bayer:δ³', 'bayer:δ¹', 'bayer:γ', 'ref:bi-5', 'bayer:θ', 'bayer:λ'], note: '毕是捕兔的网。《诗经》「月离于毕，俾滂沱矣」——月亮走进毕宿要下大雨。' },
   { id: 'zi', name: '觜', con: 'Ori', members: ['bayer:λ', 'bayer:φ¹', 'bayer:φ²'], note: '觜为虎首。觜宿三星在猎户头顶，与参宿距星相距不足一度，古有「觜参之辩」。' },
   { id: 'jing', name: '井', con: 'Gem', members: ['bayer:μ', 'bayer:ε', 'bayer:ζ', 'bayer:γ', 'bayer:ξ', 'bayer:δ', 'bayer:λ'], note: '井为水井，八星如井栏横银河。双子座全域，冬夜最热闹的天区。' },
   { id: 'gui', name: '鬼', con: 'Cnc', members: ['bayer:θ', 'bayer:η', 'bayer:γ', 'bayer:δ', 'bayer:κ'], note: '鬼宿中央的朦胧光斑（积尸气，M44蜂巢星团）肉眼可见，古称「白骨之气」。' },
@@ -90,6 +90,12 @@ function findStar(spec, con) {
     const loose = rows.filter((r) => r.con === con && r.bayer.startsWith(`${base}-`))
     return loose.sort((a, b) => a.mag - b.mag)[0]
   }
+  // 跨星座拜耳成员（如壁宿二 α And、危宿二 θ Peg）：星官成员常跨现代星座边界
+  if (spec.startsWith('con+bayer:')) {
+    const [, altCon, ...bayerParts] = spec.split(':')
+    const key = bayerKey(bayerParts.join(':'))
+    return rows.filter((r) => r.con === altCon && (r.bayer === key || r.bayer === key.split('-')[0])).sort((a, b) => a.mag - b.mag)[0]
+  }
   if (spec.startsWith('con+fl:')) {
     const [, altCon, flam] = spec.split(':')
     return rows.find((r) => r.con === altCon && r.flam === flam)
@@ -116,12 +122,12 @@ for (const lodge of memberships) {
     starEntries.push({
       id,
       name: `${lodge.name}宿${digits[index + 1]}`,
-      modernName: `${lodge.name}宿${digits[index + 1]} · ${label.replace('fl:', '')} ${spec.startsWith('con+fl:') ? spec.split(':')[1] : lodge.con}`,
+      modernName: `${lodge.name}宿${digits[index + 1]} · ${label.replace('fl:', '')} ${spec.startsWith('con+') ? spec.split(':')[1] : lodge.con}`,
       x: Math.round(((star.ra / 24) * 100) % 100),
       y: Math.round(90 - star.dec),
       magnitude: Math.round(star.mag * 100) / 100,
       chineseGroup: `${lodge.name}宿`,
-      westernGroup: westernOf[spec.startsWith('con+fl:') ? spec.split(':')[1] : lodge.con],
+      westernGroup: westernOf[spec.startsWith('con+') ? spec.split(':')[1] : lodge.con],
       chineseNote: lodge.note,
       raHours: Math.round(star.ra * 10000) / 10000,
       decDegrees: Math.round(star.dec * 10000) / 10000,
