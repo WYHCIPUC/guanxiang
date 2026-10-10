@@ -34,7 +34,7 @@ const memberships = [
   { id: 'jing', name: '井', con: 'Gem', members: ['bayer:μ', 'bayer:ε', 'bayer:ζ', 'bayer:γ', 'bayer:ξ', 'bayer:δ', 'bayer:λ', 'bayer:ν'], note: '井为水井，八星如井栏横银河。双子座全域，冬夜最热闹的天区。' },
   { id: 'gui', name: '鬼', con: 'Cnc', members: ['bayer:θ', 'bayer:η', 'bayer:γ', 'bayer:δ'], note: '鬼宿中央的朦胧光斑（积尸气，M44蜂巢星团）肉眼可见，古称「白骨之气」。' },
   { id: 'liu', name: '柳', con: 'Hya', members: ['bayer:δ', 'bayer:σ', 'bayer:η', 'bayer:ρ', 'bayer:ε', 'bayer:ζ', 'bayer:ω', 'bayer:θ'], note: '柳为朱雀之喙。长蛇座一曲垂星，春夜横亘南方。' },
-  { id: 'xing', name: '星', con: 'Hya', members: ['bayer:α', 'bayer:τ¹', 'bayer:τ²', 'bayer:ι', 'fl:26', 'fl:27'], note: '七星为朱雀之颈。星宿一（Alphard）独亮于长蛇背上，阿拉伯人称「孤独者」。' },
+  { id: 'xing', name: '星', con: 'Hya', members: ['bayer:α', 'bayer:τ¹', 'bayer:τ²', 'bayer:ι', 'fl:27', 'fl:26', 'skip:星宿七为暗星未入亮星表'], note: '七星为朱雀之颈。星宿一（Alphard）独亮于长蛇背上，阿拉伯人称「孤独者」。' },
   { id: 'zhang', name: '张', con: 'Hya', members: ['bayer:υ¹', 'bayer:λ', 'bayer:μ', 'skip:张宿四为暗星未入亮星表', 'bayer:κ', 'bayer:φ¹'], note: '张为朱雀之嗉。春夜南方长蛇中段的小星群。' },
   { id: 'yi', name: '翼', con: 'Crt', members: ['bayer:α', 'bayer:γ', 'bayer:δ', 'bayer:β'], note: '翼为朱雀之翼，廿二星铺开如翅，主体在巨爵座（此处取其代表星）。' },
   { id: 'zhen', name: '轸', con: 'Crv', members: ['bayer:γ', 'bayer:ε', 'bayer:δ', 'bayer:β'], note: '轸为车后横木，又主风。乌鸦座四星是春夜的明显路标，另辖左辖右辖长沙诸附官。' },

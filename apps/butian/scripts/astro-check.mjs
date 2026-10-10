@@ -252,6 +252,10 @@ near(astro.greenwichSiderealTimeHours(new Date(Date.UTC(2000, 0, 1, 12, 0, 0))),
   assert(byName['牛宿六']?.modernName.includes('ρ Cap'), '牛宿六应为摩羯座 ρ')
   assert(byName['井宿八']?.modernName.includes('ν Gem'), '井宿八应为双子座 ν')
   assert(byName['轸宿四']?.modernName.includes('β Crv'), '轸宿四应为乌鸦座 β（Kraz）')
+  // 星宿第四轮核对锚点：正官序 α/τ¹/τ²/ι/27/26（ν），星宿七为暗星 skip 占位
+  assert(byName['星宿五']?.modernName.includes('27 Hya'), '星宿五应为长蛇座 27（非 26）')
+  assert(byName['星宿六']?.modernName.includes('26 Hya'), '星宿六应为长蛇座 26（ν Hya）')
+  assert(!byName['星宿七'], '星宿七（暗星）应以 skip 占位不入表')
   // 轸宿附属星官（《步天歌》"中央一个长沙子，左辖右辖附两星"）：单星成组、不入宿连线
   assert(byName['左辖']?.modernName.includes('η Crv'), '左辖应为乌鸦座 η')
   assert(byName['右辖']?.modernName.includes('α Crv'), '右辖应为乌鸦座 α')
