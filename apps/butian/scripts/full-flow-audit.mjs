@@ -1,8 +1,8 @@
 // 真实浏览器全流程巡检：桌面 + 移动端把产品动线完整走一遍（引导→模式→时间→地点→星官卡→测量→奏折→客星剧场四幕）。
 // 每步做 DOM 断言并收集控制台错误，输出 artifacts/audit-report.json；有失败项时退出码非 0。
 // 用法：先 `npm run preview -- --port 5199 --strictPort`，再 `node scripts/full-flow-audit.mjs`
-import { spawn } from 'node:child_process'
-import { mkdirSync, rmSync, writeFileSync } from 'node:fs'
+import { spawn, execSync } from 'node:child_process'
+import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 
 const EDGE = 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'
@@ -265,14 +265,13 @@ const report = {
 }
 writeFileSync(join(outdir, 'audit-report.json'), JSON.stringify(report, null, 2))
 
-// 正常收尾：按命令行匹配杀掉本项目 Edge（headless 下 launcher 可能早退，taskkill /PID 杀不到真浏览器进程）、
-// 等句柄释放、清浏览器残留（留磁盘会触发安全扫描误报）
+// 正常收尾：杀进程树 + 等句柄释放 + 清浏览器残留（重试三次；留磁盘会触发安全扫描误报）
 try { execSync(`taskkill /PID ${edge.pid} /T /F`, { stdio: 'ignore' }) } catch {}
-try {
-  execSync(`powershell -NoProfile -Command "Get-CimInstance Win32_Process -Filter \\"Name='msedge.exe'\\" | Where-Object { $_.CommandLine -like '*_edge-profile-audit*' } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }"`, { stdio: 'ignore' })
-} catch {}
-await sleep(600)
-try { rmSync(join(outdir, '_edge-profile-audit'), { recursive: true, force: true }) } catch {}
+for (let attempt = 0; attempt < 3; attempt++) {
+  await sleep(700)
+  try { rmSync(join(outdir, '_edge-profile-audit'), { recursive: true, force: true }) } catch {}
+  if (!existsSync(join(outdir, '_edge-profile-audit'))) break
+}
 
 console.log(`\n巡检完成：${results.length} 项，失败 ${failed.length} 项，控制台错误 ${consoleErrors.length} 条`)
 for (const r of results) console.log(`${r.pass ? '✓' : '✗'} ${r.name}${r.pass ? '' : ' —— ' + r.note}`)
