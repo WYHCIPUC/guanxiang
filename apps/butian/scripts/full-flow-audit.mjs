@@ -265,10 +265,11 @@ const report = {
 }
 writeFileSync(join(outdir, 'audit-report.json'), JSON.stringify(report, null, 2))
 
-// 正常收尾：杀进程树 + 等句柄释放 + 清浏览器残留（重试三次；留磁盘会触发安全扫描误报）
+// 正常收尾：杀进程树 + 等句柄释放 + 清浏览器残留（Windows 句柄释放最长达数秒，重试五次；
+// 留磁盘会触发安全扫描误报）
 try { execSync(`taskkill /PID ${edge.pid} /T /F`, { stdio: 'ignore' }) } catch {}
-for (let attempt = 0; attempt < 3; attempt++) {
-  await sleep(700)
+for (let attempt = 0; attempt < 5; attempt++) {
+  await sleep(1200)
   try { rmSync(join(outdir, '_edge-profile-audit'), { recursive: true, force: true }) } catch {}
   if (!existsSync(join(outdir, '_edge-profile-audit'))) break
 }
