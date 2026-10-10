@@ -1,6 +1,6 @@
 {
   "url": "http://localhost:5199/app.html",
-  "at": "2026-10-10T07:54:47.147Z",
+  "at": "2026-10-10T08:32:56.729Z",
   "total": 73,
   "failed": 0,
   "consoleErrors": [],
@@ -38,7 +38,7 @@
     {
       "name": "D07 可见标签 ≤ 24（防串珠）",
       "pass": true,
-      "note": "true/17"
+      "note": "true/12"
     },
     {
       "name": "D08 切西方星座模式",
@@ -283,7 +283,7 @@
     {
       "name": "M04 移动端可见标签 ≤ 18",
       "pass": true,
-      "note": "true/10"
+      "note": "true/7"
     },
     {
       "name": "M05 移动端宿度环 28 宿名",
@@ -348,7 +348,7 @@
     {
       "name": "M16d 点后状态",
       "pass": true,
-      "note": "{\"named\":16,\"sel\":[\"查看织女一\"]}"
+      "note": "{\"named\":14,\"sel\":[\"查看织女一\"]}"
     },
     {
       "name": "M17 整组星名展开",
@@ -368,7 +368,7 @@
     {
       "name": "M19d 收回诊断",
       "pass": true,
-      "note": "{\"labelCls\":\"star-label hint\",\"btnCls\":\"star-point\"}"
+      "note": "{\"labelCls\":\"star-label edge-left hint\",\"btnCls\":\"star-point\"}"
     }
   ]
 }

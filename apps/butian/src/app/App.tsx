@@ -217,8 +217,15 @@ function App() {
         bigGroups.set(star.chineseGroup, star.id)
       }
     }
-    const placed: { x: number; y: number }[] = []
-    const hits = (p: { x: number; y: number }, w: number) => placed.some((q) => Math.abs(p.x - q.x) < w && Math.abs(p.y - q.y) < boxH)
+    // 碰撞用 AABB（各自半宽半高求和判定）：已挂标签互避，同时把全部已升起星点预填为障碍——
+    // 标签不再压到别人的星（放大态下毕宿五/北极星一类的压点由此消除）
+    const placed: { x: number; y: number; hw: number; hh: number }[] = []
+    const starHalf = 1.1 / zoom
+    for (const star of visible) {
+      const sp = placements.get(star.id)
+      if (sp?.above) placed.push({ x: sp.x, y: sp.y, hw: starHalf, hh: starHalf })
+    }
+    const hits = (p: { x: number; y: number }, w: number, selfX = -999, selfY = -999) => placed.some((q) => !(Math.abs(q.x - selfX) < 0.01 && Math.abs(q.y - selfY) < 0.01) && Math.abs(p.x - q.x) < w / 2 + q.hw && Math.abs(p.y - q.y) < boxH / 2 + q.hh)
     // 窄屏（移动端）寸土寸金：仅著名亮星挂牌，三垣各留第一颗升起的锚星，其余一律悬停展开
     const narrowCandidates = isNarrow ? new Set(PRIORITY_STAR_IDS) : null
     if (narrowCandidates) {
@@ -245,8 +252,8 @@ function App() {
       // 右缘标签向左挂，避免被视口裁切（移动端阈值更宽）
       const sideLeft = p.x > (isNarrow ? 76 : 80)
       const side = { x: p.x + (sideLeft ? -(w / 2 + 2.2 / zoom) : w / 2 + 2.2 / zoom), y: p.y }
-      if (!hits(below, w)) { placed.push(below); plan.set(star.id, 'below') }
-      else if (!hits(side, w)) { placed.push(side); plan.set(star.id, 'side') }
+      if (!hits(below, w, p.x, p.y)) { placed.push({ x: below.x, y: below.y, hw: w / 2, hh: boxH / 2 }); plan.set(star.id, 'below') }
+      else if (!hits(side, w, p.x, p.y)) { placed.push({ x: side.x, y: side.y, hw: w / 2, hh: boxH / 2 }); plan.set(star.id, 'side') }
       else plan.set(star.id, 'hint')
     }
     return { plan, anchorHidden }
