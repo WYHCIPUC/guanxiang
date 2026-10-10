@@ -127,6 +127,9 @@ export const lodgeStars: Star[] = [
   { id: 'zhen-2', name: '轸宿二', modernName: '轸宿二 · ε Crv', x: 51, y: 113, magnitude: 3.02, chineseGroup: '轸宿', westernGroup: '乌鸦座', chineseNote: '轸为车后横木，又主风。乌鸦座四星是春夜的明显路标，另辖左辖右辖长沙诸附官。', raHours: 12.1687, decDegrees: -22.6198 },
   { id: 'zhen-3', name: '轸宿三', modernName: '轸宿三 · δ Crv', x: 52, y: 107, magnitude: 2.94, chineseGroup: '轸宿', westernGroup: '乌鸦座', chineseNote: '轸为车后横木，又主风。乌鸦座四星是春夜的明显路标，另辖左辖右辖长沙诸附官。', raHours: 12.4977, decDegrees: -16.5154 },
   { id: 'zhen-4', name: '轸宿四', modernName: '轸宿四 · β Crv', x: 52, y: 113, magnitude: 2.65, chineseGroup: '轸宿', westernGroup: '乌鸦座', chineseNote: '轸为车后横木，又主风。乌鸦座四星是春夜的明显路标，另辖左辖右辖长沙诸附官。', raHours: 12.5731, decDegrees: -23.3968 },
+  { id: 'zuoxia-1', name: '左辖', modernName: '左辖 · η Crv', x: 52, y: 106, magnitude: 4.3, chineseGroup: '左辖', westernGroup: '乌鸦座', chineseNote: '轸宿附官，车轴左端的插销。', raHours: 12.5345, decDegrees: -16.196 },
+  { id: 'youxia-1', name: '右辖', modernName: '右辖 · α Crv', x: 51, y: 115, magnitude: 4.02, chineseGroup: '右辖', westernGroup: '乌鸦座', chineseNote: '轸宿附官，车轴右端的插销。', raHours: 12.1402, decDegrees: -24.7289 },
+  { id: 'changsha-1', name: '长沙', modernName: '长沙 · ζ Crv', x: 51, y: 112, magnitude: 5.2, chineseGroup: '长沙', westernGroup: '乌鸦座', chineseNote: '轸宿附官，车舆中央之星，对应地上长沙之名。', raHours: 12.3427, decDegrees: -22.2159 },
 ]
 
 export const lodgeChinaLines: [string, string][] = [

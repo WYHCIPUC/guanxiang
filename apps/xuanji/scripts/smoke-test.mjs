@@ -93,6 +93,19 @@ checks.push(['删除支持短时撤销', main.includes('undoJournal') && main.in
 checks.push(['导入先预览并确认', main.includes('导入预览') && main.includes('window.confirm') && main.includes('原有记录未改变')])
 checks.push(['日志核心模块可标准化和合并', journalCore.includes('normalizeJournalEntries') && journalCore.includes('mergeJournalEntries') && journalCore.includes('removeJournalEntry')])
 checks.push(['生日节气数据可生成', solarTerms.includes('solarTerms') && Boolean(known.solarTerm?.name)])
+
+// 数值锚点（防漂移）：节气近似表与本命宿轮转的当前正确输出快照；
+// 数据或算法改动导致漂移时当场红链（二十八宿名序另有步天 astro-check 跨应用断言守护）。
+{
+  const { solarTerms: terms, getSolarTerm } = await import('../src/data/solar-terms.js')
+  const { getStarOfficer } = await import('../src/data/stars.js')
+  checks.push(['节气表共 24 项且首尾正确', terms.length === 24 && terms[0].name === '小寒' && terms[23].name === '冬至'])
+  checks.push(['春分夏至可按日期近似命中', getSolarTerm('2026-03-21').name === '春分' && getSolarTerm('2026-06-21').name === '夏至'])
+  checks.push(['年初归属前一年冬至', getSolarTerm('2026-01-01').name === '冬至'])
+  const anchor = getStarOfficer('2000-01-01')
+  checks.push(['本命宿轮转锚点（2000-01-01=女宿）', anchor.name === '女' && anchor.mode === 'productized-cycle'])
+  checks.push(['本命宿轮转 28 日一循环', getStarOfficer('2000-01-29').name === '女' && getStarOfficer('2000-01-02').name === '虚'])
+}
 checks.push(['离线缓存路径相对且仅导航回退', sw.includes("'./index.html'") && sw.includes("event.request.mode === 'navigate'") && sw.includes('fallback || Response.error()')])
 checks.push(['清单包含本地安装图标', manifest.includes('./assets/icon.svg') && sw.includes('./assets/icon.svg')])
 let invalidDateRejected = false

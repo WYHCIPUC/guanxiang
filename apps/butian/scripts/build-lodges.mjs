@@ -38,6 +38,10 @@ const memberships = [
   { id: 'zhang', name: '张', con: 'Hya', members: ['bayer:υ¹', 'bayer:λ', 'bayer:μ', 'skip:张宿四为暗星未入亮星表', 'bayer:κ', 'bayer:φ¹'], note: '张为朱雀之嗉。春夜南方长蛇中段的小星群。' },
   { id: 'yi', name: '翼', con: 'Crt', members: ['bayer:α', 'bayer:γ', 'bayer:δ', 'bayer:β'], note: '翼为朱雀之翼，廿二星铺开如翅，主体在巨爵座（此处取其代表星）。' },
   { id: 'zhen', name: '轸', con: 'Crv', members: ['bayer:γ', 'bayer:ε', 'bayer:δ', 'bayer:β'], note: '轸为车后横木，又主风。乌鸦座四星是春夜的明显路标，另辖左辖右辖长沙诸附官。' },
+  // 轸宿附属星官（《步天歌》"中央一个长沙子，左辖右辖附两星"）：单星挂牌，不入宿连线
+  { id: 'zuoxia', name: '左辖', con: 'Crv', kind: 'annex', members: ['bayer:η'], note: '轸宿附官，车轴左端的插销。' },
+  { id: 'youxia', name: '右辖', con: 'Crv', kind: 'annex', members: ['bayer:α'], note: '轸宿附官，车轴右端的插销。' },
+  { id: 'changsha', name: '长沙', con: 'Crv', kind: 'annex', members: ['bayer:ζ'], note: '轸宿附官，车舆中央之星，对应地上长沙之名。' },
 ]
 
 // 西方星座中文名
@@ -108,6 +112,8 @@ const starEntries = []
 const lineEntries = []
 for (const lodge of memberships) {
   const ids = []
+  // kind: 'annex' = 附属星官（如左辖/右辖/长沙）：单星挂牌、无宿编号、不参与宿连线
+  const isAnnex = lodge.kind === 'annex'
   lodge.members.forEach((spec, index) => {
     // ref: 引用核心星表中已有的星（占用序号、参与连线，不重复生成）
     if (spec.startsWith('ref:')) {
@@ -124,14 +130,15 @@ for (const lodge of memberships) {
     const id = `${lodge.id}-${index + 1}`
     ids.push(id)
     const label = spec.startsWith('bayer:') ? spec.slice(6) : `fl:${spec.split(':').pop()}`
+    const starName = isAnnex ? lodge.name : `${lodge.name}宿${digits[index + 1]}`
     starEntries.push({
       id,
-      name: `${lodge.name}宿${digits[index + 1]}`,
-      modernName: `${lodge.name}宿${digits[index + 1]} · ${label.replace('fl:', '')} ${spec.startsWith('con+') ? spec.split(':')[1] : lodge.con}`,
+      name: starName,
+      modernName: `${starName} · ${label.replace('fl:', '')} ${spec.startsWith('con+') ? spec.split(':')[1] : lodge.con}`,
       x: Math.round(((star.ra / 24) * 100) % 100),
       y: Math.round(90 - star.dec),
       magnitude: Math.round(star.mag * 100) / 100,
-      chineseGroup: `${lodge.name}宿`,
+      chineseGroup: isAnnex ? lodge.name : `${lodge.name}宿`,
       westernGroup: westernOf[spec.startsWith('con+') ? spec.split(':')[1] : lodge.con],
       chineseNote: lodge.note,
       raHours: Math.round(star.ra * 10000) / 10000,
@@ -163,4 +170,5 @@ ${serializeLines(lineEntries)}
 ]
 `
 fs.writeFileSync(path.join(appRoot, 'src', 'data', 'lodges.ts'), source)
-console.log(`已生成 src/data/lodges.ts：${memberships.length} 宿 ${starEntries.length} 星 ${lineEntries.length} 条连线`)
+const annexCount = memberships.filter((m) => m.kind === 'annex').length
+console.log(`已生成 src/data/lodges.ts：${memberships.length - annexCount} 宿 + ${annexCount} 附官 ${starEntries.length} 星 ${lineEntries.length} 条连线`)

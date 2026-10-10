@@ -2,7 +2,7 @@
 // 覆盖：恒星时锚点、地平坐标、天穹投影、入宿度/去极度、升起时刻、日期处理、HYG 星表抽检。
 import * as astro from '../src/lib/astro.ts'
 import { starfield } from '../src/data/starfield.ts'
-import { lodgeStars } from '../src/data/lodges.ts'
+import { lodgeStars, lodgeChinaLines } from '../src/data/lodges.ts'
 import { stars as demoStars } from '../src/data/demo.ts'
 import { westernSkyGroups } from '../src/data/western-sky.ts'
 import { guestStarCoord, kaifeng, theaterScenes } from '../src/lib/kestar.ts'
@@ -131,7 +131,7 @@ near(astro.greenwichSiderealTimeHours(new Date(Date.UTC(2000, 0, 1, 12, 0, 0))),
 
 // 12. 二十八宿覆盖与距星交叉校验：lodges.ts（HYG 提取）与 astro.ts 宿表（手工整理）互为印证
 {
-  const lodgeGroups = new Set(lodgeStars.map((star) => star.chineseGroup))
+  const lodgeGroups = new Set(lodgeStars.map((star) => star.chineseGroup.endsWith('宿') ? star.chineseGroup : null).filter(Boolean))
   assert(lodgeGroups.size === 27, `lodges.ts 应覆盖 27 宿（实际 ${lodgeGroups.size}）`)
   assert(demoStars.some((star) => star.chineseGroup === '参宿'), '参宿应在核心星表中，合计 28 宿')
   assert(demoStars.length >= 140, `合并星表应有 140 颗以上（实际 ${demoStars.length}）`)
@@ -252,6 +252,11 @@ near(astro.greenwichSiderealTimeHours(new Date(Date.UTC(2000, 0, 1, 12, 0, 0))),
   assert(byName['牛宿六']?.modernName.includes('ρ Cap'), '牛宿六应为摩羯座 ρ')
   assert(byName['井宿八']?.modernName.includes('ν Gem'), '井宿八应为双子座 ν')
   assert(byName['轸宿四']?.modernName.includes('β Crv'), '轸宿四应为乌鸦座 β（Kraz）')
+  // 轸宿附属星官（《步天歌》"中央一个长沙子，左辖右辖附两星"）：单星成组、不入宿连线
+  assert(byName['左辖']?.modernName.includes('η Crv'), '左辖应为乌鸦座 η')
+  assert(byName['右辖']?.modernName.includes('α Crv'), '右辖应为乌鸦座 α')
+  assert(byName['长沙']?.modernName.includes('ζ Crv'), '长沙应为乌鸦座 ζ')
+  assert(!lodgeChinaLines.some(([a, b]) => a.startsWith('zuoxia') || b.startsWith('zuoxia') || a.startsWith('youxia') || b.startsWith('youxia') || a.startsWith('changsha') || b.startsWith('changsha')), '附官不参与宿连线')
   for (const name of ['壁宿二', '危宿二', '危宿三', '毕宿八', '张宿一', '牛宿三', '井宿八']) {
     const entry = astro.lodgeEntry(byName[name].raHours)
     assert(entry.lodge !== '未知', `${name} 的入宿度应可解析`)
